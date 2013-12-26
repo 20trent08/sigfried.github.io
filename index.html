@@ -9,7 +9,8 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content=" Blog Archives Recent Posts ">
+  <meta name="description" content="Explore CSV or JSON files from SQL queries or spreadsheets TreeLike is an experimental tool providing a quick way to understand the
+shape of the data &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@
 
   
   <link rel="canonical" href="http://Sigfried.github.io">
-  <link href="/favicon.png" rel="icon">
+  <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,18 +64,142 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
-  
-  
-  <div class="pagination">
+      <div class="blog-index home-page-listing">
+    Site pages:
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    
+                    <article>
+                        
+  <header>
     
-    <a href="/blog/archives">Blog Archives</a>
+      <h1 class="entry-title">TreeLike Browser</h1>
     
-  </div>
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>Explore CSV or JSON files from SQL queries or spreadsheets</h3>
+
+<p>TreeLike is an experimental tool providing a quick way to understand the
+shape of the data in a CSV file.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<p><a href="../treelike/demo.html">Demo</a> (you&rsquo;ll need a data file, how about: <a href="https://raw.github.com/Sigfried/treelike/master/data/mysql_world_data.csv">MySQL world data</a>)</p>
+
+<p>It immediately shows the distributions of values in all columns, and by
+laying out the columns in some nesting order, can show hierarchical
+relationships between values across columns. When two columns have a
+many-to-many relationship, the merge feature shows connections in both
+directions, not just from parent to child. And parent/child
+relationships can be reordered with one or two mouse clicks.</p>
+
+<p>To understand what it does, you need to see it in action. This rough
+demo video will explain:</p>
+
+<iframe width="420" height="315" src="//www.youtube.com/embed/mJ8ljG8qpZk" frameborder="0" allowfullscreen></iframe>
+
+
+<p>TreeLike will be most helpful with files of between about 4 and
+20 columns. It should be fine with at least tens of thousands of rows,
+but it hasn&rsquo;t been well tested.</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Or a spreadsheet or SQL query or SAS data set, or any other data arranged in rows and columns and saved as CSV or JSON. <a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+</div>
+
+
+                    </article>
+                
+            
+                
+                    
+                    <article>
+                        
+  <header>
+    
+      <h1 class="entry-title">Underscore-unchained</h1>
+    
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://sigfried.github.io/underscore-unchained/">sigfried.github.io/underscore-unchained/</a></p>
+
+<pre><code>_.unchain(obj, magicPowers) // obj now has all the power of Underscore and any other powers you choose to give it
+</code></pre>
+
+<p><em>A mixin that lets you use Underscore methods directly from objects or classes of objects, and there&rsquo;s no need for _.chain()</em></p>
+
+<p>{% codeblock lang:javascript %}</p>
+
+<pre><code>_.unchain(['a','bb','ccc']) // unchain this humble array of strings
+    .pluck('length')        // transform it into an array of numbers: [1,2,3]
+    .last()                 // grab the last item (as a Number object)
+    .range()                // create an array of that length
+=&gt; [0, 1, 2]                // look, Ma, no chains! No value()!
+</code></pre>
+
+<p>{% endcodeblock %}</p>
+
+<p><em>Defy the gods and bring the full power of Underscore to <strong>all</strong> your Arrays, Objects, or whatever.
+Also works with constructors of user-defined classes. Use at your own risk.</em></p>
+
+<p>&#8220;` javascript blah
+_.prometheus(obj, magicPowers)  // Bring the power of Underscore or anything else</p>
+
+<pre><code>                            // to entire object types!  Modifying built in types 
+                            // is a seriously reckless undertaking and I totally 
+                            // recommend against it, but, hey, what's the worst 
+                            // that could happen?
+</code></pre>
+
+<p>_.prometheus(Array);
+&#8220;`</p>
+
+<pre><code>['a','bb','ccc'].pluck('length').last().range()  // OMG, my arrays can do anything!
+=&gt; [0, 1, 2]
+</code></pre>
+</div>
+
+
+                    </article>
+                
+            
+    End site pages.
+    
+    
+    <div class="pagination">
+        
+        <a href="/blog/archives">Blog Archives</a>
+        
+    </div>
 </div>
 <aside class="sidebar">
-  
-    <section>
+    
+        <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
@@ -85,7 +210,7 @@
 
 
 
-  
+    
 </aside>
 
     </div>
