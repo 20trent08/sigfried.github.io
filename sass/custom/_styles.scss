@@ -4,6 +4,9 @@
 article header { 
     padding-top: 0em;
     padding-bottom: 0em;
+    p.meta>time {
+        display: none;  // time overwrites h1 since I removed padding
+    }
 }
 
 .home-page-listing {
@@ -21,3 +24,5 @@ article header {
         padding: 0px;
         font-variant: small-caps; }
 }
+
+
