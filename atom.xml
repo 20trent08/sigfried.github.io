@@ -4,7 +4,7 @@
   <title><![CDATA[D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://sigfried.github.io/atom.xml" rel="self"/>
   <link href="http://sigfried.github.io/"/>
-  <updated>2013-12-27T16:39:04-05:00</updated>
+  <updated>2013-12-27T16:41:37-05:00</updated>
   <id>http://sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -109,8 +109,9 @@ but, hey, what&rsquo;s the worst that could happen?</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>File /Users/sigfried/Sites/octopress/source/downloads/code/supergroup.html could not be found</p>
 
+
+<!--
 <figure class='code'><figcaption><span> (supergroup-test.js)</span> <a href='http://sigfried.github.io/downloads/code/supergroup-test.js'>download</a></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -323,6 +324,7 @@ but, hey, what&rsquo;s the worst that could happen?</p>
 </span><span class='line'>    <span class="p">});</span>
 </span><span class='line'><span class="p">});</span>
 </span></code></pre></td></tr></table></div></figure>
+&#8211;>
 
 ]]></content>
   </entry>
