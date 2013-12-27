@@ -6,7 +6,6 @@ comments: true
 reponame: underscore-unchained
 categories: [repo]
 source: https://github.com/Sigfried/underscore-unchained
-demo: demos/underscore-unchained.html
 ---
 
 
@@ -16,11 +15,13 @@ wouldn't use it in your code, it's pretty nice for debugging in the
 console.
 
 ``` javascript Unchain an array and it's ready to go
-var abbccc = _.unchain(['a','bb','ccc']) // a humble array of strings
-abbccc.pluck('length')                   // transform it into an array of numbers: [1,2,3]
-      .last()                            // grab the last item (as a Number object)
-      .range()                           // create an array of that length
-=> [0, 1, 2]                             // no need for unwrapping!
+var abcd = _.unchain(['a','bb','ccccc','d']) // a humble array of strings
+
+abcd.pluck('length')                         // pluck lengths into an array of numbers: [1,2,5,1]
+    .max()                                   // max (as a Number object)
+    .range()                                 // create an array of that length
+
+=> [0, 1, 2, 3, 4]                           // no need for unwrapping!
 ```
 
 <!-- more -->

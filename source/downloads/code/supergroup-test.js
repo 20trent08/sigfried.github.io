@@ -1,0 +1,1 @@
+../../../../supergroup/test/groups.spec.js

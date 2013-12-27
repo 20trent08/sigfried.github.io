@@ -5,12 +5,12 @@ date: 2013-12-27 00:07:00 -0500
 comments: true
 categories: 
 categories: [repo]
-source: https://github.com/Sigfried/underscore-unchained
-demo: demos/underscore-unchained.html
+source: https://github.com/Sigfried/supergroup
+demo: demos/supergroup.html
 ---
 
-Author: [Sigfried Gold](http://sigfried.org)  
-License: [MIT](http://sigfried.mit-license.org/)  
+{% include_code supergroup-test.js %}
+
 
 ``` javascript
 var gradeBook = [
