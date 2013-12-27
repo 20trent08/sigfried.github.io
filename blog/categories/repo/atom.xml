@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Repo | D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://sigfried.github.io/blog/categories/repo/atom.xml" rel="self"/>
   <link href="http://sigfried.github.io/"/>
-  <updated>2013-12-27T16:06:23-05:00</updated>
+  <updated>2013-12-27T16:39:04-05:00</updated>
   <id>http://sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -58,7 +58,31 @@ _.prometheus(Array);</p>
     <link href="http://sigfried.github.io/blog/supergroup/"/>
     <updated>2013-12-27T00:07:00-05:00</updated>
     <id>http://sigfried.github.io/blog/supergroup</id>
-    <content type="html"><![CDATA[<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (supergroup-test.js)</span> <a href='/downloads/code/supergroup-test.js'>download</a></figcaption>
+    <content type="html"><![CDATA[<p>``` javascript
+var gradeBook = [
+   {firstName: &lsquo;Sigfried&rsquo;, lastName: &lsquo;Gold&rsquo;, class: &lsquo;Remedial Programming&rsquo;, grade: &lsquo;C+&rsquo;, num: 2.2},
+   {firstName: &lsquo;Sigfried&rsquo;, lastName: &lsquo;Gold&rsquo;, class: &lsquo;Literary Posturing&rsquo;, grade: &lsquo;B&rsquo;, num: 3},
+   {firstName: &lsquo;Sigfried&rsquo;, lastName: &lsquo;Gold&rsquo;, class: &lsquo;Documenting with Pretty Colors&rsquo;, grade: &lsquo;B-&rsquo;, num: 2.7},
+   {firstName: &lsquo;Someone&rsquo;, lastName: &lsquo;Else&rsquo;, class: &lsquo;Remedial Programming&rsquo;, grade: &lsquo;A&rsquo;}];</p>
+
+<p>var gradesByLastName = enlightenedData.group(gradeBook, &lsquo;lastName&rsquo;)
+```</p>
+
+<p>``` javascript
+var gradesByName = enlightenedData.group(gradeBook,</p>
+
+<pre><code>    function(d) { return d.lastName + ', ' + d.firstName },  
+    {dimName: 'fullName'})
+</code></pre>
+
+<p>var sigfried = gradesByName.lookup(&lsquo;Gold, Sigfried&rsquo;);
+sigfried.records.length; // 3
+var sigfriedGPA = sigfried.records.reduce(function(result,rec) { return result+rec.num }, 0) / sigfried.records.length;
+(it does much much more, will explain below)
+```
+File /Users/sigfried/Sites/octopress/source/downloads/code/supergroup.html could not be found</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (supergroup-test.js)</span> <a href='/downloads/code/supergroup-test.js'>download</a></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -270,29 +294,6 @@ _.prometheus(Array);</p>
 </span><span class='line'>    <span class="p">});</span>
 </span><span class='line'><span class="p">});</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>``` javascript
-var gradeBook = [
-   {firstName: &lsquo;Sigfried&rsquo;, lastName: &lsquo;Gold&rsquo;, class: &lsquo;Remedial Programming&rsquo;, grade: &lsquo;C+&rsquo;, num: 2.2},
-   {firstName: &lsquo;Sigfried&rsquo;, lastName: &lsquo;Gold&rsquo;, class: &lsquo;Literary Posturing&rsquo;, grade: &lsquo;B&rsquo;, num: 3},
-   {firstName: &lsquo;Sigfried&rsquo;, lastName: &lsquo;Gold&rsquo;, class: &lsquo;Documenting with Pretty Colors&rsquo;, grade: &lsquo;B-&rsquo;, num: 2.7},
-   {firstName: &lsquo;Someone&rsquo;, lastName: &lsquo;Else&rsquo;, class: &lsquo;Remedial Programming&rsquo;, grade: &lsquo;A&rsquo;}];</p>
-
-<p>var gradesByLastName = enlightenedData.group(gradeBook, &lsquo;lastName&rsquo;)
-```</p>
-
-<p>``` javascript
-var gradesByName = enlightenedData.group(gradeBook,</p>
-
-<pre><code>    function(d) { return d.lastName + ', ' + d.firstName },  
-    {dimName: 'fullName'})
-</code></pre>
-
-<p>var sigfried = gradesByName.lookup(&lsquo;Gold, Sigfried&rsquo;);
-sigfried.records.length; // 3
-var sigfriedGPA = sigfried.records.reduce(function(result,rec) { return result+rec.num }, 0) / sigfried.records.length;
-(it does much much more, will explain below)
-```</p>
 ]]></content>
   </entry>
   

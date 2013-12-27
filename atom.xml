@@ -4,7 +4,7 @@
   <title><![CDATA[D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://sigfried.github.io/atom.xml" rel="self"/>
   <link href="http://sigfried.github.io/"/>
-  <updated>2013-12-27T16:06:23-05:00</updated>
+  <updated>2013-12-27T16:39:04-05:00</updated>
   <id>http://sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -71,7 +71,47 @@ but, hey, what&rsquo;s the worst that could happen?</p>
     <link href="http://sigfried.github.io/blog/supergroup/"/>
     <updated>2013-12-27T00:07:00-05:00</updated>
     <id>http://sigfried.github.io/blog/supergroup</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span> (supergroup-test.js)</span> <a href='http://sigfried.github.io/downloads/code/supergroup-test.js'>download</a></figcaption>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">gradeBook</span> <span class="o">=</span> <span class="p">[</span>
+</span><span class='line'>   <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Sigfried&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Gold&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Remedial Programming&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;C+&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mf">2.2</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Sigfried&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Gold&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Literary Posturing&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">3</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Sigfried&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Gold&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Documenting with Pretty Colors&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;B-&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mf">2.7</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Someone&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Else&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Remedial Programming&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;A&#39;</span><span class="p">}];</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">gradesByLastName</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span> <span class="s1">&#39;lastName&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">gradesByName</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span>
+</span><span class='line'>        <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">firstName</span> <span class="p">},</span>
+</span><span class='line'>        <span class="p">{</span><span class="nx">dimName</span><span class="o">:</span> <span class="s1">&#39;fullName&#39;</span><span class="p">})</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">sigfried</span> <span class="o">=</span> <span class="nx">gradesByName</span><span class="p">.</span><span class="nx">lookup</span><span class="p">(</span><span class="s1">&#39;Gold, Sigfried&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">sigfried</span><span class="p">.</span><span class="nx">records</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// 3</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">sigfriedGPA</span> <span class="o">=</span> <span class="nx">sigfried</span><span class="p">.</span><span class="nx">records</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span><span class="nx">rec</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">result</span><span class="o">+</span><span class="nx">rec</span><span class="p">.</span><span class="nx">num</span> <span class="p">},</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="nx">sigfried</span><span class="p">.</span><span class="nx">records</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+</span><span class='line'><span class="p">(</span><span class="nx">it</span> <span class="nx">does</span> <span class="nx">much</span> <span class="nx">much</span> <span class="nx">more</span><span class="p">,</span> <span class="nx">will</span> <span class="nx">explain</span> <span class="nx">below</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>File /Users/sigfried/Sites/octopress/source/downloads/code/supergroup.html could not be found</p>
+
+<figure class='code'><figcaption><span> (supergroup-test.js)</span> <a href='http://sigfried.github.io/downloads/code/supergroup-test.js'>download</a></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -282,46 +322,6 @@ but, hey, what&rsquo;s the worst that could happen?</p>
 </span><span class='line'>        <span class="p">});</span>
 </span><span class='line'>    <span class="p">});</span>
 </span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">gradeBook</span> <span class="o">=</span> <span class="p">[</span>
-</span><span class='line'>   <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Sigfried&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Gold&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Remedial Programming&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;C+&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mf">2.2</span><span class="p">},</span>
-</span><span class='line'>   <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Sigfried&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Gold&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Literary Posturing&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">3</span><span class="p">},</span>
-</span><span class='line'>   <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Sigfried&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Gold&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Documenting with Pretty Colors&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;B-&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mf">2.7</span><span class="p">},</span>
-</span><span class='line'>   <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Someone&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Else&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Remedial Programming&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;A&#39;</span><span class="p">}];</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">gradesByLastName</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span> <span class="s1">&#39;lastName&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">gradesByName</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span>
-</span><span class='line'>        <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">firstName</span> <span class="p">},</span>
-</span><span class='line'>        <span class="p">{</span><span class="nx">dimName</span><span class="o">:</span> <span class="s1">&#39;fullName&#39;</span><span class="p">})</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">sigfried</span> <span class="o">=</span> <span class="nx">gradesByName</span><span class="p">.</span><span class="nx">lookup</span><span class="p">(</span><span class="s1">&#39;Gold, Sigfried&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="nx">sigfried</span><span class="p">.</span><span class="nx">records</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// 3</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">sigfriedGPA</span> <span class="o">=</span> <span class="nx">sigfried</span><span class="p">.</span><span class="nx">records</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span><span class="nx">rec</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">result</span><span class="o">+</span><span class="nx">rec</span><span class="p">.</span><span class="nx">num</span> <span class="p">},</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="nx">sigfried</span><span class="p">.</span><span class="nx">records</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-</span><span class='line'><span class="p">(</span><span class="nx">it</span> <span class="nx">does</span> <span class="nx">much</span> <span class="nx">much</span> <span class="nx">more</span><span class="p">,</span> <span class="nx">will</span> <span class="nx">explain</span> <span class="nx">below</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
