@@ -1,20 +1,43 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
 
-article header { 
-    padding-top: 0em;
-    padding-bottom: 0em;
-    p.meta>time {
-        display: none;  // time overwrites h1 since I removed padding
+article {
+    header { 
+        border-bottom: 5px double gray;
+        overflow:auto;
+        padding-top: 0em;
+        padding-bottom: 0em;
+        p.meta>time {
+            display: none;  // time overwrites h1 since I removed padding
+        }
+        .small {
+            color: $solar-blue !important;
+            font-size: 60%;
+        }
+        h1 { 
+            float: left; 
+        }
+        div.links {
+            float: right; 
+            padding-top: 15px;
+            a { 
+                font-variant: small-caps;
+                font-weight: bold;
+                padding-left: 5px;
+            }
+        }
+    }
+    div.entry-content {
+        clear: both;
+        text-align: justify;
     }
 }
 
 .home-page-listing {
     font-size: 80%;
     line-height: 1.3em;
-    article {
-        background-color: $base2;
-    }
+    background-color: $base2;
+
     header {
         margin: 0px;
     }
@@ -24,5 +47,4 @@ article header {
         padding: 0px;
         font-variant: small-caps; }
 }
-
 
