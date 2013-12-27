@@ -115,11 +115,15 @@ console.</p>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">abbccc</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">unchain</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;bb&#39;</span><span class="p">,</span><span class="s1">&#39;ccc&#39;</span><span class="p">])</span> <span class="c1">// a humble array of strings</span>
-</span><span class='line'><span class="nx">abbccc</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;length&#39;</span><span class="p">)</span>                   <span class="c1">// transform it into an array of numbers: [1,2,3]</span>
-</span><span class='line'>      <span class="p">.</span><span class="nx">last</span><span class="p">()</span>                            <span class="c1">// grab the last item (as a Number object)</span>
-</span><span class='line'>      <span class="p">.</span><span class="nx">range</span><span class="p">()</span>                           <span class="c1">// create an array of that length</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>                             <span class="c1">// no need for unwrapping!</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">abcd</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">unchain</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;bb&#39;</span><span class="p">,</span><span class="s1">&#39;ccccc&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">])</span> <span class="c1">// a humble array of strings</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">abcd</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;length&#39;</span><span class="p">)</span>                         <span class="c1">// pluck lengths into an array of numbers: [1,2,5,1]</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">max</span><span class="p">()</span>                                   <span class="c1">// max (as a Number object)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">range</span><span class="p">()</span>                                 <span class="c1">// create an array of that length</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>                           <span class="c1">// no need for unwrapping!</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

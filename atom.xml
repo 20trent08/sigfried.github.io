@@ -4,7 +4,7 @@
   <title><![CDATA[D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://sigfried.github.io/atom.xml" rel="self"/>
   <link href="http://sigfried.github.io/"/>
-  <updated>2013-12-27T15:41:24-05:00</updated>
+  <updated>2013-12-27T16:06:23-05:00</updated>
   <id>http://sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -28,11 +28,15 @@ console.</p>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">abbccc</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">unchain</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;bb&#39;</span><span class="p">,</span><span class="s1">&#39;ccc&#39;</span><span class="p">])</span> <span class="c1">// a humble array of strings</span>
-</span><span class='line'><span class="nx">abbccc</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;length&#39;</span><span class="p">)</span>                   <span class="c1">// transform it into an array of numbers: [1,2,3]</span>
-</span><span class='line'>      <span class="p">.</span><span class="nx">last</span><span class="p">()</span>                            <span class="c1">// grab the last item (as a Number object)</span>
-</span><span class='line'>      <span class="p">.</span><span class="nx">range</span><span class="p">()</span>                           <span class="c1">// create an array of that length</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>                             <span class="c1">// no need for unwrapping!</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">abcd</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">unchain</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;bb&#39;</span><span class="p">,</span><span class="s1">&#39;ccccc&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">])</span> <span class="c1">// a humble array of strings</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">abcd</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;length&#39;</span><span class="p">)</span>                         <span class="c1">// pluck lengths into an array of numbers: [1,2,5,1]</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">max</span><span class="p">()</span>                                   <span class="c1">// max (as a Number object)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">range</span><span class="p">()</span>                                 <span class="c1">// create an array of that length</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>                           <span class="c1">// no need for unwrapping!</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -67,8 +71,221 @@ but, hey, what&rsquo;s the worst that could happen?</p>
     <link href="http://sigfried.github.io/blog/supergroup/"/>
     <updated>2013-12-27T00:07:00-05:00</updated>
     <id>http://sigfried.github.io/blog/supergroup</id>
-    <content type="html"><![CDATA[<p>Author: <a href="http://sigfried.org">Sigfried Gold</a><br/>
-License: <a href="http://sigfried.mit-license.org/">MIT</a></p>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span> (supergroup-test.js)</span> <a href='http://sigfried.github.io/downloads/code/supergroup-test.js'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="s1">&#39;use strict()&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/* global: describe */</span>
+</span><span class='line'><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;_.supergroup&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">gradeBook</span> <span class="o">=</span> <span class="p">[</span>
+</span><span class='line'>        <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Sigfried&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Gold&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Remedial Programming&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">2</span><span class="p">},</span>
+</span><span class='line'>        <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Sigfried&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Gold&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Literary Posturing&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">3</span><span class="p">},</span>
+</span><span class='line'>        <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Sigfried&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Gold&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Documenting with Pretty Colors&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">3</span><span class="p">},</span>
+</span><span class='line'>        <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Someone&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Else&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Remedial Programming&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span><span class="mi">3</span><span class="p">}];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">supergroup</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span> <span class="s1">&#39;lastName&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">self</span><span class="p">.</span><span class="nx">gradesByName</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">supergroup</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span>
+</span><span class='line'>                <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span> <span class="p">},</span>
+</span><span class='line'>                <span class="p">{</span><span class="nx">dimName</span><span class="o">:</span> <span class="s1">&#39;fullName&#39;</span><span class="p">});</span>
+</span><span class='line'>        <span class="nx">self</span><span class="p">.</span><span class="nx">gradesByGradeLastName</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">supergroup</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">,</span><span class="s1">&#39;lastName&#39;</span><span class="p">]);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">self</span><span class="p">.</span><span class="nx">groups</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">addGroupMethods</span><span class="p">([]);</span> <span class="c1">// for tests Gemma wrote</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should apply Groups methods to arrays&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">.</span><span class="nx">asRootVal</span><span class="p">).</span><span class="nx">toBeDefined</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">.</span><span class="nx">rawValues</span><span class="p">).</span><span class="nx">toBeDefined</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">.</span><span class="nx">lookup</span><span class="p">).</span><span class="nx">toBeDefined</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">.</span><span class="nx">singleLookup</span><span class="p">).</span><span class="nx">toBeDefined</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">.</span><span class="nx">flattenTree</span><span class="p">).</span><span class="nx">toBeDefined</span><span class="p">();</span>
+</span><span class='line'>        <span class="c1">// other methods ?</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should group stuff into an array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s1">&#39;[&quot;Gold&quot;,&quot;Else&quot;]&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByName</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s1">&#39;[&quot;Sigfried Gold&quot;,&quot;Someone Else&quot;]&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByGradeLastName</span><span class="p">.</span><span class="nx">sort</span><span class="p">())).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s1">&#39;[&quot;B&quot;,&quot;C&quot;]&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should assign records to the right groups&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">records</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span>
+</span><span class='line'>            <span class="s1">&#39;[{&quot;firstName&quot;:&quot;Sigfried&quot;,&quot;lastName&quot;:&quot;Gold&quot;,&quot;class&quot;:&quot;Remedial Programming&quot;,&quot;grade&quot;:&quot;C&quot;,&quot;num&quot;:2},{&quot;firstName&quot;:&quot;Sigfried&quot;,&quot;lastName&quot;:&quot;Gold&quot;,&quot;class&quot;:&quot;Literary Posturing&quot;,&quot;grade&quot;:&quot;B&quot;,&quot;num&quot;:3},{&quot;firstName&quot;:&quot;Sigfried&quot;,&quot;lastName&quot;:&quot;Gold&quot;,&quot;class&quot;:&quot;Documenting with Pretty Colors&quot;,&quot;grade&quot;:&quot;B&quot;,&quot;num&quot;:3}]&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;asRootVal&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should set its dimension as &quot;root&quot;&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">asRootVal</span><span class="p">();</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">dim</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should assign its records to the current group&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">asRootVal</span><span class="p">();</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">records</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">groups</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">groups</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">addGroupMethods</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">&#39;herp&#39;</span><span class="p">]);</span>
+</span><span class='line'>            <span class="nx">root</span> <span class="o">=</span> <span class="nx">groups</span><span class="p">.</span><span class="nx">asRootVal</span><span class="p">();</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">records</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">groups</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">xit</span><span class="p">(</span><span class="s1">&#39;should set its name to a provided value, or &quot;Root&quot;&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="cm">/** @todo not at all sure how this works yet */</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;rawValues&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">function</span> <span class="nx">get_raw</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">groups</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">addGroupMethods</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">groups</span><span class="p">.</span><span class="nx">rawValues</span><span class="p">();</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should do nothing for empty arrays&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">get_raw</span><span class="p">([])).</span><span class="nx">toEqual</span><span class="p">([]);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should do nothing for string arrays&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">get_raw</span><span class="p">([</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">])).</span><span class="nx">toEqual</span><span class="p">([</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">]);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should turn numeric types into strings&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">get_raw</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])).</span><span class="nx">toEqual</span><span class="p">([</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">]);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should turn boolean types into strings&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">get_raw</span><span class="p">([</span><span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">])).</span><span class="nx">toEqual</span><span class="p">([</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">]);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;underscoreMethods&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">//var arr;</span>
+</span><span class='line'>        <span class="kd">function</span> <span class="nx">addMethods</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">groups</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">addGroupMethods</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">groups</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="cm">/*</span>
+</span><span class='line'><span class="cm">        beforeEach(function() {</span>
+</span><span class='line'><span class="cm">            arr = addMethods([1,2,3]);</span>
+</span><span class='line'><span class="cm">            _(enlightenedData.underscoreMethods).each(function(method) {</span>
+</span><span class='line'><span class="cm">                spyOn(arr, method);</span>
+</span><span class='line'><span class="cm">                arr[method]();</span>
+</span><span class='line'><span class="cm">            })</span>
+</span><span class='line'><span class="cm">        })</span>
+</span><span class='line'><span class="cm">        */</span>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should add all the methods&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nx">addMethods</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
+</span><span class='line'>            <span class="nx">_</span><span class="p">(</span><span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">underscoreMethods</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nx">expect</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">method</span><span class="p">]).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s2">&quot;function&quot;</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">});</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
