@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[D3 visualizations, Underscore enhancements]]></title>
+  <title><![CDATA[D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://sigfried.github.io/atom.xml" rel="self"/>
   <link href="http://sigfried.github.io/"/>
-  <updated>2013-12-27T12:12:26-05:00</updated>
+  <updated>2013-12-27T15:41:24-05:00</updated>
   <id>http://sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -18,7 +18,47 @@
     <link href="http://sigfried.github.io/blog/underscore-unchained/"/>
     <updated>2013-12-27T00:09:00-05:00</updated>
     <id>http://sigfried.github.io/blog/underscore-unchained</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>A mixin that lets you use Underscore methods directly from objects or
+classes of objects, and there&rsquo;s no need for _.chain(). Even if you
+wouldn&rsquo;t use it in your code, it&rsquo;s pretty nice for debugging in the
+console.</p>
+
+<figure class='code'><figcaption><span>Unchain an array and it&#8217;s ready to go</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">abbccc</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">unchain</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;bb&#39;</span><span class="p">,</span><span class="s1">&#39;ccc&#39;</span><span class="p">])</span> <span class="c1">// a humble array of strings</span>
+</span><span class='line'><span class="nx">abbccc</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;length&#39;</span><span class="p">)</span>                   <span class="c1">// transform it into an array of numbers: [1,2,3]</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">last</span><span class="p">()</span>                            <span class="c1">// grab the last item (as a Number object)</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">range</span><span class="p">()</span>                           <span class="c1">// create an array of that length</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>                             <span class="c1">// no need for unwrapping!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<p>Defy the gods and bring the full power of Underscore to <strong>all</strong> your
+Arrays, Objects, or whatever.  Also works with constructors of
+user-defined classes. Use at your own risk.  Modifying built in types is
+a seriously reckless undertaking and I totally recommend against it,
+but, hey, what&rsquo;s the worst that could happen?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">prometheus</span><span class="p">(</span><span class="nb">Array</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;bb&#39;</span><span class="p">,</span><span class="s1">&#39;ccc&#39;</span><span class="p">].</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;length&#39;</span><span class="p">).</span><span class="nx">last</span><span class="p">().</span><span class="nx">range</span><span class="p">()</span>  <span class="c1">// OMG, my arrays can do anything!</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 ]]></content>
   </entry>
   
@@ -45,9 +85,6 @@ License: <a href="http://sigfried.mit-license.org/">MIT</a></p>
 </span><span class='line'>
 </span><span class='line'><span class="kd">var</span> <span class="nx">gradesByLastName</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span> <span class="s1">&#39;lastName&#39;</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
-
-
-<!-- more -->
 
 
 

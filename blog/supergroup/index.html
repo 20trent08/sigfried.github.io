@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Supergroup - D3 visualizations, Underscore enhancements</title>
+  <title>Supergroup - D3 visualizations, Underscore mixins, etc.</title>
   <meta name="author" content="Sigfried Gold">
 
   
@@ -29,7 +29,7 @@ var gradeBook = [ {firstName: &#39;Sigfried&#39;, lastName: &#39;Gold&#39;, clas
   <link rel="canonical" href="http://sigfried.github.io/blog/supergroup">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="D3 visualizations, Underscore enhancements" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="D3 visualizations, Underscore mixins, etc." type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -56,9 +56,9 @@ var gradeBook = [ {firstName: &#39;Sigfried&#39;, lastName: &#39;Gold&#39;, clas
 
 <body    class="collapse-sidebar sidebar-footer" >
   <header role="banner"><hgroup>
-  <h1><a href="/">D3 visualizations, Underscore enhancements</a></h1>
+  <h1><a href="/">D3 visualizations, Underscore mixins, etc.</a></h1>
   
-    <h2>and other stuff</h2>
+    <h2>Documentation of Sigfried Gold's software on GitHub</h2>
   
 </hgroup>
 
@@ -88,7 +88,7 @@ var gradeBook = [ {firstName: &#39;Sigfried&#39;, lastName: &#39;Gold&#39;, clas
   
   <header>
     
-      <h1 class="entry-title">Supergroup</h1>
+        <h1 class="entry-title"><a href="http://github.com/Sigfried/">Supergroup</a></h1>
     
     
       <p class="meta">
@@ -111,7 +111,7 @@ var gradeBook = [ {firstName: &#39;Sigfried&#39;, lastName: &#39;Gold&#39;, clas
   </header>
 
 
-<div class="entry-content"><p>Author: <a href="http://sigfried.org">Sigfried Gold</a><br/>
+    <div class="entry-content"><p>Author: <a href="http://sigfried.org">Sigfried Gold</a><br/>
 License: <a href="http://sigfried.mit-license.org/">MIT</a></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -129,9 +129,6 @@ License: <a href="http://sigfried.mit-license.org/">MIT</a></p>
 </span><span class='line'>
 </span><span class='line'><span class="kd">var</span> <span class="nx">gradesByLastName</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span> <span class="s1">&#39;lastName&#39;</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
-
-
-<!-- more -->
 
 
 
@@ -157,6 +154,8 @@ License: <a href="http://sigfried.mit-license.org/">MIT</a></p>
 </div>
 
 
+
+
   <footer>
     <p class="meta">
       
@@ -178,6 +177,12 @@ License: <a href="http://sigfried.mit-license.org/">MIT</a></p>
 
 <time datetime="2013-12-27T00:07:00-05:00" pubdate data-updated="true">Dec 27<span>th</span>, 2013</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/repo/'>repo</a>
+  
+</span>
 
 
     </p>

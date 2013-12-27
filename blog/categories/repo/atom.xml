@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Repo | D3 visualizations, Underscore mixins, etc.]]></title>
+  <link href="http://sigfried.github.io/blog/categories/repo/atom.xml" rel="self"/>
+  <link href="http://sigfried.github.io/"/>
+  <updated>2013-12-27T15:41:24-05:00</updated>
+  <id>http://sigfried.github.io/</id>
+  <author>
+    <name><![CDATA[Sigfried Gold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Underscore-unchained]]></title>
+    <link href="http://sigfried.github.io/blog/underscore-unchained/"/>
+    <updated>2013-12-27T00:09:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/underscore-unchained</id>
+    <content type="html"><![CDATA[<p>A mixin that lets you use Underscore methods directly from objects or
+classes of objects, and there&rsquo;s no need for _.chain(). Even if you
+wouldn&rsquo;t use it in your code, it&rsquo;s pretty nice for debugging in the
+console.</p>
+
+<p>``` javascript Unchain an array and it&rsquo;s ready to go
+var abbccc = _.unchain([&lsquo;a&rsquo;,&lsquo;bb&rsquo;,&lsquo;ccc&rsquo;]) // a humble array of strings
+abbccc.pluck(&lsquo;length&rsquo;)                   // transform it into an array of numbers: [1,2,3]</p>
+
+<pre><code>  .last()                            // grab the last item (as a Number object)
+  .range()                           // create an array of that length
+</code></pre>
+
+<p>=> [0, 1, 2]                             // no need for unwrapping!
+```</p>
+
+<!-- more -->
+
+
+<p>Defy the gods and bring the full power of Underscore to <strong>all</strong> your
+Arrays, Objects, or whatever.  Also works with constructors of
+user-defined classes. Use at your own risk.  Modifying built in types is
+a seriously reckless undertaking and I totally recommend against it,
+but, hey, what&rsquo;s the worst that could happen?</p>
+
+<p>``` javascript
+_.prometheus(Array);</p>
+
+<p>[&lsquo;a&rsquo;,&lsquo;bb&rsquo;,&lsquo;ccc&rsquo;].pluck(&lsquo;length&rsquo;).last().range()  // OMG, my arrays can do anything!
+=> [0, 1, 2]
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Supergroup]]></title>
+    <link href="http://sigfried.github.io/blog/supergroup/"/>
+    <updated>2013-12-27T00:07:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/supergroup</id>
+    <content type="html"><![CDATA[<p>Author: <a href="http://sigfried.org">Sigfried Gold</a><br/>
+License: <a href="http://sigfried.mit-license.org/">MIT</a></p>
+
+<p>``` javascript
+var gradeBook = [
+   {firstName: &lsquo;Sigfried&rsquo;, lastName: &lsquo;Gold&rsquo;, class: &lsquo;Remedial Programming&rsquo;, grade: &lsquo;C+&rsquo;, num: 2.2},
+   {firstName: &lsquo;Sigfried&rsquo;, lastName: &lsquo;Gold&rsquo;, class: &lsquo;Literary Posturing&rsquo;, grade: &lsquo;B&rsquo;, num: 3},
+   {firstName: &lsquo;Sigfried&rsquo;, lastName: &lsquo;Gold&rsquo;, class: &lsquo;Documenting with Pretty Colors&rsquo;, grade: &lsquo;B-&rsquo;, num: 2.7},
+   {firstName: &lsquo;Someone&rsquo;, lastName: &lsquo;Else&rsquo;, class: &lsquo;Remedial Programming&rsquo;, grade: &lsquo;A&rsquo;}];</p>
+
+<p>var gradesByLastName = enlightenedData.group(gradeBook, &lsquo;lastName&rsquo;)
+```</p>
+
+<p>``` javascript
+var gradesByName = enlightenedData.group(gradeBook,</p>
+
+<pre><code>    function(d) { return d.lastName + ', ' + d.firstName },  
+    {dimName: 'fullName'})
+</code></pre>
+
+<p>var sigfried = gradesByName.lookup(&lsquo;Gold, Sigfried&rsquo;);
+sigfried.records.length; // 3
+var sigfriedGPA = sigfried.records.reduce(function(result,rec) { return result+rec.num }, 0) / sigfried.records.length;
+(it does much much more, will explain below)
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
