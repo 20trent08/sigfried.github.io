@@ -3,16 +3,6 @@ layout: default
 ---
 
 <div class="blog-index home-page-listing">
-    Site pages:
-            {% for page in site.pages %}
-                {% if page.project == true %}
-                    {% assign content = page.content %}
-                    <article>
-                        {% include page.html %}
-                    </article>
-                {% endif %}
-            {% endfor %}
-    End site pages.
     {% assign index = true %}
     {% for post in paginator.posts %}
     {% assign content = post.content %}

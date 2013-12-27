@@ -1,15 +1,10 @@
 ---
-layout: page
+layout: post
 title: "supergroup"
-date: 2013-12-26 15:10
+date: 2013-12-27 09:16:06 -0500
 comments: true
-sharing: true
-footer: true
+categories: 
 ---
-
-
-enlightened-data
-================
 
 Author: [Sigfried Gold](http://sigfried.org)  
 License: [MIT](http://sigfried.mit-license.org/)  
@@ -22,7 +17,11 @@ var gradeBook = [
    {firstName: 'Someone', lastName: 'Else', class: 'Remedial Programming', grade: 'A'}];
 
 var gradesByLastName = enlightenedData.group(gradeBook, 'lastName')
+```
+<!-- more -->
 
+
+``` javascript
 var gradesByName = enlightenedData.group(gradeBook,  
         function(d) { return d.lastName + ', ' + d.firstName },  
         {dimName: 'fullName'})
