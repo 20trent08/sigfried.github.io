@@ -6,10 +6,9 @@ comments: true
 categories: 
 categories: [repo]
 source: https://github.com/Sigfried/supergroup
-demo: demos/supergroup.html
+demo: ../supergroup/demo.html
 ---
 
-{% include_code supergroup-test.js %}
 
 
 ``` javascript
@@ -33,3 +32,6 @@ sigfried.records.length; // 3
 var sigfriedGPA = sigfried.records.reduce(function(result,rec) { return result+rec.num }, 0) / sigfried.records.length;
 (it does much much more, will explain below)
 ```
+{% include_code supergroup.html %}
+
+{% include_code supergroup-test.js %}
