@@ -31,7 +31,7 @@ Group CSV-type data into (hierarchically if desired) into arrays of String or Nu
 having immediate access to grouped records (at any level), aggregate calculations, children, 
 parents, paths. 
 
-[full API documentation](../../supergroup/doc)
+[full API documentation](../../supergroup)
 
 <!-- more -->
 ``` json Some records loaded from a CSV or JSON file
