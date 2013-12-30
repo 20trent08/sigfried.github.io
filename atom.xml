@@ -4,7 +4,7 @@
   <title><![CDATA[D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://sigfried.github.io/atom.xml" rel="self"/>
   <link href="http://sigfried.github.io/"/>
-  <updated>2013-12-30T12:09:28-05:00</updated>
+  <updated>2013-12-30T12:15:27-05:00</updated>
   <id>http://sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -103,7 +103,7 @@ var byName = _.supergroup(gradeBook, function(d) { return d.firstName + ' ' + d.
 having immediate access to grouped records (at any level), aggregate calculations, children,
 parents, paths.</p>
 
-<p><a href="../../supergroup/doc">full API documentation</a></p>
+<p><a href="../../supergroup">full API documentation</a></p>
 
 <!-- more -->
 
