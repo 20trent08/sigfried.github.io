@@ -25,6 +25,7 @@ var gradeBook = [
 ];
 var byLastName = _.supergroup(gradeBook, "lastName"); // an Array of Strings:  ["Gold","Sassoon","Androy"]
 var byName = _.supergroup(gradeBook, function(d) { return d.firstName + ' ' + d.lastName; }); // an Array of Strings:  ["Sigfried Gold","Sigfried Sassoon","Sigfried Androy"]
+var byClassGrade = _.supergroup(gradeBook, ["class", "grade"]); // Hierarchical grouping, top level is Array of classes
 </script>
 
 Group CSV-type data into (hierarchically if desired) into arrays of String or Number objects
