@@ -4,7 +4,7 @@
   <title><![CDATA[D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://sigfried.github.io/atom.xml" rel="self"/>
   <link href="http://sigfried.github.io/"/>
-  <updated>2013-12-31T12:18:38-05:00</updated>
+  <updated>2013-12-31T12:26:37-05:00</updated>
   <id>http://sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -71,19 +71,19 @@ but, hey, what&rsquo;s the worst that could happen?</p>
     <link href="http://sigfried.github.io/blog/supergroup/"/>
     <updated>2013-12-27T00:07:00-05:00</updated>
     <id>http://sigfried.github.io/blog/supergroup</id>
-    <content type="html"><![CDATA[<script src="./supergroup/lib/underscore.js"></script>
+    <content type="html"><![CDATA[<script src="../../supergroup/lib/underscore.js"></script>
 
 
-<script src="./supergroup/lib/underscoreAddon.js"></script>
+<script src="../../supergroup/lib/underscoreAddon.js"></script>
 
 
-<script src="./supergroup/lib/underscore-unchained.js"></script>
+<script src="../../supergroup/lib/underscore-unchained.js"></script>
 
 
-<script src="./supergroup/supergroup.js"></script>
+<script src="../../supergroup/supergroup.js"></script>
 
 
-<script src="./supergroup/lib/d3.js"></script>
+<script src="../../supergroup/lib/d3.js"></script>
 
 
 <script>
