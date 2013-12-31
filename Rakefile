@@ -57,6 +57,7 @@ task :generate do
 
     puts "Sigfried added code here to link in projects!"
     system "ln -s ../../supergroup public/supergroup"
+    system "ln -s ../../supergroup public/blog/supergroup"
 end
 
 desc "Watch the site and regenerate when it changes"
