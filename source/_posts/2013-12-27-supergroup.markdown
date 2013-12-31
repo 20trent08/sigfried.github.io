@@ -79,9 +79,9 @@ byClassGrade.flattenTree().invoke('namePath'); // ["Remedial Programming", "Reme
 byClassGrade.leafNodes().invoke('namePath'); // ["Remedial Programming/C", "Remedial Programming/A", "Remedial Programming/B", "Literary Posturing/B", "Documenting with Pretty Colors/B"]
 ```
 
-{% jsfiddle us9k9/2 %}
 
 <!--
+{% jsfiddle us9k9/2 %}
 In a SQL group by query you get one record for each resulting group and
 you can calculate values based on the aggregate of the rows comprised by
 each group. Another step is needed to go back from the group to
@@ -227,8 +227,5 @@ sigfried.records.length; // 3
 var sigfriedGPA = sigfried.records.reduce(function(result,rec) { return result+rec.num }, 0) / sigfried.records.length;
 (it does much much more, will explain below)
 ```
--->
-
-<!--
 {% include_code supergroup-test.js %}
 -->
