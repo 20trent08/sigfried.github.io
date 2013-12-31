@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Repo | D3 visualizations, Underscore mixins, etc.]]></title>
+  <link href="http://sigfried.github.io/blog/categories/repo/atom.xml" rel="self"/>
+  <link href="http://sigfried.github.io/"/>
+  <updated>2013-12-31T12:26:37-05:00</updated>
+  <id>http://sigfried.github.io/</id>
+  <author>
+    <name><![CDATA[Sigfried Gold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Underscore-unchained]]></title>
+    <link href="http://sigfried.github.io/blog/underscore-unchained/"/>
+    <updated>2013-12-27T00:09:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/underscore-unchained</id>
+    <content type="html"><![CDATA[<p>A mixin that lets you use Underscore methods directly from objects or
+classes of objects, and there&rsquo;s no need for _.chain(). Even if you
+wouldn&rsquo;t use it in your code, it&rsquo;s pretty nice for debugging in the
+console.</p>
+
+<p>``` javascript Unchain an array and it&rsquo;s ready to go
+var abcd = _.unchain([&lsquo;a&rsquo;,&lsquo;bb&rsquo;,&lsquo;ccccc&rsquo;,&rsquo;d']) // a humble array of strings</p>
+
+<p>abcd.pluck(&lsquo;length&rsquo;)                         // pluck lengths into an array of numbers: [1,2,5,1]</p>
+
+<pre><code>.max()                                   // max (as a Number object)
+.range()                                 // create an array of that length
+</code></pre>
+
+<p>=> [0, 1, 2, 3, 4]                           // no need for unwrapping!
+```</p>
+
+<!-- more -->
+
+
+<p>Defy the gods and bring the full power of Underscore to <strong>all</strong> your
+Arrays, Objects, or whatever.  Also works with constructors of
+user-defined classes. Use at your own risk.  Modifying built in types is
+a seriously reckless undertaking and I totally recommend against it,
+but, hey, what&rsquo;s the worst that could happen?</p>
+
+<p>``` javascript
+_.prometheus(Array);</p>
+
+<p>[&lsquo;a&rsquo;,&lsquo;bb&rsquo;,&lsquo;ccc&rsquo;].pluck(&lsquo;length&rsquo;).last().range()  // OMG, my arrays can do anything!
+=> [0, 1, 2]
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Supergroup]]></title>
+    <link href="http://sigfried.github.io/blog/supergroup/"/>
+    <updated>2013-12-27T00:07:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/supergroup</id>
+    <content type="html"><![CDATA[<script src="../../supergroup/lib/underscore.js"></script>
+
+
+<script src="../../supergroup/lib/underscoreAddon.js"></script>
+
+
+<script src="../../supergroup/lib/underscore-unchained.js"></script>
+
+
+<script src="../../supergroup/supergroup.js"></script>
+
+
+<script src="../../supergroup/lib/d3.js"></script>
+
+
+<script>
+var gradeBook = [
+    {lastName: "Gold",    firstName: "Sigfried", class: "Remedial Programming",           grade: "C", num: 2},
+    {lastName: "Gold",    firstName: "Sigfried", class: "Literary Posturing",             grade: "B", num: 3},
+    {lastName: "Gold",    firstName: "Sigfried", class: "Documenting with Pretty Colors", grade: "B", num: 3},
+    {lastName: "Sassoon", firstName: "Sigfried", class: "Remedial Programming",           grade: "A", num: 3},
+    {lastName: "Androy",  firstName: "Sigfried", class: "Remedial Programming",           grade: "B", num: 3} 
+];
+var byLastName = _.supergroup(gradeBook, "lastName"); // an Array of Strings:  ["Gold","Sassoon","Androy"]
+var byName = _.supergroup(gradeBook, function(d) { return d.firstName + ' ' + d.lastName; }); // an Array of Strings:  ["Sigfried Gold","Sigfried Sassoon","Sigfried Androy"]
+var byClassGrade = _.supergroup(gradeBook, ["class", "grade"]); // Hierarchical grouping, top level is Array of classes
+</script>
+
+
+<p>Group CSV-type data into (hierarchically if desired) into arrays of String or Number objects
+having immediate access to grouped records (at any level), aggregate calculations, children,
+parents, paths.</p>
+
+<p><a href="../../supergroup">full API documentation</a></p>
+
+<!-- more -->
+
+
+<p>``` json Some records loaded from a CSV or JSON file
+var gradeBook = [</p>
+
+<pre><code>{lastName: "Gold",    firstName: "Sigfried", class: "Remedial Programming",           grade: "C", num: 2},
+{lastName: "Gold",    firstName: "Sigfried", class: "Literary Posturing",             grade: "B", num: 3},
+{lastName: "Gold",    firstName: "Sigfried", class: "Documenting with Pretty Colors", grade: "B", num: 3},
+{lastName: "Sassoon", firstName: "Sigfried", class: "Remedial Programming",           grade: "A", num: 3},
+{lastName: "Androy",  firstName: "Sigfried", class: "Remedial Programming",           grade: "B", num: 3} 
+</code></pre>
+
+<p>];
+<code>
+</code> javascript Grouping on one dimension
+var byLastName = <em>.supergroup(gradeBook, &ldquo;lastName&rdquo;); // an Array of Strings:  [&ldquo;Gold&rdquo;,&ldquo;Sassoon&rdquo;,&ldquo;Androy&rdquo;]
+byLastName[0].records; // Array of Sigfried Gold&rsquo;s original 3 records
+byLastName.rawValues(); // Array of native strings (easier to look at or use in contexts where you need a plain string)
+<code>
+</code> javascript Grouping by a calculated value
+var byName = </em>.supergroup(gradeBook, function(d) { return d.firstName + &lsquo; &rsquo; + d.lastName; });
+// an Array of Strings:  [&ldquo;Sigfried Gold&rdquo;,&ldquo;Sigfried Sassoon&rdquo;,&ldquo;Sigfried Androy&rdquo;]
+<code>
+</code> javascript It&rsquo;s a native Array, but you can treat it as map, and then do cool stuff. Here&rsquo;s a GPA:
+byName.lookup(&ldquo;Sigfried Gold&rdquo;).records.pluck(&ldquo;num&rdquo;).mean(); //  2.6666666666666665
+```
+The above example shows how Supergroup can chain Underscore methods (and mixins), functionality
+it gets from <a href="../underscore-unchained">underscore-unchained</a>.</p>
+
+<p><code>javascript Grouping hierarchically
+var byClassGrade = _.supergroup(gradeBook, ["class", "grade"]); // Array of top-level groups: ["Remedial Programming", "Literary Posturing", "Documenting with Pretty Colors"]
+byClassGrade[0].children; // Children of a single group: ["C", "B"]
+byClassGrade[0].records; // Array original records for a single group
+byClassGrade.lookup("Remedial Programming"); // lookup a top-level group by name
+byClassGrade.lookup(["Remedial Programming","B"]); // lookup a second-level group by name path
+byClassGrade.lookup(["Remedial Programming","B"]).namePath(' -&gt; '); // "Remedial Programming -&gt; B"
+byClassGrade.lookup(["Remedial Programming","B"]).dimPath() // "class/grade"
+</code>
+Supergroup can flatten a tree into an array of nodes much like D3&rsquo;s hierarchy layout, but in a way
+that&rsquo;s easier to use IMHO.
+<code>javascript
+byClassGrade.flattenTree(); // ["Remedial Programming", "C", "A", "B", "Literary Posturing", "B", "Documenting with Pretty Colors", "B"]
+byClassGrade.flattenTree().invoke('namePath'); // ["Remedial Programming", "Remedial Programming/C", "Remedial Programming/A", "Remedial Programming/B", "Literary Posturing", "Literary Posturing/B", "Documenting with Pretty Colors", "Documenting with Pretty Colors/B"]
+// only want leaf nodes?
+byClassGrade.leafNodes().invoke('namePath'); // ["Remedial Programming/C", "Remedial Programming/A", "Remedial Programming/B", "Literary Posturing/B", "Documenting with Pretty Colors/B"]
+</code></p>
+
+<p><iframe style="width: 100%; height: 300px" frameborder="0" seamless="seamless" src="http://jsfiddle.net/us9k9/2/embedded/js,resources,html,css,result/light/"></iframe></p>
+
+<!--
+In a SQL group by query you get one record for each resulting group and
+you can calculate values based on the aggregate of the rows comprised by
+each group. Another step is needed to go back from the group to
+the individual rows in that group. D3's nest and Underscore's groupBy do
+slightly better in that they offer a collection of groups where each group
+is tied to its associated records.
+
+
+To explain the advantages of supergroup over Underscore and D3's versions, let's compare the results:
+
+``` javascript Underscore's groupBy
+_.groupBy(gradeBook,'lastName')
+=> {
+    Gold: [ 
+        { firstName: "Sigfried", lastName: "Gold", class: "Remedial Programming", grade: "C", num: 2 },
+        { firstName: "Sigfried", lastName: "Gold", class: "Literary Posturing", grade: "B", num: 3 },
+        { firstName: "Sigfried", lastName: "Gold", class: "Documenting with Pretty Colors", grade: "B", num: 3 }
+    ],
+    Else: [
+        { firstName: "Someone", lastName: "Else", class: "Remedial Programming", grade: "B", num: 3 }
+    ]
+}
+```
+
+``` javascript D3's nest and map
+d3.nest().key(function(d) { return d.lastName }).map(gradeBook) // same result as Underscore.  
+```
+
+Because D3 visualizations depend so completely on arrays, D3 provides a way of structuring groups as arrays:
+
+``` javascript D3's nest and entries
+d3.nest().key(function(d) { return d.lastName }).entries(gradeBook)
+=> [
+    { key: "Gold",
+      values: [
+            { firstName: "Sigfried", lastName: "Gold", class: "Remedial Programming", grade: "C", num: 2 },
+            { firstName: "Sigfried", lastName: "Gold", class: "Literary Posturing", grade: "B", num: 3 },
+            { firstName: "Sigfried", lastName: "Gold", class: "Documenting with Pretty Colors", grade: "B", num: 3 }
+        ]
+    },
+    { key: "Else",
+      values: [
+            { firstName: "Someone", lastName: "Else", class: "Remedial Programming", grade: "B", num: 3 }
+        ]
+    }
+]
+
+// making a list with this data in D3 might look like this:
+
+gradeBookEntries = d3.nest()
+                    .key(function(d) { return d.lastName })
+                    .key(function(d) { return d.grade })
+                    .entries(gradeBook)
+
+_.rebind(console, 'log') // so console.log can be used as a callback
+
+d3.select('div#main').append('ul').selectAll('li')
+    .data(gradeBookEntries)
+    .enter()
+    .append('li')
+        .text(function(d) { return d.key })
+        .on('click', console.log)
+    .append('ul').selectAll('li')
+        .data(function(d) { return d.values})
+        .enter()
+        .append('li')
+            .text(function(d) { return d.key + ': ' + d.values.map(function(r) { return r.class }).join(', ') })
+            .on('click', console.log)
+
+gradeBookNames = _.supergroup(gradeBook,['lastName','grade']);
+d3.select('div#main').append('ul').selectAll('li')
+    .data(gradeBookNames)
+    .enter()
+    .append('li')
+        .text(_.identity)
+        .on('click', console.log)
+    .append('ul').selectAll('li')
+        .data(function(d) { return d.children})
+        .enter()
+        .append('li')
+            .text(function(d) { return d + ': ' + d.records.pluck('class').join(', ') })
+            .on('click', console.log)
+```
+
+These produce identical results with fairly similar syntax, but when the visualization
+becomes more complex, the supergroup nodes are much more useful. A common use case
+is providing information about a node on mouseover. 
+
+One drawback of d3.nest above is a difference in datum types between parent and leaf
+nodes: datum.values at a parent node is an array of {key:'...',values:[...]}, but at
+the leaf node it's an array of raw records.
+
+Supergroup does not mix up raw records and hierarchy children in this way. At every
+level 'records' refers to raw records (which you can only access as leaf nodes in
+d3.nest) and 'children' refers to nested children if there are any at that node.
+
+
+
+
+
+gradeBookNames = _.supergroup(gradeBook,['lastName','grade']);
+ d3.select('div#main').append('ul').selectAll('li')
+    .data(gradeBookEntries)
+    .enter()
+    .append('li')
+        .text(_.identity)
+    .append('ul').selectAll('li')
+        .data(function(d) { return d.records})
+        .enter()
+        .append('li')
+            .text(function(d) { return d.namePath() })
+
+
+d3.select('body').append('ul').selectAll('li')
+    .data(gradeBookEntries)
+    .enter()
+    .append('li')
+        .text(function(d) { return d.key })
+    .append('p')
+        .text(function(d) { return d.values.length + ' records in group ' + this.parentNode.__data__.key })
+```
+
+has the exact same result (with less pleasant syn
+
+``` javascript
+var gradeBook = [
+   {firstName: 'Sigfried', lastName: 'Gold', class: 'Remedial Programming', grade: 'C+', num: 2.2},
+   {firstName: 'Sigfried', lastName: 'Gold', class: 'Literary Posturing', grade: 'B', num: 3},
+   {firstName: 'Sigfried', lastName: 'Gold', class: 'Documenting with Pretty Colors', grade: 'B-', num: 2.7},
+   {firstName: 'Someone', lastName: 'Else', class: 'Remedial Programming', grade: 'A'}];
+
+var gradesByLastName = enlightenedData.group(gradeBook, 'lastName')
+```
+
+
+``` javascript
+var gradesByName = enlightenedData.group(gradeBook,  
+        function(d) { return d.lastName + ', ' + d.firstName },  
+        {dimName: 'fullName'})
+
+var sigfried = gradesByName.lookup('Gold, Sigfried');
+sigfried.records.length; // 3
+var sigfriedGPA = sigfried.records.reduce(function(result,rec) { return result+rec.num }, 0) / sigfried.records.length;
+(it does much much more, will explain below)
+```
+-->
+
+
+
+
+<!--
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (supergroup-test.js)</span> <a href='/downloads/code/supergroup-test.js'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="s1">&#39;use strict()&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/* global: describe */</span>
+</span><span class='line'><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;_.supergroup&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">gradeBook</span> <span class="o">=</span> <span class="p">[</span>
+</span><span class='line'>        <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Sigfried&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Gold&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Remedial Programming&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">2</span><span class="p">},</span>
+</span><span class='line'>        <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Sigfried&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Gold&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Literary Posturing&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">3</span><span class="p">},</span>
+</span><span class='line'>        <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Sigfried&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Gold&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Documenting with Pretty Colors&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">3</span><span class="p">},</span>
+</span><span class='line'>        <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Someone&#39;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Else&#39;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Remedial Programming&#39;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span><span class="mi">3</span><span class="p">}];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">supergroup</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span> <span class="s1">&#39;lastName&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">self</span><span class="p">.</span><span class="nx">gradesByName</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">supergroup</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span>
+</span><span class='line'>                <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span> <span class="p">},</span>
+</span><span class='line'>                <span class="p">{</span><span class="nx">dimName</span><span class="o">:</span> <span class="s1">&#39;fullName&#39;</span><span class="p">});</span>
+</span><span class='line'>        <span class="nx">self</span><span class="p">.</span><span class="nx">gradesByGradeLastName</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">supergroup</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">,</span><span class="s1">&#39;lastName&#39;</span><span class="p">]);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">self</span><span class="p">.</span><span class="nx">groups</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">addGroupMethods</span><span class="p">([]);</span> <span class="c1">// for tests Gemma wrote</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should apply Groups methods to arrays&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">.</span><span class="nx">asRootVal</span><span class="p">).</span><span class="nx">toBeDefined</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">.</span><span class="nx">rawValues</span><span class="p">).</span><span class="nx">toBeDefined</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">.</span><span class="nx">lookup</span><span class="p">).</span><span class="nx">toBeDefined</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">.</span><span class="nx">singleLookup</span><span class="p">).</span><span class="nx">toBeDefined</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">.</span><span class="nx">flattenTree</span><span class="p">).</span><span class="nx">toBeDefined</span><span class="p">();</span>
+</span><span class='line'>        <span class="c1">// other methods ?</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should group stuff into an array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s1">&#39;[&quot;Gold&quot;,&quot;Else&quot;]&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByName</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s1">&#39;[&quot;Sigfried Gold&quot;,&quot;Someone Else&quot;]&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByGradeLastName</span><span class="p">.</span><span class="nx">sort</span><span class="p">())).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s1">&#39;[&quot;B&quot;,&quot;C&quot;]&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should assign records to the right groups&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">expect</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">gradesByLastName</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">records</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span>
+</span><span class='line'>            <span class="s1">&#39;[{&quot;firstName&quot;:&quot;Sigfried&quot;,&quot;lastName&quot;:&quot;Gold&quot;,&quot;class&quot;:&quot;Remedial Programming&quot;,&quot;grade&quot;:&quot;C&quot;,&quot;num&quot;:2},{&quot;firstName&quot;:&quot;Sigfried&quot;,&quot;lastName&quot;:&quot;Gold&quot;,&quot;class&quot;:&quot;Literary Posturing&quot;,&quot;grade&quot;:&quot;B&quot;,&quot;num&quot;:3},{&quot;firstName&quot;:&quot;Sigfried&quot;,&quot;lastName&quot;:&quot;Gold&quot;,&quot;class&quot;:&quot;Documenting with Pretty Colors&quot;,&quot;grade&quot;:&quot;B&quot;,&quot;num&quot;:3}]&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;asRootVal&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should set its dimension as &quot;root&quot;&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">asRootVal</span><span class="p">();</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">dim</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should assign its records to the current group&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">asRootVal</span><span class="p">();</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">records</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">groups</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">groups</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">addGroupMethods</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">&#39;herp&#39;</span><span class="p">]);</span>
+</span><span class='line'>            <span class="nx">root</span> <span class="o">=</span> <span class="nx">groups</span><span class="p">.</span><span class="nx">asRootVal</span><span class="p">();</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">records</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">groups</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">xit</span><span class="p">(</span><span class="s1">&#39;should set its name to a provided value, or &quot;Root&quot;&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="cm">/** @todo not at all sure how this works yet */</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;rawValues&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">function</span> <span class="nx">get_raw</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">groups</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">addGroupMethods</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">groups</span><span class="p">.</span><span class="nx">rawValues</span><span class="p">();</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should do nothing for empty arrays&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">get_raw</span><span class="p">([])).</span><span class="nx">toEqual</span><span class="p">([]);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should do nothing for string arrays&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">get_raw</span><span class="p">([</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">])).</span><span class="nx">toEqual</span><span class="p">([</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">]);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should turn numeric types into strings&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">get_raw</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])).</span><span class="nx">toEqual</span><span class="p">([</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">]);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should turn boolean types into strings&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">expect</span><span class="p">(</span><span class="nx">get_raw</span><span class="p">([</span><span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">])).</span><span class="nx">toEqual</span><span class="p">([</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">]);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;underscoreMethods&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">//var arr;</span>
+</span><span class='line'>        <span class="kd">function</span> <span class="nx">addMethods</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">groups</span> <span class="o">=</span> <span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">addGroupMethods</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">groups</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="cm">/*</span>
+</span><span class='line'><span class="cm">        beforeEach(function() {</span>
+</span><span class='line'><span class="cm">            arr = addMethods([1,2,3]);</span>
+</span><span class='line'><span class="cm">            _(enlightenedData.underscoreMethods).each(function(method) {</span>
+</span><span class='line'><span class="cm">                spyOn(arr, method);</span>
+</span><span class='line'><span class="cm">                arr[method]();</span>
+</span><span class='line'><span class="cm">            })</span>
+</span><span class='line'><span class="cm">        })</span>
+</span><span class='line'><span class="cm">        */</span>
+</span><span class='line'>        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should add all the methods&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nx">addMethods</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
+</span><span class='line'>            <span class="nx">_</span><span class="p">(</span><span class="nx">enlightenedData</span><span class="p">.</span><span class="nx">underscoreMethods</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nx">expect</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">method</span><span class="p">]).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s2">&quot;function&quot;</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">});</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+-->
+
+]]></content>
+  </entry>
+  
+</feed>
