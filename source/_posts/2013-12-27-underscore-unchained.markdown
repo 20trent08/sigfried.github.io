@@ -14,6 +14,8 @@ classes of objects, and there's no need for _.chain(). Even if you
 wouldn't use it in your code, it's pretty nice for debugging in the
 console.
 
+<!-- more -->
+
 ``` javascript Unchain an array and it's ready to go
 var abcd = _.unchain(['a','bb','ccccc','d']) // a humble array of strings
 
@@ -23,16 +25,14 @@ abcd.pluck('length')                         // pluck lengths into an array of n
 
 => [0, 1, 2, 3, 4]                           // no need for unwrapping!
 ```
-
-<!-- more -->
-
+### Promethean mode
 Defy the gods and bring the full power of Underscore to __all__ your
 Arrays, Objects, or whatever.  Also works with constructors of
 user-defined classes. Use at your own risk.  Modifying built in types is
 a seriously reckless undertaking and I totally recommend against it,
 but, hey, what's the worst that could happen?
 
-``` javascript
+``` javascript Add Underscore methods to Arrays globally
 _.prometheus(Array);
 
 ['a','bb','ccc'].pluck('length').last().range()  // OMG, my arrays can do anything!

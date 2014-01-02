@@ -2,17 +2,22 @@
   <header>
     {% if index %}
         <h1 class="entry-title"><a href="{{ root_url }}{{ post.url }}">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</a></h1>
-        <div class="links">
+    {% else %}
+        <h1 class="entry-title"><a href="http://github.com/Sigfried/{{ page.reponame }}">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</a></h1>
+    {% endif %}
+    <div class="links">
+        {% if index %}
             {% capture excerpted %}{{ content | has_excerpt }}{% endcapture %}
             {% if excerpted == 'true' %}
                 <a href="{{ root_url }}{{ post.url }}">Docs</a>
             {% endif %}
             {% if post.demo %} <a href="{{ post.demo }}">Demo</a>{% endif %}
             {% if post.source %} <a href="{{ post.source }}">Source</a>{% endif %}
-        <div>
-    {% else %}
-        <h1 class="entry-title"><a href="http://github.com/Sigfried/{{ page.reponame }}">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</a></h1>
-    {% endif %}
+        {% else %}
+            {% if page.demo %} <a href="{{ page.demo }}">Demo</a>{% endif %}
+            {% if page.source %} <a href="{{ page.source }}">Source</a>{% endif %}
+        {% endif %}
+    <div>
     {% unless page.meta == false %}
       <p class="meta">
         {% include post/date.html %}{{ time }}

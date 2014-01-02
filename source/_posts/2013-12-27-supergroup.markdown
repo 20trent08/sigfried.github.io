@@ -3,10 +3,10 @@ layout: post
 title: "supergroup"
 date: 2013-12-27 00:07:00 -0500
 comments: true
-categories: 
 categories: [repo]
 source: https://github.com/Sigfried/supergroup
 demo: ../supergroup/demo.html
+source: https://github.com/Sigfried/supergroup
 ---
 
 
@@ -34,9 +34,10 @@ Group CSV-type data into (hierarchically if desired) into arrays of String or Nu
 having immediate access to grouped records (at any level), aggregate calculations, children, 
 parents, paths. 
 
+<!-- more -->
+
 [Full API documentation](../../supergroup)
 
-<!-- more -->
 ``` json Some records loaded from a CSV or JSON file
 var gradeBook = [
     {lastName: "Gold",    firstName: "Sigfried", class: "Remedial Programming",           grade: "C", num: 2},

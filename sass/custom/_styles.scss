@@ -1,10 +1,24 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
 
+nav[role=navigation] {
+    display: none;
+}
+#main>div#content {
+    background: $main;
+}
 article {
     header { 
+        margin: 0px;
+        font-size: 80%;
+        line-height: 1.3em;
+        h1, h2, h3, h4 {
+            color: $base02;
+            margin: 0px;
+            padding: 0px;
+            font-variant: small-caps; }
         border-bottom: 5px double gray;
-        overflow:auto;
+        overflow:hidden;
         padding-top: 0em;
         padding-bottom: 0em;
         p.meta>time {
@@ -33,18 +47,8 @@ article {
     }
 }
 
-.home-page-listing {
-    font-size: 80%;
-    line-height: 1.3em;
-    background-color: $base2;
-
+.home-page-listing { // stopped using
     header {
-        margin: 0px;
     }
-    h1, h2, h3, h4 {
-        color: $base02;
-        margin: 0px;
-        padding: 0px;
-        font-variant: small-caps; }
 }
 
