@@ -5,7 +5,6 @@ date: 2013-12-27 00:07:00 -0500
 comments: true
 categories: [repo]
 source: https://github.com/Sigfried/supergroup
-demo: ../supergroup/demo.html
 source: https://github.com/Sigfried/supergroup
 ---
 
