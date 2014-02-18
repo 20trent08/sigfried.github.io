@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[D3 visualizations, Underscore mixins, etc.]]></title>
+  <link href="http://sigfried.github.io/atom.xml" rel="self"/>
+  <link href="http://sigfried.github.io/"/>
+  <updated>2014-02-18T15:45:11-05:00</updated>
+  <id>http://sigfried.github.io/</id>
+  <author>
+    <name><![CDATA[Sigfried Gold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Underscore-unchained]]></title>
+    <link href="http://sigfried.github.io/blog/underscore-unchained/"/>
+    <updated>2013-12-27T00:09:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/underscore-unchained</id>
+    <content type="html"><![CDATA[<p>A mixin that lets you use Underscore methods directly from objects or
+classes of objects, and there&rsquo;s no need for _.chain(). Even if you
+wouldn&rsquo;t use it in your code, it&rsquo;s pretty nice for debugging in the
+console.</p>
+
+<!-- more -->
+
+
+
+
+<figure class='code'><figcaption><span>Unchain an array and it&#8217;s ready to go</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">abcd</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">unchain</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;bb&#39;</span><span class="p">,</span><span class="s1">&#39;ccccc&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">])</span> <span class="c1">// a humble array of strings</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">abcd</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;length&#39;</span><span class="p">)</span>                         <span class="c1">// pluck lengths into an array of numbers: [1,2,5,1]</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">max</span><span class="p">()</span>                                   <span class="c1">// max (as a Number object)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">range</span><span class="p">()</span>                                 <span class="c1">// create an array of that length</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>                           <span class="c1">// no need for unwrapping!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Promethean mode</h3>
+
+<p>Defy the gods and bring the full power of Underscore to <strong>all</strong> your
+Arrays, Objects, or whatever.  Also works with constructors of
+user-defined classes. Use at your own risk.  Modifying built in types is
+a seriously reckless undertaking and I totally recommend against it,
+but, hey, what&rsquo;s the worst that could happen?</p>
+
+<figure class='code'><figcaption><span>Add Underscore methods to Arrays globally</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">prometheus</span><span class="p">(</span><span class="nb">Array</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;bb&#39;</span><span class="p">,</span><span class="s1">&#39;ccc&#39;</span><span class="p">].</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;length&#39;</span><span class="p">).</span><span class="nx">last</span><span class="p">().</span><span class="nx">range</span><span class="p">()</span>  <span class="c1">// OMG, my arrays can do anything!</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Supergroup]]></title>
+    <link href="http://sigfried.github.io/blog/supergroup/"/>
+    <updated>2013-12-27T00:07:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/supergroup</id>
+    <content type="html"><![CDATA[<script src="../../supergroup/lib/underscore.js"></script>
+
+
+<script src="../../supergroup/lib/underscoreAddon.js"></script>
+
+
+<script src="../../supergroup/lib/underscore-unchained.js"></script>
+
+
+<script src="../../supergroup/supergroup.js"></script>
+
+
+<script src="../../supergroup/lib/d3.js"></script>
+
+
+<script>
+window.onload = function() {
+var gradeBook = [
+    {lastName: "Gold",    firstName: "Sigfried", class: "Remedial Programming",           grade: "C", num: 2},
+    {lastName: "Gold",    firstName: "Sigfried", class: "Literary Posturing",             grade: "B", num: 3},
+    {lastName: "Gold",    firstName: "Sigfried", class: "Documenting with Pretty Colors", grade: "B", num: 3},
+    {lastName: "Sassoon", firstName: "Sigfried", class: "Remedial Programming",           grade: "A", num: 3},
+    {lastName: "Androy",  firstName: "Sigfried", class: "Remedial Programming",           grade: "B", num: 3} 
+];
+var byLastName = _.supergroup(gradeBook, "lastName"); // an Array of Strings:  ["Gold","Sassoon","Androy"]
+var byName = _.supergroup(gradeBook, function(d) { return d.firstName + ' ' + d.lastName; }); // an Array of Strings:  ["Sigfried Gold","Sigfried Sassoon","Sigfried Androy"]
+var byClassGrade = _.supergroup(gradeBook, ["class", "grade"]); // Hierarchical grouping, top level is Array of classes
+};
+</script>
+
+
+<p>testGroup CSV-type data into (hierarchically if desired) into arrays of String or Number objects
+having immediate access to grouped records (at any level), aggregate calculations, children,
+parents, paths.</p>
+
+<!-- more -->
+
+
+<p><a href="../../supergroup">Full API documentation</a></p>
+
+<figure class='code'><figcaption><span>Some records loaded from a CSV or JSON file</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">var</span> <span class="err">gradeBook</span> <span class="err">=</span> <span class="p">[</span>
+</span><span class='line'>    <span class="p">{</span><span class="err">lastName:</span> <span class="nt">&quot;Gold&quot;</span><span class="p">,</span>    <span class="err">firstName:</span> <span class="nt">&quot;Sigfried&quot;</span><span class="p">,</span> <span class="err">class:</span> <span class="nt">&quot;Remedial Programming&quot;</span><span class="p">,</span>           <span class="err">grade:</span> <span class="nt">&quot;C&quot;</span><span class="p">,</span> <span class="err">num:</span> <span class="err">2</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">{</span><span class="err">lastName:</span> <span class="nt">&quot;Gold&quot;</span><span class="p">,</span>    <span class="err">firstName:</span> <span class="nt">&quot;Sigfried&quot;</span><span class="p">,</span> <span class="err">class:</span> <span class="nt">&quot;Literary Posturing&quot;</span><span class="p">,</span>             <span class="err">grade:</span> <span class="nt">&quot;B&quot;</span><span class="p">,</span> <span class="err">num:</span> <span class="err">3</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">{</span><span class="err">lastName:</span> <span class="nt">&quot;Gold&quot;</span><span class="p">,</span>    <span class="err">firstName:</span> <span class="nt">&quot;Sigfried&quot;</span><span class="p">,</span> <span class="err">class:</span> <span class="nt">&quot;Documenting with Pretty Colors&quot;</span><span class="p">,</span> <span class="err">grade:</span> <span class="nt">&quot;B&quot;</span><span class="p">,</span> <span class="err">num:</span> <span class="err">3</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">{</span><span class="err">lastName:</span> <span class="nt">&quot;Sassoon&quot;</span><span class="p">,</span> <span class="err">firstName:</span> <span class="nt">&quot;Sigfried&quot;</span><span class="p">,</span> <span class="err">class:</span> <span class="nt">&quot;Remedial Programming&quot;</span><span class="p">,</span>           <span class="err">grade:</span> <span class="nt">&quot;A&quot;</span><span class="p">,</span> <span class="err">num:</span> <span class="err">3</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">{</span><span class="err">lastName:</span> <span class="nt">&quot;Androy&quot;</span><span class="p">,</span>  <span class="err">firstName:</span> <span class="nt">&quot;Sigfried&quot;</span><span class="p">,</span> <span class="err">class:</span> <span class="nt">&quot;Remedial Programming&quot;</span><span class="p">,</span>           <span class="err">grade:</span> <span class="nt">&quot;B&quot;</span><span class="p">,</span> <span class="err">num:</span> <span class="err">3</span><span class="p">}</span>
+</span><span class='line'><span class="p">]</span><span class="err">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>Grouping on one dimension</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">byLastName</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">supergroup</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span> <span class="s2">&quot;lastName&quot;</span><span class="p">);</span> <span class="c1">// an Array of Strings:  [&quot;Gold&quot;,&quot;Sassoon&quot;,&quot;Androy&quot;]</span>
+</span><span class='line'><span class="nx">byLastName</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">records</span><span class="p">;</span> <span class="c1">// Array of Sigfried Gold&#39;s original 3 records</span>
+</span><span class='line'><span class="nx">byLastName</span><span class="p">.</span><span class="nx">rawValues</span><span class="p">();</span> <span class="c1">// Array of native strings (easier to look at or use in contexts where you need a plain string)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>Grouping by a calculated value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">byName</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">supergroup</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span> <span class="p">});</span>
+</span><span class='line'><span class="c1">// an Array of Strings:  [&quot;Sigfried Gold&quot;,&quot;Sigfried Sassoon&quot;,&quot;Sigfried Androy&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>It&#8217;s a native Array, but you can treat it as map, and then do cool stuff. Here&#8217;s a GPA:</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">byName</span><span class="p">.</span><span class="nx">lookup</span><span class="p">(</span><span class="s2">&quot;Sigfried Gold&quot;</span><span class="p">).</span><span class="nx">records</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">).</span><span class="nx">mean</span><span class="p">();</span> <span class="c1">//  2.6666666666666665 </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The above example shows how Supergroup can chain Underscore methods (and mixins), functionality
+it gets from <a href="../underscore-unchained">underscore-unchained</a>.</p>
+
+<figure class='code'><figcaption><span>Grouping hierarchically</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">byClassGrade</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">supergroup</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;grade&quot;</span><span class="p">]);</span> <span class="c1">// Array of top-level groups: [&quot;Remedial Programming&quot;, &quot;Literary Posturing&quot;, &quot;Documenting with Pretty Colors&quot;]</span>
+</span><span class='line'><span class="nx">byClassGrade</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">children</span><span class="p">;</span> <span class="c1">// Children of a single group: [&quot;C&quot;, &quot;B&quot;]</span>
+</span><span class='line'><span class="nx">byClassGrade</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">records</span><span class="p">;</span> <span class="c1">// Array original records for a single group</span>
+</span><span class='line'><span class="nx">byClassGrade</span><span class="p">.</span><span class="nx">lookup</span><span class="p">(</span><span class="s2">&quot;Remedial Programming&quot;</span><span class="p">);</span> <span class="c1">// lookup a top-level group by name</span>
+</span><span class='line'><span class="nx">byClassGrade</span><span class="p">.</span><span class="nx">lookup</span><span class="p">([</span><span class="s2">&quot;Remedial Programming&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">]);</span> <span class="c1">// lookup a second-level group by name path</span>
+</span><span class='line'><span class="nx">byClassGrade</span><span class="p">.</span><span class="nx">lookup</span><span class="p">([</span><span class="s2">&quot;Remedial Programming&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">]).</span><span class="nx">namePath</span><span class="p">(</span><span class="s1">&#39; -&gt; &#39;</span><span class="p">);</span> <span class="c1">// &quot;Remedial Programming -&gt; B&quot;</span>
+</span><span class='line'><span class="nx">byClassGrade</span><span class="p">.</span><span class="nx">lookup</span><span class="p">([</span><span class="s2">&quot;Remedial Programming&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">]).</span><span class="nx">dimPath</span><span class="p">()</span> <span class="c1">// &quot;class/grade&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Supergroup can flatten a tree into an array of nodes much like D3&rsquo;s hierarchy layout, but in a way
+that&rsquo;s easier to use IMHO.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">byClassGrade</span><span class="p">.</span><span class="nx">flattenTree</span><span class="p">();</span> <span class="c1">// [&quot;Remedial Programming&quot;, &quot;C&quot;, &quot;A&quot;, &quot;B&quot;, &quot;Literary Posturing&quot;, &quot;B&quot;, &quot;Documenting with Pretty Colors&quot;, &quot;B&quot;]</span>
+</span><span class='line'><span class="nx">byClassGrade</span><span class="p">.</span><span class="nx">flattenTree</span><span class="p">().</span><span class="nx">invoke</span><span class="p">(</span><span class="s1">&#39;namePath&#39;</span><span class="p">);</span> <span class="c1">// [&quot;Remedial Programming&quot;, &quot;Remedial Programming/C&quot;, &quot;Remedial Programming/A&quot;, &quot;Remedial Programming/B&quot;, &quot;Literary Posturing&quot;, &quot;Literary Posturing/B&quot;, &quot;Documenting with Pretty Colors&quot;, &quot;Documenting with Pretty Colors/B&quot;]</span>
+</span><span class='line'><span class="c1">// only want leaf nodes?</span>
+</span><span class='line'><span class="nx">byClassGrade</span><span class="p">.</span><span class="nx">leafNodes</span><span class="p">().</span><span class="nx">invoke</span><span class="p">(</span><span class="s1">&#39;namePath&#39;</span><span class="p">);</span> <span class="c1">// [&quot;Remedial Programming/C&quot;, &quot;Remedial Programming/A&quot;, &quot;Remedial Programming/B&quot;, &quot;Literary Posturing/B&quot;, &quot;Documenting with Pretty Colors/B&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--
+<iframe style="width: 100%; height: 300px" frameborder="0" seamless="seamless" src="http://jsfiddle.net/us9k9/2/embedded/js,resources,html,css,result/light/"></iframe>
+In a SQL group by query you get one record for each resulting group and
+you can calculate values based on the aggregate of the rows comprised by
+each group. Another step is needed to go back from the group to
+the individual rows in that group. D3&#8217;s nest and Underscore&#8217;s groupBy do
+slightly better in that they offer a collection of groups where each group
+is tied to its associated records.
+
+
+To explain the advantages of supergroup over Underscore and D3&#8217;s versions, let&#8217;s compare the results:
+
+<figure class='code'><figcaption><span>Underscore&#8217;s groupBy</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">groupBy</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,</span><span class="s1">&#39;lastName&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">Gold</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>        <span class="p">{</span> <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&quot;Sigfried&quot;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&quot;Gold&quot;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s2">&quot;Remedial Programming&quot;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">2</span> <span class="p">},</span>
+</span><span class='line'>        <span class="p">{</span> <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&quot;Sigfried&quot;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&quot;Gold&quot;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s2">&quot;Literary Posturing&quot;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">3</span> <span class="p">},</span>
+</span><span class='line'>        <span class="p">{</span> <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&quot;Sigfried&quot;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&quot;Gold&quot;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s2">&quot;Documenting with Pretty Colors&quot;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">3</span> <span class="p">}</span>
+</span><span class='line'>    <span class="p">],</span>
+</span><span class='line'>    <span class="nx">Else</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>        <span class="p">{</span> <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&quot;Someone&quot;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&quot;Else&quot;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s2">&quot;Remedial Programming&quot;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">3</span> <span class="p">}</span>
+</span><span class='line'>    <span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<figure class='code'><figcaption><span>D3&#8217;s nest and map</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">d3</span><span class="p">.</span><span class="nx">nest</span><span class="p">().</span><span class="nx">key</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">lastName</span> <span class="p">}).</span><span class="nx">map</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">)</span> <span class="c1">// same result as Underscore.  </span>
+</span></code></pre></td></tr></table></div></figure>
+
+Because D3 visualizations depend so completely on arrays, D3 provides a way of structuring groups as arrays:
+
+<figure class='code'><figcaption><span>D3&#8217;s nest and entries</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">d3</span><span class="p">.</span><span class="nx">nest</span><span class="p">().</span><span class="nx">key</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">lastName</span> <span class="p">}).</span><span class="nx">entries</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">)</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">[</span>
+</span><span class='line'>    <span class="p">{</span> <span class="nx">key</span><span class="o">:</span> <span class="s2">&quot;Gold&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">values</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>            <span class="p">{</span> <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&quot;Sigfried&quot;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&quot;Gold&quot;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s2">&quot;Remedial Programming&quot;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">2</span> <span class="p">},</span>
+</span><span class='line'>            <span class="p">{</span> <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&quot;Sigfried&quot;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&quot;Gold&quot;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s2">&quot;Literary Posturing&quot;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">3</span> <span class="p">},</span>
+</span><span class='line'>            <span class="p">{</span> <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&quot;Sigfried&quot;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&quot;Gold&quot;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s2">&quot;Documenting with Pretty Colors&quot;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">3</span> <span class="p">}</span>
+</span><span class='line'>        <span class="p">]</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="p">{</span> <span class="nx">key</span><span class="o">:</span> <span class="s2">&quot;Else&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">values</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>            <span class="p">{</span> <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&quot;Someone&quot;</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&quot;Else&quot;</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s2">&quot;Remedial Programming&quot;</span><span class="p">,</span> <span class="nx">grade</span><span class="o">:</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="nx">num</span><span class="o">:</span> <span class="mi">3</span> <span class="p">}</span>
+</span><span class='line'>        <span class="p">]</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// making a list with this data in D3 might look like this:</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">gradeBookEntries</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">nest</span><span class="p">()</span>
+</span><span class='line'>                    <span class="p">.</span><span class="nx">key</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">lastName</span> <span class="p">})</span>
+</span><span class='line'>                    <span class="p">.</span><span class="nx">key</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">grade</span> <span class="p">})</span>
+</span><span class='line'>                    <span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">rebind</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">)</span> <span class="c1">// so console.log can be used as a callback</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;div#main&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">).</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">gradeBookEntries</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">key</span> <span class="p">})</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">).</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">values</span><span class="p">})</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">key</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">r</span><span class="p">.</span><span class="kr">class</span> <span class="p">}).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span> <span class="p">})</span>
+</span><span class='line'>            <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">gradeBookNames</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">supergroup</span><span class="p">(</span><span class="nx">gradeBook</span><span class="p">,[</span><span class="s1">&#39;lastName&#39;</span><span class="p">,</span><span class="s1">&#39;grade&#39;</span><span class="p">]);</span>
+</span><span class='line'><span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;div#main&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">).</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">gradeBookNames</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">identity</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">).</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">children</span><span class="p">})</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">records</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span> <span class="p">})</span>
+</span><span class='line'>            <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+These produce identical results with fairly similar syntax, but when the visualization
+becomes more complex, the supergroup nodes are much more useful. A common use case
+is providing information about a node on mouseover. 
+
+One drawback of d3.nest above is a difference in datum types between parent and leaf
+nodes: datum.values at a parent node is an array of {key:&#8217;&#8230;&#8217;,values:[&#8230;]}, but at
+the leaf node it&#8217;s an array of raw records.
+
+Supergroup does not mix up raw records and hierarchy children in this way. At every
+level &#8216;records&#8217; refers to raw records (which you can only access as leaf nodes in
+d3.nest) and &#8216;children&#8217; refers to nested children if there are any at that node.
+
+
+
+
+
+gradeBookNames = _.supergroup(gradeBook,[&#8216;lastName&#8217;,&#8217;grade&#8217;]);
+ d3.select(&#8216;div#main&#8217;).append(&#8216;ul&#8217;).selectAll(&#8216;li&#8217;)
+    .data(gradeBookEntries)
+    .enter()
+    .append(&#8216;li&#8217;)
+        .text(_.identity)
+    .append(&#8216;ul&#8217;).selectAll(&#8216;li&#8217;)
+        .data(function(d) { return d.records})
+        .enter()
+        .append(&#8216;li&#8217;)
+            .text(function(d) { return d.namePath() })
+
+
+d3.select(&#8216;body&#8217;).append(&#8216;ul&#8217;).selectAll(&#8216;li&#8217;)
+    .data(gradeBookEntries)
+    .enter()
+    .append(&#8216;li&#8217;)
+        .text(function(d) { return d.key })
+    .append(&#8216;p&#8217;)
+        .text(function(d) { return d.values.length + &#8217; records in group &#8217; + this.parentNode.__data__.key })
+<figure class='code'><figcaption><span>D3&#8217;s nest and entries</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">has</span> <span class="nx">the</span> <span class="nx">exact</span> <span class="nx">same</span> <span class="nx">result</span> <span class="p">(</span><span class="kd">with</span> <span class="nx">less</span> <span class="nx">pleasant</span> <span class="nx">syn</span>
+</span></code></pre></td></tr></table></div></figure> javascript
+var gradeBook = [
+   {firstName: &#8216;Sigfried&#8217;, lastName: &#8216;Gold&#8217;, class: &#8216;Remedial Programming&#8217;, grade: &#8216;C+&#8217;, num: 2.2},
+   {firstName: &#8216;Sigfried&#8217;, lastName: &#8216;Gold&#8217;, class: &#8216;Literary Posturing&#8217;, grade: &#8216;B&#8217;, num: 3},
+   {firstName: &#8216;Sigfried&#8217;, lastName: &#8216;Gold&#8217;, class: &#8216;Documenting with Pretty Colors&#8217;, grade: &#8216;B-&#8216;, num: 2.7},
+   {firstName: &#8216;Someone&#8217;, lastName: &#8216;Else&#8217;, class: &#8216;Remedial Programming&#8217;, grade: &#8216;A&#8217;}];
+
+var gradesByLastName = enlightenedData.group(gradeBook, &#8216;lastName&#8217;)
+<figure class='code'><figcaption><span>D3&#8217;s nest and entries</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span></code></pre></td></tr></table></div></figure> javascript
+var gradesByName = enlightenedData.group(gradeBook,  
+        function(d) { return d.lastName + &#8216;, &#8217; + d.firstName },  
+        {dimName: &#8216;fullName&#8217;})
+
+var sigfried = gradesByName.lookup(&#8216;Gold, Sigfried&#8217;);
+sigfried.records.length; // 3
+var sigfriedGPA = sigfried.records.reduce(function(result,rec) { return result+rec.num }, 0) / sigfried.records.length;
+(it does much much more, will explain below)
+&#8220;`
+File /Users/sigfried/Sites/sigfried.github.io/source/downloads/code/supergroup-test.js could not be found
+&#8211;>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[TreeLike CSV Data Browser]]></title>
+    <link href="http://sigfried.github.io/blog/treelike/"/>
+    <updated>2013-12-27T00:06:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/treelike</id>
+    <content type="html"><![CDATA[<p>TreeLike is an experimental tool allowing rapid exploration
+of the contents and inter-relationships across the columns of spreadsheet or
+CSV data. Use it to load any local CSV file.
+It immediately shows the distributions of values in all columns, and by
+laying out the columns in some nesting order, can show hierarchical
+relationships between values across columns. When two columns have a
+many-to-many relationship, the merge feature shows connections in both
+directions, not just from parent to child. And parent/child
+relationships can be reordered with one or two mouse clicks.</p>
+
+<!-- more -->
+
+
+<p><a href="../treelike/demo.html">Demo</a> (you&rsquo;ll need a data file, how about: <a href="https://raw.github.com/Sigfried/treelike/master/data/mysql_world_data.csv">MySQL world data</a>)</p>
+
+<p>To understand what it does, you need to see it in action. This rough
+demo video will explain:</p>
+
+<iframe width="420" height="315" src="http://sigfried.github.io//www.youtube.com/embed/mJ8ljG8qpZk" frameborder="0" allowfullscreen></iframe>
+
+
+<p>TreeLike will be most helpful with files of between about 4 and
+20 columns. It should be fine with at least tens of thousands of rows,
+but it hasn&rsquo;t been well tested.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sequence-viz]]></title>
+    <link href="http://sigfried.github.io/blog/sequence-viz/"/>
+    <updated>2013-12-27T00:04:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/sequence-viz</id>
+    <content type="html"><![CDATA[<p>A collection of visualization tools for exploring sequences of events
+over time. Offers the first open-source, Javascript implementation of
+Krist Wongsuphasawat&rsquo;s <a href="http://www.cs.umd.edu/hcil/lifeflow/">LifeFlow</a>
+for temporal summary visualization as well as extensions and related
+techniques.</p>
+
+<!-- more -->
+
+
+<p>After cloning, remember to run</p>
+
+<pre><code>git submodule init
+git submodule update
+</code></pre>
+
+<p><a href="http://sigfried.org/lifeflow/lifeflowWithStuff.html">LifeFlow demo</a></p>
+
+<p><a href="http://sigfried.org/lifeflow/hurricaneLifeflowUnadorned.html">LifeFlow stripped down demo</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Merki]]></title>
+    <link href="http://sigfried.github.io/blog/merki/"/>
+    <updated>2013-12-27T00:03:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/merki</id>
+    <content type="html"><![CDATA[<p><strong>Medication Extraction and Reconciliation Knowledge Instrument.</strong>
+A tool for extracting structured medication information from discharge
+summaries and other free-text narrative sources, described in this
+<a href="http://www.amia.org/amia-awards/annual-conference-awards">award-winning</a>
+paper: <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2655993/">Extracting Structured Medication Event Information from Discharge Summaries</a> by
+Sigfried Gold, Noémie Elhadad, Xinxin Zhu, James J. Cimino, and George Hripcsak.</p>
+
+<!-- more -->
+
+
+<p><a href="http://scholar.google.com/scholar?cites=12861617034331125757&amp;as_sdt=20000005&amp;sciodt=0,21&amp;hl=en">Citations</a>
+where you may find more effective parsers built more recently. If you
+learn of any that are also open source, let me know!</p>
+
+<h3>MERKI Parser, Public Version, Documentation</h3>
+
+<p>Files:</p>
+
+<pre><code>ParseMeds.pm            parser code module
+drugParseRules.yaml     parser rules.  can be edited if you understand regular expressions.
+druglist.tsv            list of drug names, CUIs and TTY for ingredients and brand names from RxNorm
+gpl.txt                 GPL3 license text
+parseFromPerl.pl        example of how to call the parser from a Perl script
+parseFromShell.pl       command line version.  run like:
+                            echo "...tylenol 250mg po daily..." | perl parseFromShell.pl
+</code></pre>
+
+<p>MERKI was a sprawling, ambitious application I worked on during my time
+as a student of Biomedical Informatics at Columbia University.  It&rsquo;s
+purpose was to extract medication information from structured and
+free-text patient data, standardize and condense it, and produce a
+complete and concise listing of all medications mentioned in each
+patient&rsquo;s electronic medical record.  The larger project was never
+finished.  The current files are a portable subset that allow the
+parsing of narrative clinical text for the extraction of structured
+medication information.</p>
+
+<p>The following two lines from parseFromShell.pl show how to use the
+parser:</p>
+
+<pre><code>my $drugs = $parser-&gt;twoLevelParse($input, 
+    ['drug', 'possibleDrug', 'context'], 
+    ['dose', 'route', 'freq', 'prn', 'date']);  
+print $parser-&gt;drugsToXML($drugs);
+</code></pre>
+
+<p>$parser->twoLevelParser goes over its input twice: once to extract
+drugs, possible drugs, and contexts; and a second time to find, within
+each drug or possible drug, the dose, route, frequence, prn and dates.
+twoLevelParser returns a Perl data structure which can then be passed
+to $parser->drugsToXML or $parser->drugsToHTMLTable in order to turn
+it into something more directly usable.  Here is an example (taken from
+bits of random clinical text, and not meant to be clinically plausible):</p>
+
+<pre><code>unixshell$ echo "Discharge medications: Procardia XL 60 mg p.o. prn for severe wheezing, ferros sulfate 300 mg p.o. b.i.d., Cipro 250 mg p.o. q12hQ" | perl parseFromShell.pl
+&lt;drugs&gt;
+    &lt;drug&gt;
+        &lt;drugName&gt;Procardia XL&lt;/drugName&gt;
+        &lt;dose&gt;60 mg&lt;/dose&gt;
+        &lt;route&gt;p.o.&lt;/route&gt;
+        &lt;prn&gt;prn for severe wheezing&lt;/prn&gt;
+        &lt;startChar&gt;23&lt;/startChar&gt;
+        &lt;endChar&gt;69&lt;/endChar&gt;
+        &lt;textLength&gt;47&lt;/textLength&gt;
+        &lt;when&gt;after discharge&lt;/when&gt;
+        &lt;context&gt;Discharge meds&lt;/context&gt;
+        &lt;surroundingText&gt;discharge medications: [Procardia XL 60 mg p.o. prn for severe wheezing], ferros sulfate 300 mg p.o. b&lt;/surroundingText&gt;
+    &lt;/drug&gt;
+    &lt;possibleDrug&gt;
+        &lt;drugName&gt;ferros sulfate &lt;/drugName&gt;
+        &lt;dose&gt;300 mg&lt;/dose&gt;
+        &lt;route&gt;p.o.&lt;/route&gt;
+        &lt;freq&gt;b.i.d.&lt;/freq&gt;
+        &lt;startChar&gt;72&lt;/startChar&gt;
+        &lt;endChar&gt;104&lt;/endChar&gt;
+        &lt;textLength&gt;33&lt;/textLength&gt;
+        &lt;when&gt;after discharge&lt;/when&gt;
+        &lt;context&gt;Discharge meds&lt;/context&gt;
+        &lt;surroundingText&gt;p.o. prn for severe wheezing, [ferros sulfate 300 mg p.o. b.i.d.], D1DDD 250 mg p.o. q12hq&lt;/surroundingText&gt;
+    &lt;/possibleDrug&gt;
+    &lt;drug&gt;
+        &lt;drugName&gt;Cipro&lt;/drugName&gt;
+        &lt;dose&gt;250 mg&lt;/dose&gt;
+        &lt;route&gt;p.o.&lt;/route&gt;
+        &lt;freq&gt;q12&lt;/freq&gt;
+        &lt;startChar&gt;107&lt;/startChar&gt;
+        &lt;endChar&gt;127&lt;/endChar&gt;
+        &lt;textLength&gt;21&lt;/textLength&gt;
+        &lt;when&gt;after discharge&lt;/when&gt;
+        &lt;context&gt;Discharge meds&lt;/context&gt;
+        &lt;surroundingText&gt;s sulfate 300 mg p.o. b.i.d., [Cipro 250 mg p.o. q12]hq&lt;/surroundingText&gt;
+    &lt;/drug&gt;
+&lt;/drugs&gt;
+</code></pre>
+
+<p>To understand how the parser decides what counts as a drug, a possible
+drug, a context, a dose, route, etc., look at these tokens in
+drugParseRules.yaml.  The parser itself (ParseMeds.pm) treats context
+tokens differently than drugs and possible drugs.  Any context token
+found becomes  the context attribute of all drugs and possible drugs
+following it, until another context is found.</p>
+
+<p>Notice that &ldquo;ferros sulfate&rdquo; (&ldquo;ferrous sulfate&rdquo; misspelled) appears as
+a possible drug rather than as a drug.  Since it is misspelled, it is
+not found in the drug lexicon, but it is still identified as a possible
+drug because it appears before a dose, route, and frequency.  (Look at
+the definition of possibleDrug in drugParseRules.yaml.)</p>
+
+<p>This application is far from perfect, and if you do find it worth using,
+there is a good chance you will want to modify it for your own uses.</p>
+
+<p>Changing the drug lexicon should be fairly straightforward.  You can
+add, delete, or change entries as you like, or use an entirely different
+lexicon.  If you change the format of the lexicon, you may need to
+change aspects of the parser that load and look up drugs.</p>
+
+<p>You may want to change the parsing rules to catch drug phrases that the
+current set of rules won&rsquo;t catch, or, alternatively, to make the rules
+more conservative to prevent false positives.  You&rsquo;ll need to understand
+the basics of the YAML format (or just follow the example of the current
+drugParseRules.yaml file), and, more importantly, you&rsquo;ll need to
+understand Perl regular expressions and the special way that the parsing
+rules are processed.  I&rsquo;ll explain how the parsing rules are processed
+now.</p>
+
+<p>Tokens are divided into terminals and non-terminals.  Tokens of either
+sort are transformed by the parser into single Perl regular expressions.
+The difference is that non-terminals can include terminals and other
+non-terminals in their definition.  You&rsquo;ll also notice that the way they
+are written is slightly different, but that is just to make them more
+readable.  Also, terminals can include literal text, but non-terminals
+cannot (because they try to interpret literal text as a reference to
+another token.)</p>
+
+<p>Terminals are made up of a name followed by a list of expressions or
+pieces of literal text.  Take, for instance, the terminal cond:</p>
+
+<pre><code>cond:   [ud, ut dict, prm-breakthrough, '(were|was) held', discontinued, "dc'd"]
+</code></pre>
+
+<p>This will be converted into the (approximately) following regular expression:</p>
+
+<pre><code>/(ud|ut dict|prn-breakthrough|(were|was) held|discontinued|dc\'d)/
+</code></pre>
+
+<p>Actually, two other options will be added to the list of strings it will
+match: &ldquo;u.d.&rdquo; and &ldquo;ut dict.&rdquo;  This is because the convenience rule
+dotsAfterLtrOk includes &ldquo;ud&rdquo; and the convenience rule dotsAtEndOk
+includes &ldquo;ut dict&rdquo;.</p>
+
+<p>The terminal cond is used in the non-terminal prn:</p>
+
+<pre><code>- name: prn
+  patterns:
+    - 'asNeeded\s*qualifier'
+    - '(cond|asNeeded)'
+</code></pre>
+
+<p>This translates into &ldquo;prn&rdquo; or &ldquo;as needed&rdquo; (that&rsquo;s how &ldquo;asNeeded&rdquo; is
+defined) followed by a qualifier (something like &ldquo;for severe pain&rdquo;), OR
+something that matches the cond token, OR something that matches the
+asNeeded token.  Generally you will see the parsing rules composed
+such that more specific, longer expressions appear before less specific,
+shorter expressions.  This is because the first expression matched will
+be kept and subsequent expressions will not be tried.</p>
+
+<p>Finally, you may also want to modify the parsing code itself, but that
+code is not documented and may be hard to understand.</p>
+
+<p>If you do make changes, or even if you use the code at all, I would very
+much appreciate hearing from you.  I may be able to offer assistance,
+and I may be able to make your improvements available to others.</p>
+
+<p>Contact <a href="http://sigfried.org">Sigfried Gold</a> with questions.</p>
+]]></content>
+  </entry>
+  
+</feed>

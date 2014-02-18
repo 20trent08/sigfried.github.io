@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Merki - D3 visualizations, Underscore mixins, etc.</title>
+  <meta name="author" content="Sigfried Gold">
+
+  
+  <meta name="description" content="Medication Extraction and Reconciliation Knowledge Instrument.
+A tool for extracting structured medication information from discharge
+summaries and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sigfried.github.io/blog/merki">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="D3 visualizations, Underscore mixins, etc." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28372745-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">D3 visualizations, Underscore mixins, etc.</a></h1>
+  
+    <h2>Documentation of Sigfried Gold's software on GitHub</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:sigfried.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+        <h1 class="entry-title"><a href="http://github.com/Sigfried/">Merki</a></h1>
+    
+    <div class="links">
+        
+             <a href="http://projects.dbmi.columbia.edu/merki">Demo</a>
+             <a href="https://github.com/Sigfried/merki">Source</a>
+        
+    <div>
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-27T00:03:00-05:00" pubdate data-updated="true">Dec 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+    <div class="entry-content"><p><strong>Medication Extraction and Reconciliation Knowledge Instrument.</strong>
+A tool for extracting structured medication information from discharge
+summaries and other free-text narrative sources, described in this
+<a href="http://www.amia.org/amia-awards/annual-conference-awards">award-winning</a>
+paper: <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2655993/">Extracting Structured Medication Event Information from Discharge Summaries</a> by
+Sigfried Gold, Noémie Elhadad, Xinxin Zhu, James J. Cimino, and George Hripcsak.</p>
+
+<!-- more -->
+
+
+<p><a href="http://scholar.google.com/scholar?cites=12861617034331125757&amp;as_sdt=20000005&amp;sciodt=0,21&amp;hl=en">Citations</a>
+where you may find more effective parsers built more recently. If you
+learn of any that are also open source, let me know!</p>
+
+<h3>MERKI Parser, Public Version, Documentation</h3>
+
+<p>Files:</p>
+
+<pre><code>ParseMeds.pm            parser code module
+drugParseRules.yaml     parser rules.  can be edited if you understand regular expressions.
+druglist.tsv            list of drug names, CUIs and TTY for ingredients and brand names from RxNorm
+gpl.txt                 GPL3 license text
+parseFromPerl.pl        example of how to call the parser from a Perl script
+parseFromShell.pl       command line version.  run like:
+                            echo "...tylenol 250mg po daily..." | perl parseFromShell.pl
+</code></pre>
+
+<p>MERKI was a sprawling, ambitious application I worked on during my time
+as a student of Biomedical Informatics at Columbia University.  It&rsquo;s
+purpose was to extract medication information from structured and
+free-text patient data, standardize and condense it, and produce a
+complete and concise listing of all medications mentioned in each
+patient&rsquo;s electronic medical record.  The larger project was never
+finished.  The current files are a portable subset that allow the
+parsing of narrative clinical text for the extraction of structured
+medication information.</p>
+
+<p>The following two lines from parseFromShell.pl show how to use the
+parser:</p>
+
+<pre><code>my $drugs = $parser-&gt;twoLevelParse($input, 
+    ['drug', 'possibleDrug', 'context'], 
+    ['dose', 'route', 'freq', 'prn', 'date']);  
+print $parser-&gt;drugsToXML($drugs);
+</code></pre>
+
+<p>$parser->twoLevelParser goes over its input twice: once to extract
+drugs, possible drugs, and contexts; and a second time to find, within
+each drug or possible drug, the dose, route, frequence, prn and dates.
+twoLevelParser returns a Perl data structure which can then be passed
+to $parser->drugsToXML or $parser->drugsToHTMLTable in order to turn
+it into something more directly usable.  Here is an example (taken from
+bits of random clinical text, and not meant to be clinically plausible):</p>
+
+<pre><code>unixshell$ echo "Discharge medications: Procardia XL 60 mg p.o. prn for severe wheezing, ferros sulfate 300 mg p.o. b.i.d., Cipro 250 mg p.o. q12hQ" | perl parseFromShell.pl
+&lt;drugs&gt;
+    &lt;drug&gt;
+        &lt;drugName&gt;Procardia XL&lt;/drugName&gt;
+        &lt;dose&gt;60 mg&lt;/dose&gt;
+        &lt;route&gt;p.o.&lt;/route&gt;
+        &lt;prn&gt;prn for severe wheezing&lt;/prn&gt;
+        &lt;startChar&gt;23&lt;/startChar&gt;
+        &lt;endChar&gt;69&lt;/endChar&gt;
+        &lt;textLength&gt;47&lt;/textLength&gt;
+        &lt;when&gt;after discharge&lt;/when&gt;
+        &lt;context&gt;Discharge meds&lt;/context&gt;
+        &lt;surroundingText&gt;discharge medications: [Procardia XL 60 mg p.o. prn for severe wheezing], ferros sulfate 300 mg p.o. b&lt;/surroundingText&gt;
+    &lt;/drug&gt;
+    &lt;possibleDrug&gt;
+        &lt;drugName&gt;ferros sulfate &lt;/drugName&gt;
+        &lt;dose&gt;300 mg&lt;/dose&gt;
+        &lt;route&gt;p.o.&lt;/route&gt;
+        &lt;freq&gt;b.i.d.&lt;/freq&gt;
+        &lt;startChar&gt;72&lt;/startChar&gt;
+        &lt;endChar&gt;104&lt;/endChar&gt;
+        &lt;textLength&gt;33&lt;/textLength&gt;
+        &lt;when&gt;after discharge&lt;/when&gt;
+        &lt;context&gt;Discharge meds&lt;/context&gt;
+        &lt;surroundingText&gt;p.o. prn for severe wheezing, [ferros sulfate 300 mg p.o. b.i.d.], D1DDD 250 mg p.o. q12hq&lt;/surroundingText&gt;
+    &lt;/possibleDrug&gt;
+    &lt;drug&gt;
+        &lt;drugName&gt;Cipro&lt;/drugName&gt;
+        &lt;dose&gt;250 mg&lt;/dose&gt;
+        &lt;route&gt;p.o.&lt;/route&gt;
+        &lt;freq&gt;q12&lt;/freq&gt;
+        &lt;startChar&gt;107&lt;/startChar&gt;
+        &lt;endChar&gt;127&lt;/endChar&gt;
+        &lt;textLength&gt;21&lt;/textLength&gt;
+        &lt;when&gt;after discharge&lt;/when&gt;
+        &lt;context&gt;Discharge meds&lt;/context&gt;
+        &lt;surroundingText&gt;s sulfate 300 mg p.o. b.i.d., [Cipro 250 mg p.o. q12]hq&lt;/surroundingText&gt;
+    &lt;/drug&gt;
+&lt;/drugs&gt;
+</code></pre>
+
+<p>To understand how the parser decides what counts as a drug, a possible
+drug, a context, a dose, route, etc., look at these tokens in
+drugParseRules.yaml.  The parser itself (ParseMeds.pm) treats context
+tokens differently than drugs and possible drugs.  Any context token
+found becomes  the context attribute of all drugs and possible drugs
+following it, until another context is found.</p>
+
+<p>Notice that &ldquo;ferros sulfate&rdquo; (&ldquo;ferrous sulfate&rdquo; misspelled) appears as
+a possible drug rather than as a drug.  Since it is misspelled, it is
+not found in the drug lexicon, but it is still identified as a possible
+drug because it appears before a dose, route, and frequency.  (Look at
+the definition of possibleDrug in drugParseRules.yaml.)</p>
+
+<p>This application is far from perfect, and if you do find it worth using,
+there is a good chance you will want to modify it for your own uses.</p>
+
+<p>Changing the drug lexicon should be fairly straightforward.  You can
+add, delete, or change entries as you like, or use an entirely different
+lexicon.  If you change the format of the lexicon, you may need to
+change aspects of the parser that load and look up drugs.</p>
+
+<p>You may want to change the parsing rules to catch drug phrases that the
+current set of rules won&rsquo;t catch, or, alternatively, to make the rules
+more conservative to prevent false positives.  You&rsquo;ll need to understand
+the basics of the YAML format (or just follow the example of the current
+drugParseRules.yaml file), and, more importantly, you&rsquo;ll need to
+understand Perl regular expressions and the special way that the parsing
+rules are processed.  I&rsquo;ll explain how the parsing rules are processed
+now.</p>
+
+<p>Tokens are divided into terminals and non-terminals.  Tokens of either
+sort are transformed by the parser into single Perl regular expressions.
+The difference is that non-terminals can include terminals and other
+non-terminals in their definition.  You&rsquo;ll also notice that the way they
+are written is slightly different, but that is just to make them more
+readable.  Also, terminals can include literal text, but non-terminals
+cannot (because they try to interpret literal text as a reference to
+another token.)</p>
+
+<p>Terminals are made up of a name followed by a list of expressions or
+pieces of literal text.  Take, for instance, the terminal cond:</p>
+
+<pre><code>cond:   [ud, ut dict, prm-breakthrough, '(were|was) held', discontinued, "dc'd"]
+</code></pre>
+
+<p>This will be converted into the (approximately) following regular expression:</p>
+
+<pre><code>/(ud|ut dict|prn-breakthrough|(were|was) held|discontinued|dc\'d)/
+</code></pre>
+
+<p>Actually, two other options will be added to the list of strings it will
+match: &ldquo;u.d.&rdquo; and &ldquo;ut dict.&rdquo;  This is because the convenience rule
+dotsAfterLtrOk includes &ldquo;ud&rdquo; and the convenience rule dotsAtEndOk
+includes &ldquo;ut dict&rdquo;.</p>
+
+<p>The terminal cond is used in the non-terminal prn:</p>
+
+<pre><code>- name: prn
+  patterns:
+    - 'asNeeded\s*qualifier'
+    - '(cond|asNeeded)'
+</code></pre>
+
+<p>This translates into &ldquo;prn&rdquo; or &ldquo;as needed&rdquo; (that&rsquo;s how &ldquo;asNeeded&rdquo; is
+defined) followed by a qualifier (something like &ldquo;for severe pain&rdquo;), OR
+something that matches the cond token, OR something that matches the
+asNeeded token.  Generally you will see the parsing rules composed
+such that more specific, longer expressions appear before less specific,
+shorter expressions.  This is because the first expression matched will
+be kept and subsequent expressions will not be tried.</p>
+
+<p>Finally, you may also want to modify the parsing code itself, but that
+code is not documented and may be hard to understand.</p>
+
+<p>If you do make changes, or even if you use the code at all, I would very
+much appreciate hearing from you.  I may be able to offer assistance,
+and I may be able to make your improvements available to others.</p>
+
+<p>Contact <a href="http://sigfried.org">Sigfried Gold</a> with questions.</p>
+</div>
+
+
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Sigfried Gold</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-27T00:03:00-05:00" pubdate data-updated="true">Dec 27<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/repo/'>repo</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://sigfried.github.io/blog/merki/" data-via="godforatheists" data-counturl="http://sigfried.github.io/blog/merki/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="small"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/sequence-viz/" title="Next Post: sequence-viz">sequence-viz &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Sigfried Gold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'sigfriedgold';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sigfried.github.io/blog/merki/';
+        var disqus_url = 'http://sigfried.github.io/blog/merki/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

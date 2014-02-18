@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Repo | D3 visualizations, Underscore mixins, etc.]]></title>
+  <link href="http://sigfried.github.io/blog/categories/repo/atom.xml" rel="self"/>
+  <link href="http://sigfried.github.io/"/>
+  <updated>2014-02-18T15:45:11-05:00</updated>
+  <id>http://sigfried.github.io/</id>
+  <author>
+    <name><![CDATA[Sigfried Gold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Underscore-unchained]]></title>
+    <link href="http://sigfried.github.io/blog/underscore-unchained/"/>
+    <updated>2013-12-27T00:09:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/underscore-unchained</id>
+    <content type="html"><![CDATA[<p>A mixin that lets you use Underscore methods directly from objects or
+classes of objects, and there&rsquo;s no need for _.chain(). Even if you
+wouldn&rsquo;t use it in your code, it&rsquo;s pretty nice for debugging in the
+console.</p>
+
+<!-- more -->
+
+
+<p>``` javascript Unchain an array and it&rsquo;s ready to go
+var abcd = _.unchain([&lsquo;a&rsquo;,&lsquo;bb&rsquo;,&lsquo;ccccc&rsquo;,&rsquo;d']) // a humble array of strings</p>
+
+<p>abcd.pluck(&lsquo;length&rsquo;)                         // pluck lengths into an array of numbers: [1,2,5,1]</p>
+
+<pre><code>.max()                                   // max (as a Number object)
+.range()                                 // create an array of that length
+</code></pre>
+
+<p>=> [0, 1, 2, 3, 4]                           // no need for unwrapping!
+```</p>
+
+<h3>Promethean mode</h3>
+
+<p>Defy the gods and bring the full power of Underscore to <strong>all</strong> your
+Arrays, Objects, or whatever.  Also works with constructors of
+user-defined classes. Use at your own risk.  Modifying built in types is
+a seriously reckless undertaking and I totally recommend against it,
+but, hey, what&rsquo;s the worst that could happen?</p>
+
+<p>``` javascript Add Underscore methods to Arrays globally
+_.prometheus(Array);</p>
+
+<p>[&lsquo;a&rsquo;,&lsquo;bb&rsquo;,&lsquo;ccc&rsquo;].pluck(&lsquo;length&rsquo;).last().range()  // OMG, my arrays can do anything!
+=> [0, 1, 2]
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Supergroup]]></title>
+    <link href="http://sigfried.github.io/blog/supergroup/"/>
+    <updated>2013-12-27T00:07:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/supergroup</id>
+    <content type="html"><![CDATA[<script src="../../supergroup/lib/underscore.js"></script>
+
+
+<script src="../../supergroup/lib/underscoreAddon.js"></script>
+
+
+<script src="../../supergroup/lib/underscore-unchained.js"></script>
+
+
+<script src="../../supergroup/supergroup.js"></script>
+
+
+<script src="../../supergroup/lib/d3.js"></script>
+
+
+<script>
+window.onload = function() {
+var gradeBook = [
+    {lastName: "Gold",    firstName: "Sigfried", class: "Remedial Programming",           grade: "C", num: 2},
+    {lastName: "Gold",    firstName: "Sigfried", class: "Literary Posturing",             grade: "B", num: 3},
+    {lastName: "Gold",    firstName: "Sigfried", class: "Documenting with Pretty Colors", grade: "B", num: 3},
+    {lastName: "Sassoon", firstName: "Sigfried", class: "Remedial Programming",           grade: "A", num: 3},
+    {lastName: "Androy",  firstName: "Sigfried", class: "Remedial Programming",           grade: "B", num: 3} 
+];
+var byLastName = _.supergroup(gradeBook, "lastName"); // an Array of Strings:  ["Gold","Sassoon","Androy"]
+var byName = _.supergroup(gradeBook, function(d) { return d.firstName + ' ' + d.lastName; }); // an Array of Strings:  ["Sigfried Gold","Sigfried Sassoon","Sigfried Androy"]
+var byClassGrade = _.supergroup(gradeBook, ["class", "grade"]); // Hierarchical grouping, top level is Array of classes
+};
+</script>
+
+
+<p>testGroup CSV-type data into (hierarchically if desired) into arrays of String or Number objects
+having immediate access to grouped records (at any level), aggregate calculations, children,
+parents, paths.</p>
+
+<!-- more -->
+
+
+<p><a href="../../supergroup">Full API documentation</a></p>
+
+<p>``` json Some records loaded from a CSV or JSON file
+var gradeBook = [</p>
+
+<pre><code>{lastName: "Gold",    firstName: "Sigfried", class: "Remedial Programming",           grade: "C", num: 2},
+{lastName: "Gold",    firstName: "Sigfried", class: "Literary Posturing",             grade: "B", num: 3},
+{lastName: "Gold",    firstName: "Sigfried", class: "Documenting with Pretty Colors", grade: "B", num: 3},
+{lastName: "Sassoon", firstName: "Sigfried", class: "Remedial Programming",           grade: "A", num: 3},
+{lastName: "Androy",  firstName: "Sigfried", class: "Remedial Programming",           grade: "B", num: 3} 
+</code></pre>
+
+<p>];
+<code>
+</code> javascript Grouping on one dimension
+var byLastName = <em>.supergroup(gradeBook, &ldquo;lastName&rdquo;); // an Array of Strings:  [&ldquo;Gold&rdquo;,&ldquo;Sassoon&rdquo;,&ldquo;Androy&rdquo;]
+byLastName[0].records; // Array of Sigfried Gold&rsquo;s original 3 records
+byLastName.rawValues(); // Array of native strings (easier to look at or use in contexts where you need a plain string)
+<code>
+</code> javascript Grouping by a calculated value
+var byName = </em>.supergroup(gradeBook, function(d) { return d.firstName + &lsquo; &rsquo; + d.lastName; });
+// an Array of Strings:  [&ldquo;Sigfried Gold&rdquo;,&ldquo;Sigfried Sassoon&rdquo;,&ldquo;Sigfried Androy&rdquo;]
+<code>
+</code> javascript It&rsquo;s a native Array, but you can treat it as map, and then do cool stuff. Here&rsquo;s a GPA:
+byName.lookup(&ldquo;Sigfried Gold&rdquo;).records.pluck(&ldquo;num&rdquo;).mean(); //  2.6666666666666665
+```
+The above example shows how Supergroup can chain Underscore methods (and mixins), functionality
+it gets from <a href="../underscore-unchained">underscore-unchained</a>.</p>
+
+<p><code>javascript Grouping hierarchically
+var byClassGrade = _.supergroup(gradeBook, ["class", "grade"]); // Array of top-level groups: ["Remedial Programming", "Literary Posturing", "Documenting with Pretty Colors"]
+byClassGrade[0].children; // Children of a single group: ["C", "B"]
+byClassGrade[0].records; // Array original records for a single group
+byClassGrade.lookup("Remedial Programming"); // lookup a top-level group by name
+byClassGrade.lookup(["Remedial Programming","B"]); // lookup a second-level group by name path
+byClassGrade.lookup(["Remedial Programming","B"]).namePath(' -&gt; '); // "Remedial Programming -&gt; B"
+byClassGrade.lookup(["Remedial Programming","B"]).dimPath() // "class/grade"
+</code>
+Supergroup can flatten a tree into an array of nodes much like D3&rsquo;s hierarchy layout, but in a way
+that&rsquo;s easier to use IMHO.
+<code>javascript
+byClassGrade.flattenTree(); // ["Remedial Programming", "C", "A", "B", "Literary Posturing", "B", "Documenting with Pretty Colors", "B"]
+byClassGrade.flattenTree().invoke('namePath'); // ["Remedial Programming", "Remedial Programming/C", "Remedial Programming/A", "Remedial Programming/B", "Literary Posturing", "Literary Posturing/B", "Documenting with Pretty Colors", "Documenting with Pretty Colors/B"]
+// only want leaf nodes?
+byClassGrade.leafNodes().invoke('namePath'); // ["Remedial Programming/C", "Remedial Programming/A", "Remedial Programming/B", "Literary Posturing/B", "Documenting with Pretty Colors/B"]
+</code></p>
+
+<!--
+<iframe style="width: 100%; height: 300px" frameborder="0" seamless="seamless" src="http://jsfiddle.net/us9k9/2/embedded/js,resources,html,css,result/light/"></iframe>
+In a SQL group by query you get one record for each resulting group and
+you can calculate values based on the aggregate of the rows comprised by
+each group. Another step is needed to go back from the group to
+the individual rows in that group. D3's nest and Underscore's groupBy do
+slightly better in that they offer a collection of groups where each group
+is tied to its associated records.
+
+
+To explain the advantages of supergroup over Underscore and D3's versions, let's compare the results:
+
+``` javascript Underscore's groupBy
+_.groupBy(gradeBook,'lastName')
+=> {
+    Gold: [ 
+        { firstName: "Sigfried", lastName: "Gold", class: "Remedial Programming", grade: "C", num: 2 },
+        { firstName: "Sigfried", lastName: "Gold", class: "Literary Posturing", grade: "B", num: 3 },
+        { firstName: "Sigfried", lastName: "Gold", class: "Documenting with Pretty Colors", grade: "B", num: 3 }
+    ],
+    Else: [
+        { firstName: "Someone", lastName: "Else", class: "Remedial Programming", grade: "B", num: 3 }
+    ]
+}
+```
+
+``` javascript D3's nest and map
+d3.nest().key(function(d) { return d.lastName }).map(gradeBook) // same result as Underscore.  
+```
+
+Because D3 visualizations depend so completely on arrays, D3 provides a way of structuring groups as arrays:
+
+``` javascript D3's nest and entries
+d3.nest().key(function(d) { return d.lastName }).entries(gradeBook)
+=> [
+    { key: "Gold",
+      values: [
+            { firstName: "Sigfried", lastName: "Gold", class: "Remedial Programming", grade: "C", num: 2 },
+            { firstName: "Sigfried", lastName: "Gold", class: "Literary Posturing", grade: "B", num: 3 },
+            { firstName: "Sigfried", lastName: "Gold", class: "Documenting with Pretty Colors", grade: "B", num: 3 }
+        ]
+    },
+    { key: "Else",
+      values: [
+            { firstName: "Someone", lastName: "Else", class: "Remedial Programming", grade: "B", num: 3 }
+        ]
+    }
+]
+
+// making a list with this data in D3 might look like this:
+
+gradeBookEntries = d3.nest()
+                    .key(function(d) { return d.lastName })
+                    .key(function(d) { return d.grade })
+                    .entries(gradeBook)
+
+_.rebind(console, 'log') // so console.log can be used as a callback
+
+d3.select('div#main').append('ul').selectAll('li')
+    .data(gradeBookEntries)
+    .enter()
+    .append('li')
+        .text(function(d) { return d.key })
+        .on('click', console.log)
+    .append('ul').selectAll('li')
+        .data(function(d) { return d.values})
+        .enter()
+        .append('li')
+            .text(function(d) { return d.key + ': ' + d.values.map(function(r) { return r.class }).join(', ') })
+            .on('click', console.log)
+
+gradeBookNames = _.supergroup(gradeBook,['lastName','grade']);
+d3.select('div#main').append('ul').selectAll('li')
+    .data(gradeBookNames)
+    .enter()
+    .append('li')
+        .text(_.identity)
+        .on('click', console.log)
+    .append('ul').selectAll('li')
+        .data(function(d) { return d.children})
+        .enter()
+        .append('li')
+            .text(function(d) { return d + ': ' + d.records.pluck('class').join(', ') })
+            .on('click', console.log)
+```
+
+These produce identical results with fairly similar syntax, but when the visualization
+becomes more complex, the supergroup nodes are much more useful. A common use case
+is providing information about a node on mouseover. 
+
+One drawback of d3.nest above is a difference in datum types between parent and leaf
+nodes: datum.values at a parent node is an array of {key:'...',values:[...]}, but at
+the leaf node it's an array of raw records.
+
+Supergroup does not mix up raw records and hierarchy children in this way. At every
+level 'records' refers to raw records (which you can only access as leaf nodes in
+d3.nest) and 'children' refers to nested children if there are any at that node.
+
+
+
+
+
+gradeBookNames = _.supergroup(gradeBook,['lastName','grade']);
+ d3.select('div#main').append('ul').selectAll('li')
+    .data(gradeBookEntries)
+    .enter()
+    .append('li')
+        .text(_.identity)
+    .append('ul').selectAll('li')
+        .data(function(d) { return d.records})
+        .enter()
+        .append('li')
+            .text(function(d) { return d.namePath() })
+
+
+d3.select('body').append('ul').selectAll('li')
+    .data(gradeBookEntries)
+    .enter()
+    .append('li')
+        .text(function(d) { return d.key })
+    .append('p')
+        .text(function(d) { return d.values.length + ' records in group ' + this.parentNode.__data__.key })
+```
+
+has the exact same result (with less pleasant syn
+
+``` javascript
+var gradeBook = [
+   {firstName: 'Sigfried', lastName: 'Gold', class: 'Remedial Programming', grade: 'C+', num: 2.2},
+   {firstName: 'Sigfried', lastName: 'Gold', class: 'Literary Posturing', grade: 'B', num: 3},
+   {firstName: 'Sigfried', lastName: 'Gold', class: 'Documenting with Pretty Colors', grade: 'B-', num: 2.7},
+   {firstName: 'Someone', lastName: 'Else', class: 'Remedial Programming', grade: 'A'}];
+
+var gradesByLastName = enlightenedData.group(gradeBook, 'lastName')
+```
+
+
+``` javascript
+var gradesByName = enlightenedData.group(gradeBook,  
+        function(d) { return d.lastName + ', ' + d.firstName },  
+        {dimName: 'fullName'})
+
+var sigfried = gradesByName.lookup('Gold, Sigfried');
+sigfried.records.length; // 3
+var sigfriedGPA = sigfried.records.reduce(function(result,rec) { return result+rec.num }, 0) / sigfried.records.length;
+(it does much much more, will explain below)
+```
+File /Users/sigfried/Sites/sigfried.github.io/source/downloads/code/supergroup-test.js could not be found
+-->
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[TreeLike CSV Data Browser]]></title>
+    <link href="http://sigfried.github.io/blog/treelike/"/>
+    <updated>2013-12-27T00:06:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/treelike</id>
+    <content type="html"><![CDATA[<p>TreeLike is an experimental tool allowing rapid exploration
+of the contents and inter-relationships across the columns of spreadsheet or
+CSV data. Use it to load any local CSV file.
+It immediately shows the distributions of values in all columns, and by
+laying out the columns in some nesting order, can show hierarchical
+relationships between values across columns. When two columns have a
+many-to-many relationship, the merge feature shows connections in both
+directions, not just from parent to child. And parent/child
+relationships can be reordered with one or two mouse clicks.</p>
+
+<!-- more -->
+
+
+<p><a href="../treelike/demo.html">Demo</a> (you&rsquo;ll need a data file, how about: <a href="https://raw.github.com/Sigfried/treelike/master/data/mysql_world_data.csv">MySQL world data</a>)</p>
+
+<p>To understand what it does, you need to see it in action. This rough
+demo video will explain:</p>
+
+<iframe width="420" height="315" src="http://sigfried.github.io//www.youtube.com/embed/mJ8ljG8qpZk" frameborder="0" allowfullscreen></iframe>
+
+
+<p>TreeLike will be most helpful with files of between about 4 and
+20 columns. It should be fine with at least tens of thousands of rows,
+but it hasn&rsquo;t been well tested.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sequence-viz]]></title>
+    <link href="http://sigfried.github.io/blog/sequence-viz/"/>
+    <updated>2013-12-27T00:04:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/sequence-viz</id>
+    <content type="html"><![CDATA[<p>A collection of visualization tools for exploring sequences of events
+over time. Offers the first open-source, Javascript implementation of
+Krist Wongsuphasawat&rsquo;s <a href="http://www.cs.umd.edu/hcil/lifeflow/">LifeFlow</a>
+for temporal summary visualization as well as extensions and related
+techniques.</p>
+
+<!-- more -->
+
+
+<p>After cloning, remember to run</p>
+
+<pre><code>git submodule init
+git submodule update
+</code></pre>
+
+<p><a href="http://sigfried.org/lifeflow/lifeflowWithStuff.html">LifeFlow demo</a></p>
+
+<p><a href="http://sigfried.org/lifeflow/hurricaneLifeflowUnadorned.html">LifeFlow stripped down demo</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Merki]]></title>
+    <link href="http://sigfried.github.io/blog/merki/"/>
+    <updated>2013-12-27T00:03:00-05:00</updated>
+    <id>http://sigfried.github.io/blog/merki</id>
+    <content type="html"><![CDATA[<p><strong>Medication Extraction and Reconciliation Knowledge Instrument.</strong>
+A tool for extracting structured medication information from discharge
+summaries and other free-text narrative sources, described in this
+<a href="http://www.amia.org/amia-awards/annual-conference-awards">award-winning</a>
+paper: <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2655993/">Extracting Structured Medication Event Information from Discharge Summaries</a> by
+Sigfried Gold, Noémie Elhadad, Xinxin Zhu, James J. Cimino, and George Hripcsak.</p>
+
+<!-- more -->
+
+
+<p><a href="http://scholar.google.com/scholar?cites=12861617034331125757&amp;as_sdt=20000005&amp;sciodt=0,21&amp;hl=en">Citations</a>
+where you may find more effective parsers built more recently. If you
+learn of any that are also open source, let me know!</p>
+
+<h3>MERKI Parser, Public Version, Documentation</h3>
+
+<p>Files:</p>
+
+<pre><code>ParseMeds.pm            parser code module
+drugParseRules.yaml     parser rules.  can be edited if you understand regular expressions.
+druglist.tsv            list of drug names, CUIs and TTY for ingredients and brand names from RxNorm
+gpl.txt                 GPL3 license text
+parseFromPerl.pl        example of how to call the parser from a Perl script
+parseFromShell.pl       command line version.  run like:
+                            echo "...tylenol 250mg po daily..." | perl parseFromShell.pl
+</code></pre>
+
+<p>MERKI was a sprawling, ambitious application I worked on during my time
+as a student of Biomedical Informatics at Columbia University.  It&rsquo;s
+purpose was to extract medication information from structured and
+free-text patient data, standardize and condense it, and produce a
+complete and concise listing of all medications mentioned in each
+patient&rsquo;s electronic medical record.  The larger project was never
+finished.  The current files are a portable subset that allow the
+parsing of narrative clinical text for the extraction of structured
+medication information.</p>
+
+<p>The following two lines from parseFromShell.pl show how to use the
+parser:</p>
+
+<pre><code>my $drugs = $parser-&gt;twoLevelParse($input, 
+    ['drug', 'possibleDrug', 'context'], 
+    ['dose', 'route', 'freq', 'prn', 'date']);  
+print $parser-&gt;drugsToXML($drugs);
+</code></pre>
+
+<p>$parser->twoLevelParser goes over its input twice: once to extract
+drugs, possible drugs, and contexts; and a second time to find, within
+each drug or possible drug, the dose, route, frequence, prn and dates.
+twoLevelParser returns a Perl data structure which can then be passed
+to $parser->drugsToXML or $parser->drugsToHTMLTable in order to turn
+it into something more directly usable.  Here is an example (taken from
+bits of random clinical text, and not meant to be clinically plausible):</p>
+
+<pre><code>unixshell$ echo "Discharge medications: Procardia XL 60 mg p.o. prn for severe wheezing, ferros sulfate 300 mg p.o. b.i.d., Cipro 250 mg p.o. q12hQ" | perl parseFromShell.pl
+&lt;drugs&gt;
+    &lt;drug&gt;
+        &lt;drugName&gt;Procardia XL&lt;/drugName&gt;
+        &lt;dose&gt;60 mg&lt;/dose&gt;
+        &lt;route&gt;p.o.&lt;/route&gt;
+        &lt;prn&gt;prn for severe wheezing&lt;/prn&gt;
+        &lt;startChar&gt;23&lt;/startChar&gt;
+        &lt;endChar&gt;69&lt;/endChar&gt;
+        &lt;textLength&gt;47&lt;/textLength&gt;
+        &lt;when&gt;after discharge&lt;/when&gt;
+        &lt;context&gt;Discharge meds&lt;/context&gt;
+        &lt;surroundingText&gt;discharge medications: [Procardia XL 60 mg p.o. prn for severe wheezing], ferros sulfate 300 mg p.o. b&lt;/surroundingText&gt;
+    &lt;/drug&gt;
+    &lt;possibleDrug&gt;
+        &lt;drugName&gt;ferros sulfate &lt;/drugName&gt;
+        &lt;dose&gt;300 mg&lt;/dose&gt;
+        &lt;route&gt;p.o.&lt;/route&gt;
+        &lt;freq&gt;b.i.d.&lt;/freq&gt;
+        &lt;startChar&gt;72&lt;/startChar&gt;
+        &lt;endChar&gt;104&lt;/endChar&gt;
+        &lt;textLength&gt;33&lt;/textLength&gt;
+        &lt;when&gt;after discharge&lt;/when&gt;
+        &lt;context&gt;Discharge meds&lt;/context&gt;
+        &lt;surroundingText&gt;p.o. prn for severe wheezing, [ferros sulfate 300 mg p.o. b.i.d.], D1DDD 250 mg p.o. q12hq&lt;/surroundingText&gt;
+    &lt;/possibleDrug&gt;
+    &lt;drug&gt;
+        &lt;drugName&gt;Cipro&lt;/drugName&gt;
+        &lt;dose&gt;250 mg&lt;/dose&gt;
+        &lt;route&gt;p.o.&lt;/route&gt;
+        &lt;freq&gt;q12&lt;/freq&gt;
+        &lt;startChar&gt;107&lt;/startChar&gt;
+        &lt;endChar&gt;127&lt;/endChar&gt;
+        &lt;textLength&gt;21&lt;/textLength&gt;
+        &lt;when&gt;after discharge&lt;/when&gt;
+        &lt;context&gt;Discharge meds&lt;/context&gt;
+        &lt;surroundingText&gt;s sulfate 300 mg p.o. b.i.d., [Cipro 250 mg p.o. q12]hq&lt;/surroundingText&gt;
+    &lt;/drug&gt;
+&lt;/drugs&gt;
+</code></pre>
+
+<p>To understand how the parser decides what counts as a drug, a possible
+drug, a context, a dose, route, etc., look at these tokens in
+drugParseRules.yaml.  The parser itself (ParseMeds.pm) treats context
+tokens differently than drugs and possible drugs.  Any context token
+found becomes  the context attribute of all drugs and possible drugs
+following it, until another context is found.</p>
+
+<p>Notice that &ldquo;ferros sulfate&rdquo; (&ldquo;ferrous sulfate&rdquo; misspelled) appears as
+a possible drug rather than as a drug.  Since it is misspelled, it is
+not found in the drug lexicon, but it is still identified as a possible
+drug because it appears before a dose, route, and frequency.  (Look at
+the definition of possibleDrug in drugParseRules.yaml.)</p>
+
+<p>This application is far from perfect, and if you do find it worth using,
+there is a good chance you will want to modify it for your own uses.</p>
+
+<p>Changing the drug lexicon should be fairly straightforward.  You can
+add, delete, or change entries as you like, or use an entirely different
+lexicon.  If you change the format of the lexicon, you may need to
+change aspects of the parser that load and look up drugs.</p>
+
+<p>You may want to change the parsing rules to catch drug phrases that the
+current set of rules won&rsquo;t catch, or, alternatively, to make the rules
+more conservative to prevent false positives.  You&rsquo;ll need to understand
+the basics of the YAML format (or just follow the example of the current
+drugParseRules.yaml file), and, more importantly, you&rsquo;ll need to
+understand Perl regular expressions and the special way that the parsing
+rules are processed.  I&rsquo;ll explain how the parsing rules are processed
+now.</p>
+
+<p>Tokens are divided into terminals and non-terminals.  Tokens of either
+sort are transformed by the parser into single Perl regular expressions.
+The difference is that non-terminals can include terminals and other
+non-terminals in their definition.  You&rsquo;ll also notice that the way they
+are written is slightly different, but that is just to make them more
+readable.  Also, terminals can include literal text, but non-terminals
+cannot (because they try to interpret literal text as a reference to
+another token.)</p>
+
+<p>Terminals are made up of a name followed by a list of expressions or
+pieces of literal text.  Take, for instance, the terminal cond:</p>
+
+<pre><code>cond:   [ud, ut dict, prm-breakthrough, '(were|was) held', discontinued, "dc'd"]
+</code></pre>
+
+<p>This will be converted into the (approximately) following regular expression:</p>
+
+<pre><code>/(ud|ut dict|prn-breakthrough|(were|was) held|discontinued|dc\'d)/
+</code></pre>
+
+<p>Actually, two other options will be added to the list of strings it will
+match: &ldquo;u.d.&rdquo; and &ldquo;ut dict.&rdquo;  This is because the convenience rule
+dotsAfterLtrOk includes &ldquo;ud&rdquo; and the convenience rule dotsAtEndOk
+includes &ldquo;ut dict&rdquo;.</p>
+
+<p>The terminal cond is used in the non-terminal prn:</p>
+
+<pre><code>- name: prn
+  patterns:
+    - 'asNeeded\s*qualifier'
+    - '(cond|asNeeded)'
+</code></pre>
+
+<p>This translates into &ldquo;prn&rdquo; or &ldquo;as needed&rdquo; (that&rsquo;s how &ldquo;asNeeded&rdquo; is
+defined) followed by a qualifier (something like &ldquo;for severe pain&rdquo;), OR
+something that matches the cond token, OR something that matches the
+asNeeded token.  Generally you will see the parsing rules composed
+such that more specific, longer expressions appear before less specific,
+shorter expressions.  This is because the first expression matched will
+be kept and subsequent expressions will not be tried.</p>
+
+<p>Finally, you may also want to modify the parsing code itself, but that
+code is not documented and may be hard to understand.</p>
+
+<p>If you do make changes, or even if you use the code at all, I would very
+much appreciate hearing from you.  I may be able to offer assistance,
+and I may be able to make your improvements available to others.</p>
+
+<p>Contact <a href="http://sigfried.org">Sigfried Gold</a> with questions.</p>
+]]></content>
+  </entry>
+  
+</feed>
