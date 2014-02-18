@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Repo | D3 visualizations, Underscore mixins, etc.]]></title>
-  <link href="http://sigfried.github.io/blog/categories/repo/atom.xml" rel="self"/>
-  <link href="http://sigfried.github.io/"/>
-  <updated>2014-02-18T15:45:11-05:00</updated>
-  <id>http://sigfried.github.io/</id>
+  <link href="http://Sigfried.github.io/blog/categories/repo/atom.xml" rel="self"/>
+  <link href="http://Sigfried.github.io/"/>
+  <updated>2014-02-18T16:29:09-05:00</updated>
+  <id>http://Sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Underscore-unchained]]></title>
-    <link href="http://sigfried.github.io/blog/underscore-unchained/"/>
+    <link href="http://Sigfried.github.io/blog/underscore-unchained/"/>
     <updated>2013-12-27T00:09:00-05:00</updated>
-    <id>http://sigfried.github.io/blog/underscore-unchained</id>
+    <id>http://Sigfried.github.io/blog/underscore-unchained</id>
     <content type="html"><![CDATA[<p>A mixin that lets you use Underscore methods directly from objects or
 classes of objects, and there&rsquo;s no need for _.chain(). Even if you
 wouldn&rsquo;t use it in your code, it&rsquo;s pretty nice for debugging in the
@@ -57,9 +57,9 @@ _.prometheus(Array);</p>
   
   <entry>
     <title type="html"><![CDATA[Supergroup]]></title>
-    <link href="http://sigfried.github.io/blog/supergroup/"/>
+    <link href="http://Sigfried.github.io/blog/supergroup/"/>
     <updated>2013-12-27T00:07:00-05:00</updated>
-    <id>http://sigfried.github.io/blog/supergroup</id>
+    <id>http://Sigfried.github.io/blog/supergroup</id>
     <content type="html"><![CDATA[<script src="../../supergroup/lib/underscore.js"></script>
 
 
@@ -91,7 +91,7 @@ var byClassGrade = _.supergroup(gradeBook, ["class", "grade"]); // Hierarchical 
 </script>
 
 
-<p>testGroup CSV-type data into (hierarchically if desired) into arrays of String or Number objects
+<p>Group CSV-type data into (hierarchically if desired) into arrays of String or Number objects
 having immediate access to grouped records (at any level), aggregate calculations, children,
 parents, paths.</p>
 
@@ -300,9 +300,9 @@ File /Users/sigfried/Sites/sigfried.github.io/source/downloads/code/supergroup-t
   
   <entry>
     <title type="html"><![CDATA[TreeLike CSV Data Browser]]></title>
-    <link href="http://sigfried.github.io/blog/treelike/"/>
+    <link href="http://Sigfried.github.io/blog/treelike/"/>
     <updated>2013-12-27T00:06:00-05:00</updated>
-    <id>http://sigfried.github.io/blog/treelike</id>
+    <id>http://Sigfried.github.io/blog/treelike</id>
     <content type="html"><![CDATA[<p>TreeLike is an experimental tool allowing rapid exploration
 of the contents and inter-relationships across the columns of spreadsheet or
 CSV data. Use it to load any local CSV file.
@@ -321,7 +321,7 @@ relationships can be reordered with one or two mouse clicks.</p>
 <p>To understand what it does, you need to see it in action. This rough
 demo video will explain:</p>
 
-<iframe width="420" height="315" src="http://sigfried.github.io//www.youtube.com/embed/mJ8ljG8qpZk" frameborder="0" allowfullscreen></iframe>
+<iframe width="420" height="315" src="http://Sigfried.github.io//www.youtube.com/embed/mJ8ljG8qpZk" frameborder="0" allowfullscreen></iframe>
 
 
 <p>TreeLike will be most helpful with files of between about 4 and
@@ -332,9 +332,9 @@ but it hasn&rsquo;t been well tested.</p>
   
   <entry>
     <title type="html"><![CDATA[Sequence-viz]]></title>
-    <link href="http://sigfried.github.io/blog/sequence-viz/"/>
+    <link href="http://Sigfried.github.io/blog/sequence-viz/"/>
     <updated>2013-12-27T00:04:00-05:00</updated>
-    <id>http://sigfried.github.io/blog/sequence-viz</id>
+    <id>http://Sigfried.github.io/blog/sequence-viz</id>
     <content type="html"><![CDATA[<p>A collection of visualization tools for exploring sequences of events
 over time. Offers the first open-source, Javascript implementation of
 Krist Wongsuphasawat&rsquo;s <a href="http://www.cs.umd.edu/hcil/lifeflow/">LifeFlow</a>
@@ -358,9 +358,9 @@ git submodule update
   
   <entry>
     <title type="html"><![CDATA[Merki]]></title>
-    <link href="http://sigfried.github.io/blog/merki/"/>
+    <link href="http://Sigfried.github.io/blog/merki/"/>
     <updated>2013-12-27T00:03:00-05:00</updated>
-    <id>http://sigfried.github.io/blog/merki</id>
+    <id>http://Sigfried.github.io/blog/merki</id>
     <content type="html"><![CDATA[<p><strong>Medication Extraction and Reconciliation Knowledge Instrument.</strong>
 A tool for extracting structured medication information from discharge
 summaries and other free-text narrative sources, described in this
