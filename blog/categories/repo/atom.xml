@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Repo | D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://Sigfried.github.io/blog/categories/repo/atom.xml" rel="self"/>
   <link href="http://Sigfried.github.io/"/>
-  <updated>2014-02-18T16:29:09-05:00</updated>
+  <updated>2014-02-18T16:37:13-05:00</updated>
   <id>http://Sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -12,48 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Underscore-unchained]]></title>
-    <link href="http://Sigfried.github.io/blog/underscore-unchained/"/>
-    <updated>2013-12-27T00:09:00-05:00</updated>
-    <id>http://Sigfried.github.io/blog/underscore-unchained</id>
-    <content type="html"><![CDATA[<p>A mixin that lets you use Underscore methods directly from objects or
-classes of objects, and there&rsquo;s no need for _.chain(). Even if you
-wouldn&rsquo;t use it in your code, it&rsquo;s pretty nice for debugging in the
-console.</p>
-
-<!-- more -->
-
-
-<p>``` javascript Unchain an array and it&rsquo;s ready to go
-var abcd = _.unchain([&lsquo;a&rsquo;,&lsquo;bb&rsquo;,&lsquo;ccccc&rsquo;,&rsquo;d']) // a humble array of strings</p>
-
-<p>abcd.pluck(&lsquo;length&rsquo;)                         // pluck lengths into an array of numbers: [1,2,5,1]</p>
-
-<pre><code>.max()                                   // max (as a Number object)
-.range()                                 // create an array of that length
-</code></pre>
-
-<p>=> [0, 1, 2, 3, 4]                           // no need for unwrapping!
-```</p>
-
-<h3>Promethean mode</h3>
-
-<p>Defy the gods and bring the full power of Underscore to <strong>all</strong> your
-Arrays, Objects, or whatever.  Also works with constructors of
-user-defined classes. Use at your own risk.  Modifying built in types is
-a seriously reckless undertaking and I totally recommend against it,
-but, hey, what&rsquo;s the worst that could happen?</p>
-
-<p>``` javascript Add Underscore methods to Arrays globally
-_.prometheus(Array);</p>
-
-<p>[&lsquo;a&rsquo;,&lsquo;bb&rsquo;,&lsquo;ccc&rsquo;].pluck(&lsquo;length&rsquo;).last().range()  // OMG, my arrays can do anything!
-=> [0, 1, 2]
-```</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Supergroup]]></title>
