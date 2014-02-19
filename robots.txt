@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://github.sigfried.org/sitemap.xml 
+Sitemap: http://Sigfried.github.io/sitemap.xml 
