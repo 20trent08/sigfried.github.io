@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Repo | D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://Sigfried.github.io/blog/categories/repo/atom.xml" rel="self"/>
   <link href="http://Sigfried.github.io/"/>
-  <updated>2015-03-14T21:40:36-04:00</updated>
+  <updated>2015-03-14T21:52:24-04:00</updated>
   <id>http://Sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -19,6 +19,9 @@
     <updated>2013-12-27T00:07:00-05:00</updated>
     <id>http://Sigfried.github.io/blog/supergroup</id>
     <content type="html"><![CDATA[<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
 
 
 <script src="../../supergroup/supergroup.js"></script>
