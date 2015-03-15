@@ -55,9 +55,9 @@ task :generate do
   system "compass compile --css-dir #{source_dir}/stylesheets"
   system "jekyll"
 
-    puts "Sigfried added code here to link in projects!"
-    system "ln -s ../../supergroup public/supergroup"
-    system "ln -s ../../supergroup public/blog/supergroup"
+    #puts "Sigfried added code here to link in projects!"
+    #system "ln -s ../../supergroup public/supergroup"
+    #system "ln -s ../../supergroup public/blog/supergroup"
 end
 
 desc "Watch the site and regenerate when it changes"
