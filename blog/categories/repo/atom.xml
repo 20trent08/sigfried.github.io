@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Repo | D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://Sigfried.github.io/blog/categories/repo/atom.xml" rel="self"/>
   <link href="http://Sigfried.github.io/"/>
-  <updated>2015-03-14T12:53:55-04:00</updated>
+  <updated>2015-03-14T21:05:53-04:00</updated>
   <id>http://Sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -57,6 +57,8 @@ parents, paths.</p>
 
 
 <p><a href="../../supergroup">Full API documentation</a></p>
+
+<p>(getting rid of underscore-unchained, which was a bad idea altogether)</p>
 
 <p>``` json Some records loaded from a CSV or JSON file
 var gradeBook = [</p>
