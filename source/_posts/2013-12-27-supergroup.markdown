@@ -37,6 +37,8 @@ parents, paths.
 
 [Full API documentation](../../supergroup)
 
+(getting rid of underscore-unchained, which was a bad idea altogether)
+
 ``` json Some records loaded from a CSV or JSON file
 var gradeBook = [
     {lastName: "Gold",    firstName: "Sigfried", class: "Remedial Programming",           grade: "C", num: 2},
