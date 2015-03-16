@@ -2,7 +2,6 @@
   border-style:solid;
   border-width:1px;
   border-color:darkgray;
-  font-size: 75%;
 }
  
 * + table th, * + table td {
@@ -11,12 +10,14 @@
   border-color:black;
   padding-left: 1px;
   padding-right: 1px;
+  font-size: 75%;
 }
  
 * + table th {
   border-style:solid;
   font-weight:bold;
   background: url("/images/noise.png?1330434582") repeat scroll left top #FDCDCD;
+  font-size: 85%;
 }
  
 * + table th[align="left"], * + table td[align="left"] {
