@@ -36,7 +36,7 @@ parents, paths.
 
 blah
 
-{% include_code supergroup/supergroup.js %}
+{% include supergroup/fake-patient_data.md %}
 
 (getting rid of underscore-unchained, which was a bad idea altogether)
 
