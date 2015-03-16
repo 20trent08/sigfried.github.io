@@ -143,7 +143,12 @@ parents, paths.</p>
 <!-- more -->
 
 
-<p><a href="../../supergroup">Full API documentation</a></p>
+
+
+<p>Patient|Patient Age|PatientVisit|Date|Time|Unit|Physician|Cost|Copay|Insurance|Inpatient&mdash;&mdash;|:&mdash;&mdash;:|:&mdash;&mdash;:|&mdash;&mdash;:|&mdash;&mdash;:|&mdash;&mdash;|&mdash;&mdash;|&mdash;&mdash;|&mdash;&mdash;:|&mdash;&mdash;:|&mdash;&mdash;|&mdash;&mdash;Alice|46|1|2014-01-07|9:30 AM|preop|Adams|0|0|Aetna PPO|TRUEAlice|46|1|2014-01-07|10:30 AM|operating room|Adams|1200|0|Aetna PPO|TRUEAlice|46|1|2014-01-07|12:15 PM|ICU|Adams|0|0|Aetna PPO|TRUEAlice|46|1|2014-01-07|6:00 PM|recovery|Adams|600|0|Aetna PPO|TRUEAlice|46|1|2014-01-08|11:00 AM|discharge|Adams|0|0|Aetna PPO|TRUEAlice|46|2|2014-01-13|2:00 PM|office|Adams|120|25|Aetna PPO|FALSEAlice|46|3|2014-02-25|1:00 PM|office|Baker|150|25|Aetna PPO|FALSEAlice|46|4|2014-03-25|1:00 PM|office|Baker|150|25|Aetna PPO|FALSEBob|63|1|2014-01-07|3:00 AM|emergency|Cohen|300|0|None|TRUEBob|63|1|2014-01-07|8:00 AM|operating room|Adams|2300|0|None|TRUEBob|63|1|2014-01-07|11:30 AM|morgue|Doom|300|0|None|TRUECarol|37|1|2014-01-07|4:00 AM|emergency|Cohen|300|40|Blue Cross|TRUECarol|37|1|2014-01-07|5:30 AM|delivery|Edwards|1800|0|Blue Cross|TRUECarol|37|1|2014-01-07|1:00 PM|maternity|Edwards|2000|0|Blue Cross|TRUECarol|37|1|2014-01-09|11:00 AM|discharge|Edwards|0|0|Blue Cross|TRUECarol|37|2|2014-01-13|9:00 AM|office|Feldman|200|20|Blue Cross|FALSECarol|37|3|2014-01-27|9:00 AM|office|Feldman|200|20|Blue Cross|FALSEEsther|0|1|2014-01-07|3:00 PM|pediatrics|Gupta|300|0|Blue Cross|TRUEEsther|0|1|2014-01-08|8:00 AM|pediatrics|Gupta|300|0|Blue Cross|TRUEEsther|0|1|2014-01-09|8:00 AM|pediatrics|Gupta|300|0|Blue Cross|TRUEEsther|0|2|2014-01-13|11:00 AM|office|Gupta|180|20|Blue Cross|FALSEEsther|0|3|2014-01-27|11:00 AM|office|Gupta|180|20|Blue Cross|FALSE</p>
+
+
+<p>did it work?</p>
 
 <table>
 <thead>
@@ -156,8 +161,8 @@ parents, paths.</p>
 <th>Unit</th>
 <th>Physician</th>
 <th>Cost</th>
-<th>Copay</th>
-<th>Insurance</th>
+<th align="right">Copay</th>
+<th align="right">Insurance</th>
 <th>Inpatient</th>
 </tr>
 </thead>
@@ -171,8 +176,8 @@ parents, paths.</p>
 <td>preop</td>
 <td>Adams</td>
 <td>0</td>
-<td>0</td>
-<td>Aetna PPO</td>
+<td align="right">0</td>
+<td align="right">Aetna PPO</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -184,8 +189,8 @@ parents, paths.</p>
 <td>operating room</td>
 <td>Adams</td>
 <td>1200</td>
-<td>0</td>
-<td>Aetna PPO</td>
+<td align="right">0</td>
+<td align="right">Aetna PPO</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -197,8 +202,8 @@ parents, paths.</p>
 <td>ICU</td>
 <td>Adams</td>
 <td>0</td>
-<td>0</td>
-<td>Aetna PPO</td>
+<td align="right">0</td>
+<td align="right">Aetna PPO</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -210,8 +215,8 @@ parents, paths.</p>
 <td>recovery</td>
 <td>Adams</td>
 <td>600</td>
-<td>0</td>
-<td>Aetna PPO</td>
+<td align="right">0</td>
+<td align="right">Aetna PPO</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -223,8 +228,8 @@ parents, paths.</p>
 <td>discharge</td>
 <td>Adams</td>
 <td>0</td>
-<td>0</td>
-<td>Aetna PPO</td>
+<td align="right">0</td>
+<td align="right">Aetna PPO</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -236,8 +241,8 @@ parents, paths.</p>
 <td>office</td>
 <td>Adams</td>
 <td>120</td>
-<td>25</td>
-<td>Aetna PPO</td>
+<td align="right">25</td>
+<td align="right">Aetna PPO</td>
 <td>FALSE</td>
 </tr>
 <tr>
@@ -249,8 +254,8 @@ parents, paths.</p>
 <td>office</td>
 <td>Baker</td>
 <td>150</td>
-<td>25</td>
-<td>Aetna PPO</td>
+<td align="right">25</td>
+<td align="right">Aetna PPO</td>
 <td>FALSE</td>
 </tr>
 <tr>
@@ -262,8 +267,8 @@ parents, paths.</p>
 <td>office</td>
 <td>Baker</td>
 <td>150</td>
-<td>25</td>
-<td>Aetna PPO</td>
+<td align="right">25</td>
+<td align="right">Aetna PPO</td>
 <td>FALSE</td>
 </tr>
 <tr>
@@ -275,8 +280,8 @@ parents, paths.</p>
 <td>emergency</td>
 <td>Cohen</td>
 <td>300</td>
-<td>0</td>
-<td>None</td>
+<td align="right">0</td>
+<td align="right">None</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -288,8 +293,8 @@ parents, paths.</p>
 <td>operating room</td>
 <td>Adams</td>
 <td>2300</td>
-<td>0</td>
-<td>None</td>
+<td align="right">0</td>
+<td align="right">None</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -301,8 +306,8 @@ parents, paths.</p>
 <td>morgue</td>
 <td>Doom</td>
 <td>300</td>
-<td>0</td>
-<td>None</td>
+<td align="right">0</td>
+<td align="right">None</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -314,8 +319,8 @@ parents, paths.</p>
 <td>emergency</td>
 <td>Cohen</td>
 <td>300</td>
-<td>40</td>
-<td>Blue Cross</td>
+<td align="right">40</td>
+<td align="right">Blue Cross</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -327,8 +332,8 @@ parents, paths.</p>
 <td>delivery</td>
 <td>Edwards</td>
 <td>1800</td>
-<td>0</td>
-<td>Blue Cross</td>
+<td align="right">0</td>
+<td align="right">Blue Cross</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -340,8 +345,8 @@ parents, paths.</p>
 <td>maternity</td>
 <td>Edwards</td>
 <td>2000</td>
-<td>0</td>
-<td>Blue Cross</td>
+<td align="right">0</td>
+<td align="right">Blue Cross</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -353,8 +358,8 @@ parents, paths.</p>
 <td>discharge</td>
 <td>Edwards</td>
 <td>0</td>
-<td>0</td>
-<td>Blue Cross</td>
+<td align="right">0</td>
+<td align="right">Blue Cross</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -366,8 +371,8 @@ parents, paths.</p>
 <td>office</td>
 <td>Feldman</td>
 <td>200</td>
-<td>20</td>
-<td>Blue Cross</td>
+<td align="right">20</td>
+<td align="right">Blue Cross</td>
 <td>FALSE</td>
 </tr>
 <tr>
@@ -379,8 +384,8 @@ parents, paths.</p>
 <td>office</td>
 <td>Feldman</td>
 <td>200</td>
-<td>20</td>
-<td>Blue Cross</td>
+<td align="right">20</td>
+<td align="right">Blue Cross</td>
 <td>FALSE</td>
 </tr>
 <tr>
@@ -392,8 +397,8 @@ parents, paths.</p>
 <td>pediatrics</td>
 <td>Gupta</td>
 <td>300</td>
-<td>0</td>
-<td>Blue Cross</td>
+<td align="right">0</td>
+<td align="right">Blue Cross</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -405,8 +410,8 @@ parents, paths.</p>
 <td>pediatrics</td>
 <td>Gupta</td>
 <td>300</td>
-<td>0</td>
-<td>Blue Cross</td>
+<td align="right">0</td>
+<td align="right">Blue Cross</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -418,8 +423,8 @@ parents, paths.</p>
 <td>pediatrics</td>
 <td>Gupta</td>
 <td>300</td>
-<td>0</td>
-<td>Blue Cross</td>
+<td align="right">0</td>
+<td align="right">Blue Cross</td>
 <td>TRUE</td>
 </tr>
 <tr>
@@ -431,8 +436,8 @@ parents, paths.</p>
 <td>office</td>
 <td>Gupta</td>
 <td>180</td>
-<td>20</td>
-<td>Blue Cross</td>
+<td align="right">20</td>
+<td align="right">Blue Cross</td>
 <td>FALSE</td>
 </tr>
 <tr>
@@ -444,15 +449,13 @@ parents, paths.</p>
 <td>office</td>
 <td>Gupta</td>
 <td>180</td>
-<td>20</td>
-<td>Blue Cross</td>
+<td align="right">20</td>
+<td align="right">Blue Cross</td>
 <td>FALSE</td>
 </tr>
 </tbody>
 </table>
 
-
-<p>Included file &lsquo;supergroup/fake-patient_data.md&rsquo; not found in _includes directory</p>
 
 <p>(getting rid of underscore-unchained, which was a bad idea altogether)</p>
 

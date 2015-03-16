@@ -8,8 +8,8 @@
   border-style:dashed;
   border-width:1px;
   border-color:black;
-  padding-left: 1px;
-  padding-right: 1px;
+  padding: 0px 3px 0px 3px;
+  padding-right: 3px;
   font-size: 75%;
 }
  
