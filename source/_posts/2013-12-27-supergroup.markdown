@@ -5,15 +5,12 @@ date: 2013-12-27 00:07:00 -0500
 comments: true
 categories: [repo]
 source: https://github.com/Sigfried/supergroup
-source: https://github.com/Sigfried/supergroup
 ---
 
 
-<script src="../../supergroup/lib/underscore.js"></script>
-<script src="../../supergroup/lib/underscoreAddon.js"></script>
-<script src="../../supergroup/lib/underscore-unchained.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
 <script src="../../supergroup/supergroup.js"></script>
-<script src="../../supergroup/lib/d3.js"></script>
 <script>
 window.onload = function() {
 var gradeBook = [
@@ -36,6 +33,10 @@ parents, paths.
 <!-- more -->
 
 [Full API documentation](../../supergroup)
+
+blah
+
+{% include_code supergroup/supergroup.js %}
 
 (getting rid of underscore-unchained, which was a bad idea altogether)
 
