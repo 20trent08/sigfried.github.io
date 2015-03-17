@@ -93,3 +93,4 @@ Supergroup gives you almost everything you'd want for every item in your nest
   <iframe width="100%" height="400px" src="/supergroup/examples_gist/examples.html?sgphysunit">
   </iframe></p>
   
+  It does a bunch more that I still need to document.
