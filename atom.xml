@@ -4,7 +4,7 @@
   <title><![CDATA[D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://Sigfried.github.io/atom.xml" rel="self"/>
   <link href="http://Sigfried.github.io/"/>
-  <updated>2015-03-16T13:32:18-04:00</updated>
+  <updated>2015-03-17T12:52:02-04:00</updated>
   <id>http://Sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -24,347 +24,130 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
 
 
-<script src="../../supergroup/supergroup.js"></script>
+<script src="https://rawgit.com/Sigfried/supergroup/master/supergroup.js"></script>
 
 
-<script>
-window.onload = function() {
-var gradeBook = [
-    {lastName: "Gold",    firstName: "Sigfried", class: "Remedial Programming",           grade: "C", num: 2},
-    {lastName: "Gold",    firstName: "Sigfried", class: "Literary Posturing",             grade: "B", num: 3},
-    {lastName: "Gold",    firstName: "Sigfried", class: "Documenting with Pretty Colors", grade: "B", num: 3},
-    {lastName: "Sassoon", firstName: "Sigfried", class: "Remedial Programming",           grade: "A", num: 3},
-    {lastName: "Androy",  firstName: "Sigfried", class: "Remedial Programming",           grade: "B", num: 3} 
-];
-var byLastName = _.supergroup(gradeBook, "lastName"); // an Array of Strings:  ["Gold","Sassoon","Androy"]
-var byName = _.supergroup(gradeBook, function(d) { return d.firstName + ' ' + d.lastName; }); // an Array of Strings:  ["Sigfried Gold","Sigfried Sassoon","Sigfried Androy"]
-var byClassGrade = _.supergroup(gradeBook, ["class", "grade"]); // Hierarchical grouping, top level is Array of classes
-};
-</script>
+<script src="http://Sigfried.github.io/supergroup/examples_gist/prism.js"></script>
 
-
-<p>Group CSV-type data into (hierarchically if desired) into arrays of String or Number objects
-having immediate access to grouped records (at any level), aggregate calculations, children,
-parents, paths.</p>
 
 <!-- more -->
 
 
 
 
-<p>Patient|Patient Age|PatientVisit|Date|Time|Unit|Physician|Cost|Copay|Insurance|Inpatient&mdash;&mdash;|:&mdash;&mdash;:|:&mdash;&mdash;:|&mdash;&mdash;:|&mdash;&mdash;:|&mdash;&mdash;|&mdash;&mdash;|&mdash;&mdash;|&mdash;&mdash;:|&mdash;&mdash;:|&mdash;&mdash;|&mdash;&mdash;Alice|46|1|2014-01-07|9:30 AM|preop|Adams|0|0|Aetna PPO|TRUEAlice|46|1|2014-01-07|10:30 AM|operating room|Adams|1200|0|Aetna PPO|TRUEAlice|46|1|2014-01-07|12:15 PM|ICU|Adams|0|0|Aetna PPO|TRUEAlice|46|1|2014-01-07|6:00 PM|recovery|Adams|600|0|Aetna PPO|TRUEAlice|46|1|2014-01-08|11:00 AM|discharge|Adams|0|0|Aetna PPO|TRUEAlice|46|2|2014-01-13|2:00 PM|office|Adams|120|25|Aetna PPO|FALSEAlice|46|3|2014-02-25|1:00 PM|office|Baker|150|25|Aetna PPO|FALSEAlice|46|4|2014-03-25|1:00 PM|office|Baker|150|25|Aetna PPO|FALSEBob|63|1|2014-01-07|3:00 AM|emergency|Cohen|300|0|None|TRUEBob|63|1|2014-01-07|8:00 AM|operating room|Adams|2300|0|None|TRUEBob|63|1|2014-01-07|11:30 AM|morgue|Doom|300|0|None|TRUECarol|37|1|2014-01-07|4:00 AM|emergency|Cohen|300|40|Blue Cross|TRUECarol|37|1|2014-01-07|5:30 AM|delivery|Edwards|1800|0|Blue Cross|TRUECarol|37|1|2014-01-07|1:00 PM|maternity|Edwards|2000|0|Blue Cross|TRUECarol|37|1|2014-01-09|11:00 AM|discharge|Edwards|0|0|Blue Cross|TRUECarol|37|2|2014-01-13|9:00 AM|office|Feldman|200|20|Blue Cross|FALSECarol|37|3|2014-01-27|9:00 AM|office|Feldman|200|20|Blue Cross|FALSEEsther|0|1|2014-01-07|3:00 PM|pediatrics|Gupta|300|0|Blue Cross|TRUEEsther|0|1|2014-01-08|8:00 AM|pediatrics|Gupta|300|0|Blue Cross|TRUEEsther|0|1|2014-01-09|8:00 AM|pediatrics|Gupta|300|0|Blue Cross|TRUEEsther|0|2|2014-01-13|11:00 AM|office|Gupta|180|20|Blue Cross|FALSEEsther|0|3|2014-01-27|11:00 AM|office|Gupta|180|20|Blue Cross|FALSE</p>
+<p>Supergroup brings extreme convenience and understandability to the manipulation of
+Javascript data collections, especially in the context of D3.js visualization
+programming.</p>
 
 
-<p>did it work?</p>
-
-<table>
-<thead>
-<tr>
-<th>Patient</th>
-<th align="center">Patient Age</th>
-<th align="center">PatientVisit</th>
-<th align="right">Date</th>
-<th align="right">Time</th>
-<th>Unit</th>
-<th>Physician</th>
-<th>Cost</th>
-<th align="right">Copay</th>
-<th align="right">Insurance</th>
-<th>Inpatient</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Alice</td>
-<td align="center">46</td>
-<td align="center">1</td>
-<td align="right">2014-01-07</td>
-<td align="right">9:30 AM</td>
-<td>preop</td>
-<td>Adams</td>
-<td>0</td>
-<td align="right">0</td>
-<td align="right">Aetna PPO</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Alice</td>
-<td align="center">46</td>
-<td align="center">1</td>
-<td align="right">2014-01-07</td>
-<td align="right">10:30 AM</td>
-<td>operating room</td>
-<td>Adams</td>
-<td>1200</td>
-<td align="right">0</td>
-<td align="right">Aetna PPO</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Alice</td>
-<td align="center">46</td>
-<td align="center">1</td>
-<td align="right">2014-01-07</td>
-<td align="right">12:15 PM</td>
-<td>ICU</td>
-<td>Adams</td>
-<td>0</td>
-<td align="right">0</td>
-<td align="right">Aetna PPO</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Alice</td>
-<td align="center">46</td>
-<td align="center">1</td>
-<td align="right">2014-01-07</td>
-<td align="right">6:00 PM</td>
-<td>recovery</td>
-<td>Adams</td>
-<td>600</td>
-<td align="right">0</td>
-<td align="right">Aetna PPO</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Alice</td>
-<td align="center">46</td>
-<td align="center">1</td>
-<td align="right">2014-01-08</td>
-<td align="right">11:00 AM</td>
-<td>discharge</td>
-<td>Adams</td>
-<td>0</td>
-<td align="right">0</td>
-<td align="right">Aetna PPO</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Alice</td>
-<td align="center">46</td>
-<td align="center">2</td>
-<td align="right">2014-01-13</td>
-<td align="right">2:00 PM</td>
-<td>office</td>
-<td>Adams</td>
-<td>120</td>
-<td align="right">25</td>
-<td align="right">Aetna PPO</td>
-<td>FALSE</td>
-</tr>
-<tr>
-<td>Alice</td>
-<td align="center">46</td>
-<td align="center">3</td>
-<td align="right">2014-02-25</td>
-<td align="right">1:00 PM</td>
-<td>office</td>
-<td>Baker</td>
-<td>150</td>
-<td align="right">25</td>
-<td align="right">Aetna PPO</td>
-<td>FALSE</td>
-</tr>
-<tr>
-<td>Alice</td>
-<td align="center">46</td>
-<td align="center">4</td>
-<td align="right">2014-03-25</td>
-<td align="right">1:00 PM</td>
-<td>office</td>
-<td>Baker</td>
-<td>150</td>
-<td align="right">25</td>
-<td align="right">Aetna PPO</td>
-<td>FALSE</td>
-</tr>
-<tr>
-<td>Bob</td>
-<td align="center">63</td>
-<td align="center">1</td>
-<td align="right">2014-01-07</td>
-<td align="right">3:00 AM</td>
-<td>emergency</td>
-<td>Cohen</td>
-<td>300</td>
-<td align="right">0</td>
-<td align="right">None</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Bob</td>
-<td align="center">63</td>
-<td align="center">1</td>
-<td align="right">2014-01-07</td>
-<td align="right">8:00 AM</td>
-<td>operating room</td>
-<td>Adams</td>
-<td>2300</td>
-<td align="right">0</td>
-<td align="right">None</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Bob</td>
-<td align="center">63</td>
-<td align="center">1</td>
-<td align="right">2014-01-07</td>
-<td align="right">11:30 AM</td>
-<td>morgue</td>
-<td>Doom</td>
-<td>300</td>
-<td align="right">0</td>
-<td align="right">None</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Carol</td>
-<td align="center">37</td>
-<td align="center">1</td>
-<td align="right">2014-01-07</td>
-<td align="right">4:00 AM</td>
-<td>emergency</td>
-<td>Cohen</td>
-<td>300</td>
-<td align="right">40</td>
-<td align="right">Blue Cross</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Carol</td>
-<td align="center">37</td>
-<td align="center">1</td>
-<td align="right">2014-01-07</td>
-<td align="right">5:30 AM</td>
-<td>delivery</td>
-<td>Edwards</td>
-<td>1800</td>
-<td align="right">0</td>
-<td align="right">Blue Cross</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Carol</td>
-<td align="center">37</td>
-<td align="center">1</td>
-<td align="right">2014-01-07</td>
-<td align="right">1:00 PM</td>
-<td>maternity</td>
-<td>Edwards</td>
-<td>2000</td>
-<td align="right">0</td>
-<td align="right">Blue Cross</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Carol</td>
-<td align="center">37</td>
-<td align="center">1</td>
-<td align="right">2014-01-09</td>
-<td align="right">11:00 AM</td>
-<td>discharge</td>
-<td>Edwards</td>
-<td>0</td>
-<td align="right">0</td>
-<td align="right">Blue Cross</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Carol</td>
-<td align="center">37</td>
-<td align="center">2</td>
-<td align="right">2014-01-13</td>
-<td align="right">9:00 AM</td>
-<td>office</td>
-<td>Feldman</td>
-<td>200</td>
-<td align="right">20</td>
-<td align="right">Blue Cross</td>
-<td>FALSE</td>
-</tr>
-<tr>
-<td>Carol</td>
-<td align="center">37</td>
-<td align="center">3</td>
-<td align="right">2014-01-27</td>
-<td align="right">9:00 AM</td>
-<td>office</td>
-<td>Feldman</td>
-<td>200</td>
-<td align="right">20</td>
-<td align="right">Blue Cross</td>
-<td>FALSE</td>
-</tr>
-<tr>
-<td>Esther</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="right">2014-01-07</td>
-<td align="right">3:00 PM</td>
-<td>pediatrics</td>
-<td>Gupta</td>
-<td>300</td>
-<td align="right">0</td>
-<td align="right">Blue Cross</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Esther</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="right">2014-01-08</td>
-<td align="right">8:00 AM</td>
-<td>pediatrics</td>
-<td>Gupta</td>
-<td>300</td>
-<td align="right">0</td>
-<td align="right">Blue Cross</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Esther</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="right">2014-01-09</td>
-<td align="right">8:00 AM</td>
-<td>pediatrics</td>
-<td>Gupta</td>
-<td>300</td>
-<td align="right">0</td>
-<td align="right">Blue Cross</td>
-<td>TRUE</td>
-</tr>
-<tr>
-<td>Esther</td>
-<td align="center">0</td>
-<td align="center">2</td>
-<td align="right">2014-01-13</td>
-<td align="right">11:00 AM</td>
-<td>office</td>
-<td>Gupta</td>
-<td>180</td>
-<td align="right">20</td>
-<td align="right">Blue Cross</td>
-<td>FALSE</td>
-</tr>
-<tr>
-<td>Esther</td>
-<td align="center">0</td>
-<td align="center">3</td>
-<td align="right">2014-01-27</td>
-<td align="right">11:00 AM</td>
-<td>office</td>
-<td>Gupta</td>
-<td>180</td>
-<td align="right">20</td>
-<td align="right">Blue Cross</td>
-<td>FALSE</td>
-</tr>
-</tbody>
-</table>
 
 
-<p>(getting rid of underscore-unchained, which was a bad idea altogether)</p>
+<p>Certain data manipulation problems arise over and over again in
+data-centric Javascript programming.
+<a href="https://github.com/mbostock/d3/wiki/Arrays#-nest">d3.nest</a>,
+<a href="https://github.com/mbostock/d3/wiki/Arrays#associative-arrays">d3.map</a>,
+and <a href="http://underscorejs.org/#groupBy">Underscore.groupBy</a>
+(<a href="https://github.com/iros/underscore.nest">Underscore.Nest</a> for
+multi-level groups) solve the most completely generic aspects of
+these problems, but after using these generic tools, there is
+often much work left to do to extract the desired information
+from the resulting data structures.  In most cases where you
+might use one of these generic utility functions, Supergroup will
+save you some of that further work.</p>
+
+
+<p>Just to be clear about the problem&mdash;you start with tabular data from a CSV
+file, a SQL query, or some AJAX call:</p>
+
+<p><span class="iframe">Some very fake hospital data in a CSV file&#8230;</span>
+<iframe width="100%" height="70px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?data">
+</iframe></p>
+
+
+
+
+<p><span class="iframe">&#8230;turned into canonical array of Objects (using d3.csv, for instance)</span>
+<iframe width="100%" height="80px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?json">
+</iframe></p>
+
+
+<p>You group the records on the values of one or more fields with a standard
+grouping function, giving you data like:</p>
+
+<p><span class="iframe">d3.nest().key(function(d) { return d.Physician; }).key(function(d) { return d.Unit; }).map(data)</span>
+<iframe width="100%" height="150px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?d3map">
+</iframe></p>
+
+
+<p><span class="iframe">d3.nest().key(function(d) { return d.Physician; }).key(function(d) { return d.Unit; }).entries(data)</span>
+<iframe width="100%" height="150px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?d3nest">
+</iframe></p>
+
+
+<p>To my mind, these are awkward data structures (not to mention the awkwardness
+of the calling functions.) The <code>map</code> version looks ok in the console, but
+D3 wants data in arrays, not as objects. The <code>entries</code> version gives us
+arrays of key/value pairs, but on upper levels <code>values</code> is another array of
+key/value pairs while on the bottom level <code>values</code> is an array of records. In
+both <code>entries</code> and <code>map</code>, you can&rsquo;t tell from a node at any level what
+dimension was being grouped at that level.</p>
+
+<p>Supergroup gives you almost everything you&rsquo;d want for every item in your nest
+(or in your single array if you have a one-level grouping):</p>
+
+<ul>
+<li>An array of the values grouped on (could be strings, numbers, or dates) (<a href="#sgphysunit">example</a>)</li>
+<li>The records associated with each group (<a href="#records">example</a>)</li>
+<li>Information about the values at any level
+
+<ul>
+<li>Parent group if any</li>
+<li>Immediate child groups if any</li>
+<li>All descendant groups</li>
+<li>Only descendant groups at the leaf level</li>
+<li>Aggregate calculations on records for that group and its descendants</li>
+<li>Path of group names from root to current group</li>
+<li>Path of group dimension names from root to current group</li>
+</ul>
+</li>
+<li>Information about the groupings at any level</li>
+<li>For a group at any level, the name of the dimension (attribute, column, property, etc.) grouped on</li>
+<li>Any of these in a format D3 or some other tool expects</li>
+</ul>
+
+
+<h2>Supergroup</h2>
+
+<p>  Works as an Underscore (or Lo-Dash) mixin:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore.js"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;script src="https://rawgit.com/Sigfried/supergroup/master/supergroup.js"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;script&gt;
+</span><span class='line'>    var sg = _.supergroup(data, dimension_name)  // single-level grouping
+</span><span class='line'>    var sg = _.supergroup(data, [dim1, dim2])  // multi-level grouping
+</span><span class='line'>&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Lists and Values</h2>
+
+<p>  <code>_.supergroup</code> returns an array of String or Number objects (Dates not yet
+  implemented). Array elements represent the values grouped by. These Value
+  objects are loaded with lots of juicy properties and methods.</p>
+
+<p><a id='sgphysunit'></a></p>
+
+<p><span class="iframe">Supergroup on physician and unit</span>
+<iframe width="100%" heigh="250px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?sgphysunit">
+</iframe></p>
+
+
+
 
 <figure class='code'><figcaption><span>Some records loaded from a CSV or JSON file</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

@@ -31,3 +31,35 @@
 * + table th[align="center"], * + table td[align="center"] {
   text-align:center;
 }
+
+iframe {
+    margin-top:0px;
+    margin-left:5px;
+    -moz-box-shadow: 4px 4px 14px #000;
+    -webkit-box-shadow: 4px 4px 14px #000;
+    overflow: scroll;
+}
+span.iframe {
+    margin: 0px 5px 0px 0px;
+    padding: 0px 3px 0px 3px;
+    //-moz-box-shadow: 4px 4px 4px #666;
+    //-webkit-box-shadow: 4px 4px 4px #666;
+    float: left;
+    white-space: nowrap;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 80%;
+    display: table-caption;
+    background: #f5f2f0;
+    border-top: 1px dashed brown;
+    border-left: 1px dashed brown;
+    border-right: 1px dashed brown;
+}
+ul>li {
+    margin-left: 50px;
+}
+code.language-markup {
+    border: 1px dashed brown;
+    background: #f5f2f0;
+    width: 100%;
+}
