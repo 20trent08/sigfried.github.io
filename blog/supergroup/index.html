@@ -234,14 +234,17 @@ dimension was being grouped at that level.</p>
   implemented). Array elements represent the values grouped by. These Value
   objects are loaded with lots of juicy properties and methods.</p>
 
-<p><a id='sgphysunit'></a></p>
+<p>  In the example below we group by Physician and Unit. So <code>_.supergroup</code>
+  returns a list of physicians.  The first item in this list, <code>sg[0]</code>,
+  &ldquo;Adams&rdquo;, is a String object. <code>sg[0].records</code> is an array containing the
+  subset of original records where Physician=&ldquo;Adams&rdquo;.  <code>sg[0].children</code>
+  is another list of Strings. These are all the unique Units for records belonging
+  to Adams.</p>
 
-<p><span class="iframe">Supergroup on physician and unit</span>
-<iframe width="100%" heigh="250px" src="/supergroup/examples_gist/examples.html?sgphysunit">
-</iframe></p>
-
-
-
+<p>  <a id='sgphysunit'></a>
+  <p><span class="iframe">Supergroup on physician and unit</span>
+  <iframe width="100%" height="400px" src="/supergroup/examples_gist/examples.html?sgphysunit">
+  </iframe></p></p>
 
 <figure class='code'><figcaption><span>Some records loaded from a CSV or JSON file</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

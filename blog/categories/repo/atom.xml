@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Repo | D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://Sigfried.github.io/blog/categories/repo/atom.xml" rel="self"/>
   <link href="http://Sigfried.github.io/"/>
-  <updated>2015-03-17T12:52:02-04:00</updated>
+  <updated>2015-03-17T13:21:41-04:00</updated>
   <id>http://Sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -133,12 +133,17 @@ dimension was being grouped at that level.</p>
   implemented). Array elements represent the values grouped by. These Value
   objects are loaded with lots of juicy properties and methods.</p>
 
-<p><a id='sgphysunit'></a></p>
+<p>  In the example below we group by Physician and Unit. So <code>_.supergroup</code>
+  returns a list of physicians.  The first item in this list, <code>sg[0]</code>,
+  &ldquo;Adams&rdquo;, is a String object. <code>sg[0].records</code> is an array containing the
+  subset of original records where Physician=&ldquo;Adams&rdquo;.  <code>sg[0].children</code>
+  is another list of Strings. These are all the unique Units for records belonging
+  to Adams.</p>
 
-<p><span class="iframe">Supergroup on physician and unit</span>
-<iframe width="100%" heigh="250px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?sgphysunit">
-</iframe></p>
-
+<p>  <a id='sgphysunit'></a>
+  <p><span class="iframe">Supergroup on physician and unit</span>
+  <iframe width="100%" height="400px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?sgphysunit">
+  </iframe></p></p>
 
 <p>``` json Some records loaded from a CSV or JSON file
 var gradeBook = [</p>
