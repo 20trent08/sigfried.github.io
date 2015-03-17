@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Repo | D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://Sigfried.github.io/blog/categories/repo/atom.xml" rel="self"/>
   <link href="http://Sigfried.github.io/"/>
-  <updated>2015-03-17T13:24:30-04:00</updated>
+  <updated>2015-03-17T15:47:59-04:00</updated>
   <id>http://Sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -141,14 +141,10 @@ dimension was being grouped at that level.</p>
   to Adams. <code>sg[0].children[0].records</code> (not shown) would be the subset of
   records where Physician=&ldquo;Adams&rdquo; and Unit=&ldquo;preop&rdquo;.</p>
 
-<p>  <value>.records is</p>
-
 <p>  <a id='sgphysunit'></a>
   <p><span class="iframe">Supergroup on physician and unit</span>
   <iframe width="100%" height="400px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?sgphysunit">
   </iframe></p></p>
-
-<p>  More to come&hellip;</p>
 ]]></content>
   </entry>
   
