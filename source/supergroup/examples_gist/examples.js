@@ -1,7 +1,6 @@
 
 
 d3.xhr('./fake-patient_data.csv', function(err, resp) {
-    console.log(resp.response);
     if (window.location.search === '?data') {
         d3.select('#output')
             //.text(JSON.stringify(data.response, null, 2))
@@ -20,11 +19,21 @@ d3.xhr('./fake-patient_data.csv', function(err, resp) {
             .text(
                 [
                 "var sg = _.supergroup(data, ['Physician','Unit']);" +
-                    '  // returns an Array of String objects representing top level group\n' +
+                    '  // returns an Array of String objects representing top level groups\n' +
                     '   ==>' + JSON.stringify(sg),
-                'sg.leafNodes()\n   ==>' + 
+                'sg[0].records  // records in first group\n   ==>' + 
+                    JSON.stringify(sg[0].records),
+                'sg[0].children  // children of first group\n   ==>' + 
+                    JSON.stringify(sg[0].children),
+                'sg[0].children[0].namePath()  // full path to a bottom level group\n   ==>' + 
+                    JSON.stringify(sg[0].children[0].namePath()),
+                'sg[0].children[0].dimPath()  // and it\'s dimension names\n   ==>' + 
+                    JSON.stringify(sg[0].children[0].dimPath()),
+                'sg.leafNodes()  // all bottom level groups\n   ==>' + 
                     JSON.stringify(sg.leafNodes()),
-                '_(sg.leafNodes()).invoke("namePath")\n   ==>' + 
+                'sg.flattenTree()  // all groups\n   ==>' + 
+                    JSON.stringify(sg.flattenTree()),
+                '_(sg.leafNodes()).invoke("namePath") // call .namePath() on all bottom level groups using underscore invoke\n   ==>' + 
                     JSON.stringify(_(sg.leafNodes()).invoke("namePath"))
                 ].join('\n\n'))
     }

@@ -58,7 +58,8 @@ span.iframe {
 ul>li {
     margin-left: 50px;
 }
-div.prism {
+code.language-markup {
     border: 1px dashed brown;
     background: #f5f2f0;
+    width: 100%;
 }
