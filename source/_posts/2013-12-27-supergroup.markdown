@@ -7,61 +7,83 @@ categories: [repo]
 source: https://github.com/Sigfried/supergroup
 ---
 
+adsadf
+<div markdown="0">
+```
+blah
+```
+*adsfaf*
+</div>
+adsfadf
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
-<script src="../../supergroup/supergroup.js"></script>
-<script>
-window.onload = function() {
-var gradeBook = [
-    {lastName: "Gold",    firstName: "Sigfried", class: "Remedial Programming",           grade: "C", num: 2},
-    {lastName: "Gold",    firstName: "Sigfried", class: "Literary Posturing",             grade: "B", num: 3},
-    {lastName: "Gold",    firstName: "Sigfried", class: "Documenting with Pretty Colors", grade: "B", num: 3},
-    {lastName: "Sassoon", firstName: "Sigfried", class: "Remedial Programming",           grade: "A", num: 3},
-    {lastName: "Androy",  firstName: "Sigfried", class: "Remedial Programming",           grade: "B", num: 3} 
-];
-var byLastName = _.supergroup(gradeBook, "lastName"); // an Array of Strings:  ["Gold","Sassoon","Androy"]
-var byName = _.supergroup(gradeBook, function(d) { return d.firstName + ' ' + d.lastName; }); // an Array of Strings:  ["Sigfried Gold","Sigfried Sassoon","Sigfried Androy"]
-var byClassGrade = _.supergroup(gradeBook, ["class", "grade"]); // Hierarchical grouping, top level is Array of classes
-};
-</script>
-
-Group CSV-type data into (hierarchically if desired) into arrays of String or Number objects
-having immediate access to grouped records (at any level), aggregate calculations, children, 
-parents, paths. 
-
+<script src="https://rawgit.com/Sigfried/supergroup/master/supergroup.js"></script>
+<script src="/supergroup/examples_gist/prism.js"></script>
 <!-- more -->
 
-[Full API documentation](../../supergroup)
+{% capture my_include %}{% include README.md %}{% endcapture %}
+{{ my_include | markdownify }}
 
-Patient|Patient Age|PatientVisit|Date|Time|Unit|Physician|Cost|Copay|Insurance|Inpatient
-----|:----:|:----:|----:|----:|----|----|----|----|----|----|----
-Alice|46|1|2014-01-07|9:30 AM|preop|Adams|0|0|Aetna PPO|TRUE
-Alice|46|1|2014-01-07|10:30 AM|operating room|Adams|1200|0|Aetna PPO|TRUE
-Alice|46|1|2014-01-07|12:15 PM|ICU|Adams|0|0|Aetna PPO|TRUE
-Alice|46|1|2014-01-07|6:00 PM|recovery|Adams|600|0|Aetna PPO|TRUE
-Alice|46|1|2014-01-08|11:00 AM|discharge|Adams|0|0|Aetna PPO|TRUE
-Alice|46|2|2014-01-13|2:00 PM|office|Adams|120|25|Aetna PPO|FALSE
-Alice|46|3|2014-02-25|1:00 PM|office|Baker|150|25|Aetna PPO|FALSE
-Alice|46|4|2014-03-25|1:00 PM|office|Baker|150|25|Aetna PPO|FALSE
-Bob|63|1|2014-01-07|3:00 AM|emergency|Cohen|300|0|None|TRUE
-Bob|63|1|2014-01-07|8:00 AM|operating room|Adams|2300|0|None|TRUE
-Bob|63|1|2014-01-07|11:30 AM|morgue|Doom|300|0|None|TRUE
-Carol|37|1|2014-01-07|4:00 AM|emergency|Cohen|300|40|Blue Cross|TRUE
-Carol|37|1|2014-01-07|5:30 AM|delivery|Edwards|1800|0|Blue Cross|TRUE
-Carol|37|1|2014-01-07|1:00 PM|maternity|Edwards|2000|0|Blue Cross|TRUE
-Carol|37|1|2014-01-09|11:00 AM|discharge|Edwards|0|0|Blue Cross|TRUE
-Carol|37|2|2014-01-13|9:00 AM|office|Feldman|200|20|Blue Cross|FALSE
-Carol|37|3|2014-01-27|9:00 AM|office|Feldman|200|20|Blue Cross|FALSE
-Esther|0|1|2014-01-07|3:00 PM|pediatrics|Gupta|300|0|Blue Cross|TRUE
-Esther|0|1|2014-01-08|8:00 AM|pediatrics|Gupta|300|0|Blue Cross|TRUE
-Esther|0|1|2014-01-09|8:00 AM|pediatrics|Gupta|300|0|Blue Cross|TRUE
-Esther|0|2|2014-01-13|11:00 AM|office|Gupta|180|20|Blue Cross|FALSE
-Esther|0|3|2014-01-27|11:00 AM|office|Gupta|180|20|Blue Cross|FALSE
+Just to be clear about the problem&mdash;you start with tabular data from a CSV
+file, a SQL query, or some AJAX call:
+<p><span class="iframe">Some very fake hospital data in a CSV file...</span>
+<iframe width="100%" height="70px" src="/supergroup/examples_gist/examples.html?data">
+</iframe></p>
 
-{% include supergroup/fake-patient_data.md %}
+<p><span class="iframe">...turned into canonical array of Objects (using d3.csv, for instance)</span>
+<iframe width="100%" height="80px" src="/supergroup/examples_gist/examples.html?json">
+</iframe></p>
 
-(getting rid of underscore-unchained, which was a bad idea altogether)
+You group the records on the values of one or more fields with a standard
+grouping function, giving you data like:
+
+<p><span class="iframe">d3.nest().key(function(d) { return d.Physician; }).key(function(d) { return d.Unit; }).map(data)</span>
+<iframe width="100%" height="150px" src="/supergroup/examples_gist/examples.html?d3map">
+</iframe></p>
+<p><span class="iframe">d3.nest().key(function(d) { return d.Physician; }).key(function(d) { return d.Unit; }).entries(data)</span>
+<iframe width="100%" height="150px" src="/supergroup/examples_gist/examples.html?d3nest">
+</iframe></p>
+
+To my mind, these are awkward data structures (not to mention the awkwardness
+of the calling functions.) The ```map``` version looks ok in the console, but
+D3 wants data in arrays, not as objects. The ```entries``` version gives us
+arrays of key/value pairs, but on upper levels ```values``` is another array of
+key/value pairs while on the bottom level ```values``` is an array of records. In
+both ```entries``` and ```map```, you can't tell from a node at any level what
+dimension was being grouped at that level. 
+
+Supergroup gives you almost everything you'd want for every item in your nest
+(or in your single array if you have a one-level grouping):
+
+  - An array of the values grouped on (could be strings, numbers, or dates) ([example](#sgphysunit))
+  - The records associated with each group ([example](#records))
+  - Information about the values at any level
+    - Parent group if any
+    - Immediate child groups if any
+    - All descendant groups
+    - Only descendant groups at the leaf level
+    - Aggregate calculations on records for that group and its descendants
+    - Path of group names from root to current group
+    - Path of group dimension names from root to current group
+  - Information about the groupings at any level
+  - For a group at any level, the name of the dimension (attribute, column, property, etc.) grouped on
+  - Any of these in a format D3 or some other tool expects
+  
+## Supergroup
+
+  Works as an Underscore (or Lo-Dash) mixin. 
+
+
+## Lists and Values
+
+  A call to super
+
+<a id='sgphysunit'></a>
+<p><span class="iframe">Supergroup on physician and unit</span>
+<iframe width="100%" heigh="250px" src="/supergroup/examples_gist/examples.html?sgphysunit">
+</iframe></p>
+
 
 ``` json Some records loaded from a CSV or JSON file
 var gradeBook = [
