@@ -88,11 +88,8 @@ Supergroup gives you almost everything you'd want for every item in your nest
   to Adams. ```sg[0].children[0].records``` (not shown) would be the subset of
   records where Physician="Adams" and Unit="preop".
 
-  <value>.records is
-
   <a id='sgphysunit'></a>
   <p><span class="iframe">Supergroup on physician and unit</span>
   <iframe width="100%" height="400px" src="/supergroup/examples_gist/examples.html?sgphysunit">
   </iframe></p>
   
-  More to come...
