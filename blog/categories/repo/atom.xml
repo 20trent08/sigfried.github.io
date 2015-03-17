@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Repo | D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://Sigfried.github.io/blog/categories/repo/atom.xml" rel="self"/>
   <link href="http://Sigfried.github.io/"/>
-  <updated>2015-03-17T15:49:49-04:00</updated>
+  <updated>2015-03-17T15:55:25-04:00</updated>
   <id>http://Sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -12,143 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Supergroup]]></title>
-    <link href="http://Sigfried.github.io/blog/supergroup/"/>
-    <updated>2013-12-27T00:07:00-05:00</updated>
-    <id>http://Sigfried.github.io/blog/supergroup</id>
-    <content type="html"><![CDATA[<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore.js"></script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
-
-
-<script src="https://rawgit.com/Sigfried/supergroup/master/supergroup.js"></script>
-
-
-<script src="http://Sigfried.github.io/supergroup/examples_gist/prism.js"></script>
-
-
-<!-- more -->
-
-
-<p>
-<p>Supergroup brings extreme convenience and understandability to the manipulation of
-Javascript data collections, especially in the context of D3.js visualization
-programming.</p>
-
-<p>Certain data manipulation problems arise over and over again in
-data-centric Javascript programming.
-<a href="https://github.com/mbostock/d3/wiki/Arrays#-nest">d3.nest</a>,
-<a href="https://github.com/mbostock/d3/wiki/Arrays#associative-arrays">d3.map</a>,
-and <a href="http://underscorejs.org/#groupBy">Underscore.groupBy</a>
-(<a href="https://github.com/iros/underscore.nest">Underscore.Nest</a> for
-multi-level groups) solve the most completely generic aspects of
-these problems, but after using these generic tools, there is
-often much work left to do to extract the desired information
-from the resulting data structures.  In most cases where you
-might use one of these generic utility functions, Supergroup will
-save you some of that further work.</p>
-</p>
-
-<p>Just to be clear about the problem&mdash;you start with tabular data from a CSV
-file, a SQL query, or some AJAX call:</p>
-
-<p><span class="iframe">Some very fake hospital data in a CSV file...</span>
-<iframe width="100%" height="70px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?data">
-</iframe></p>
-
-
-
-
-<p><span class="iframe">...turned into canonical array of Objects (using d3.csv, for instance)</span>
-<iframe width="100%" height="80px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?json">
-</iframe></p>
-
-
-<p>You group the records on the values of one or more fields with a standard
-grouping function, giving you data like:</p>
-
-<p><span class="iframe">d3.nest().key(function(d) { return d.Physician; }).key(function(d) { return d.Unit; }).map(data)</span>
-<iframe width="100%" height="150px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?d3map">
-</iframe></p>
-
-
-<p><span class="iframe">d3.nest().key(function(d) { return d.Physician; }).key(function(d) { return d.Unit; }).entries(data)</span>
-<iframe width="100%" height="150px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?d3nest">
-</iframe></p>
-
-
-<p>To my mind, these are awkward data structures (not to mention the awkwardness
-of the calling functions.) The <code>map</code> version looks ok in the console, but
-D3 wants data in arrays, not as objects. The <code>entries</code> version gives us
-arrays of key/value pairs, but on upper levels <code>values</code> is another array of
-key/value pairs while on the bottom level <code>values</code> is an array of records. In
-both <code>entries</code> and <code>map</code>, you can&rsquo;t tell from a node at any level what
-dimension was being grouped at that level.</p>
-
-<p>Supergroup gives you almost everything you&rsquo;d want for every item in your nest
-(or in your single array if you have a one-level grouping):</p>
-
-<ul>
-<li>An array of the values grouped on (could be strings, numbers, or dates) (<a href="#sgphysunit">example</a>)</li>
-<li>The records associated with each group (<a href="#records">example</a>)</li>
-<li>Information about the values at any level
-
-<ul>
-<li>Parent group if any</li>
-<li>Immediate child groups if any</li>
-<li>All descendant groups</li>
-<li>Only descendant groups at the leaf level</li>
-<li>Aggregate calculations on records for that group and its descendants</li>
-<li>Path of group names from root to current group</li>
-<li>Path of group dimension names from root to current group</li>
-</ul>
-</li>
-<li>Information about the groupings at any level</li>
-<li>For a group at any level, the name of the dimension (attribute, column, property, etc.) grouped on</li>
-<li>Any of these in a format D3 or some other tool expects</li>
-</ul>
-
-
-<h2>Supergroup</h2>
-
-<p>  Works as an Underscore (or Lo-Dash) mixin:
-```</p>
-
-<pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore.js"&gt;&lt;/script&gt;
-&lt;script src="https://rawgit.com/Sigfried/supergroup/master/supergroup.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-    var sg = _.supergroup(data, dimension_name)  // single-level grouping
-    var sg = _.supergroup(data, [dim1, dim2])  // multi-level grouping
-&lt;/script&gt;
-</code></pre>
-
-<p>```</p>
-
-<h2>Lists and Values</h2>
-
-<p>  <code>_.supergroup</code> returns an array of String or Number objects (Dates not yet
-  implemented). Array elements represent the values grouped by. These Value
-  objects are loaded with lots of juicy properties and methods.</p>
-
-<p>  In the example below we group by Physician and Unit. So <code>_.supergroup</code>
-  returns a list of physicians.  The first item in this list, <code>sg[0]</code>,
-  &ldquo;Adams&rdquo;, is a String object. <code>sg[0].records</code> is an array containing the
-  subset of original records where Physician=&ldquo;Adams&rdquo;.  <code>sg[0].children</code>
-  is another list of Strings. These are all the unique Units for records belonging
-  to Adams. <code>sg[0].children[0].records</code> (not shown) would be the subset of
-  records where Physician=&ldquo;Adams&rdquo; and Unit=&ldquo;preop&rdquo;.</p>
-
-<p>  <a id='sgphysunit'></a>
-  <p><span class="iframe">Supergroup on physician and unit</span>
-  <iframe width="100%" height="400px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?sgphysunit">
-  </iframe></p></p>
-
-<p>  It does a bunch more that I still need to document.</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[TreeLike CSV Data Browser]]></title>
@@ -387,6 +250,344 @@ much appreciate hearing from you.  I may be able to offer assistance,
 and I may be able to make your improvements available to others.</p>
 
 <p>Contact <a href="http://sigfried.org">Sigfried Gold</a> with questions.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Supergroup]]></title>
+    <link href="http://Sigfried.github.io/blog/supergroup/"/>
+    <updated>2013-12-27T00:00:00-05:00</updated>
+    <id>http://Sigfried.github.io/blog/supergroup</id>
+    <content type="html"><![CDATA[<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
+
+
+<script src="https://rawgit.com/Sigfried/supergroup/master/supergroup.js"></script>
+
+
+<script src="http://Sigfried.github.io/supergroup/examples_gist/prism.js"></script>
+
+
+<!-- more -->
+
+
+<p>
+<p>Supergroup brings extreme convenience and understandability to the manipulation of
+Javascript data collections, especially in the context of D3.js visualization
+programming.</p>
+
+<p>Certain data manipulation problems arise over and over again in
+data-centric Javascript programming.
+<a href="https://github.com/mbostock/d3/wiki/Arrays#-nest">d3.nest</a>,
+<a href="https://github.com/mbostock/d3/wiki/Arrays#associative-arrays">d3.map</a>,
+and <a href="http://underscorejs.org/#groupBy">Underscore.groupBy</a>
+(<a href="https://github.com/iros/underscore.nest">Underscore.Nest</a> for
+multi-level groups) solve the most completely generic aspects of
+these problems, but after using these generic tools, there is
+often much work left to do to extract the desired information
+from the resulting data structures.  In most cases where you
+might use one of these generic utility functions, Supergroup will
+save you some of that further work.</p>
+</p>
+
+<p>Just to be clear about the problem&mdash;you start with tabular data from a CSV
+file, a SQL query, or some AJAX call:</p>
+
+<p><span class="iframe">Some very fake hospital data in a CSV file...</span>
+<iframe width="100%" height="70px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?data">
+</iframe></p>
+
+
+
+
+<p><span class="iframe">...turned into canonical array of Objects (using d3.csv, for instance)</span>
+<iframe width="100%" height="80px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?json">
+</iframe></p>
+
+
+<p>You group the records on the values of one or more fields with a standard
+grouping function, giving you data like:</p>
+
+<p><span class="iframe">d3.nest().key(function(d) { return d.Physician; }).key(function(d) { return d.Unit; }).map(data)</span>
+<iframe width="100%" height="150px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?d3map">
+</iframe></p>
+
+
+<p><span class="iframe">d3.nest().key(function(d) { return d.Physician; }).key(function(d) { return d.Unit; }).entries(data)</span>
+<iframe width="100%" height="150px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?d3nest">
+</iframe></p>
+
+
+<p>To my mind, these are awkward data structures (not to mention the awkwardness
+of the calling functions.) The <code>map</code> version looks ok in the console, but
+D3 wants data in arrays, not as objects. The <code>entries</code> version gives us
+arrays of key/value pairs, but on upper levels <code>values</code> is another array of
+key/value pairs while on the bottom level <code>values</code> is an array of records. In
+both <code>entries</code> and <code>map</code>, you can&rsquo;t tell from a node at any level what
+dimension was being grouped at that level.</p>
+
+<p>Supergroup gives you almost everything you&rsquo;d want for every item in your nest
+(or in your single array if you have a one-level grouping):</p>
+
+<ul>
+<li>An array of the values grouped on (could be strings, numbers, or dates) (<a href="#sgphysunit">example</a>)</li>
+<li>The records associated with each group (<a href="#records">example</a>)</li>
+<li>Information about the values at any level
+
+<ul>
+<li>Parent group if any</li>
+<li>Immediate child groups if any</li>
+<li>All descendant groups</li>
+<li>Only descendant groups at the leaf level</li>
+<li>Aggregate calculations on records for that group and its descendants</li>
+<li>Path of group names from root to current group</li>
+<li>Path of group dimension names from root to current group</li>
+</ul>
+</li>
+<li>Information about the groupings at any level</li>
+<li>For a group at any level, the name of the dimension (attribute, column, property, etc.) grouped on</li>
+<li>Any of these in a format D3 or some other tool expects</li>
+</ul>
+
+
+<h2>Supergroup</h2>
+
+<p>  Works as an Underscore (or Lo-Dash) mixin:
+```</p>
+
+<pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore.js"&gt;&lt;/script&gt;
+&lt;script src="https://rawgit.com/Sigfried/supergroup/master/supergroup.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    var sg = _.supergroup(data, dimension_name)  // single-level grouping
+    var sg = _.supergroup(data, [dim1, dim2])  // multi-level grouping
+&lt;/script&gt;
+</code></pre>
+
+<p>```</p>
+
+<h2>Lists and Values</h2>
+
+<p>  <code>_.supergroup</code> returns an array of String or Number objects (Dates not yet
+  implemented). Array elements represent the values grouped by. These Value
+  objects are loaded with lots of juicy properties and methods.</p>
+
+<p>  In the example below we group by Physician and Unit. So <code>_.supergroup</code>
+  returns a list of physicians.  The first item in this list, <code>sg[0]</code>,
+  &ldquo;Adams&rdquo;, is a String object. <code>sg[0].records</code> is an array containing the
+  subset of original records where Physician=&ldquo;Adams&rdquo;.  <code>sg[0].children</code>
+  is another list of Strings. These are all the unique Units for records belonging
+  to Adams. <code>sg[0].children[0].records</code> (not shown) would be the subset of
+  records where Physician=&ldquo;Adams&rdquo; and Unit=&ldquo;preop&rdquo;.</p>
+
+<p>  <a id='sgphysunit'></a>
+  <p><span class="iframe">Supergroup on physician and unit</span>
+  <iframe width="100%" height="400px" src="http://Sigfried.github.io/supergroup/examples_gist/examples.html?sgphysunit">
+  </iframe></p></p>
+
+<p>  It does a bunch more I still need to document.</p>
+
+<hr/>
+
+
+<h2>Everything below is old documentation I&rsquo;m trying to replace</h2>
+
+<p>``` json Some records loaded from a CSV or JSON file
+var gradeBook = [</p>
+
+<pre><code>{lastName: "Gold",    firstName: "Sigfried", class: "Remedial Programming",           grade: "C", num: 2},
+{lastName: "Gold",    firstName: "Sigfried", class: "Literary Posturing",             grade: "B", num: 3},
+{lastName: "Gold",    firstName: "Sigfried", class: "Documenting with Pretty Colors", grade: "B", num: 3},
+{lastName: "Sassoon", firstName: "Sigfried", class: "Remedial Programming",           grade: "A", num: 3},
+{lastName: "Androy",  firstName: "Sigfried", class: "Remedial Programming",           grade: "B", num: 3} 
+</code></pre>
+
+<p>];
+<code>
+</code> javascript Grouping on one dimension
+var byLastName = <em>.supergroup(gradeBook, &ldquo;lastName&rdquo;); // an Array of Strings:  [&ldquo;Gold&rdquo;,&ldquo;Sassoon&rdquo;,&ldquo;Androy&rdquo;]
+byLastName[0].records; // Array of Sigfried Gold&rsquo;s original 3 records
+byLastName.rawValues(); // Array of native strings (easier to look at or use in contexts where you need a plain string)
+<code>
+</code> javascript Grouping by a calculated value
+var byName = </em>.supergroup(gradeBook, function(d) { return d.firstName + &lsquo; &rsquo; + d.lastName; });
+// an Array of Strings:  [&ldquo;Sigfried Gold&rdquo;,&ldquo;Sigfried Sassoon&rdquo;,&ldquo;Sigfried Androy&rdquo;]
+<code>
+</code> javascript It&rsquo;s a native Array, but you can treat it as map, and then do cool stuff. Here&rsquo;s a GPA:
+byName.lookup(&ldquo;Sigfried Gold&rdquo;).records.pluck(&ldquo;num&rdquo;).mean(); //  2.6666666666666665
+```
+The above example shows how Supergroup can chain Underscore methods (and mixins), functionality
+it gets from <a href="../underscore-unchained">underscore-unchained</a>.</p>
+
+<p><code>javascript Grouping hierarchically
+var byClassGrade = _.supergroup(gradeBook, ["class", "grade"]); // Array of top-level groups: ["Remedial Programming", "Literary Posturing", "Documenting with Pretty Colors"]
+byClassGrade[0].children; // Children of a single group: ["C", "B"]
+byClassGrade[0].records; // Array original records for a single group
+byClassGrade.lookup("Remedial Programming"); // lookup a top-level group by name
+byClassGrade.lookup(["Remedial Programming","B"]); // lookup a second-level group by name path
+byClassGrade.lookup(["Remedial Programming","B"]).namePath(' -&gt; '); // "Remedial Programming -&gt; B"
+byClassGrade.lookup(["Remedial Programming","B"]).dimPath() // "class/grade"
+</code>
+Supergroup can flatten a tree into an array of nodes much like D3&rsquo;s hierarchy layout, but in a way
+that&rsquo;s easier to use IMHO.
+<code>javascript
+byClassGrade.flattenTree(); // ["Remedial Programming", "C", "A", "B", "Literary Posturing", "B", "Documenting with Pretty Colors", "B"]
+byClassGrade.flattenTree().invoke('namePath'); // ["Remedial Programming", "Remedial Programming/C", "Remedial Programming/A", "Remedial Programming/B", "Literary Posturing", "Literary Posturing/B", "Documenting with Pretty Colors", "Documenting with Pretty Colors/B"]
+// only want leaf nodes?
+byClassGrade.leafNodes().invoke('namePath'); // ["Remedial Programming/C", "Remedial Programming/A", "Remedial Programming/B", "Literary Posturing/B", "Documenting with Pretty Colors/B"]
+</code></p>
+
+<!--
+<iframe style="width: 100%; height: 300px" frameborder="0" seamless="seamless" src="http://jsfiddle.net/us9k9/2/embedded/js,resources,html,css,result/light/"></iframe>
+In a SQL group by query you get one record for each resulting group and
+you can calculate values based on the aggregate of the rows comprised by
+each group. Another step is needed to go back from the group to
+the individual rows in that group. D3's nest and Underscore's groupBy do
+slightly better in that they offer a collection of groups where each group
+is tied to its associated records.
+
+
+To explain the advantages of supergroup over Underscore and D3's versions, let's compare the results:
+
+``` javascript Underscore's groupBy
+_.groupBy(gradeBook,'lastName')
+=> {
+    Gold: [ 
+        { firstName: "Sigfried", lastName: "Gold", class: "Remedial Programming", grade: "C", num: 2 },
+        { firstName: "Sigfried", lastName: "Gold", class: "Literary Posturing", grade: "B", num: 3 },
+        { firstName: "Sigfried", lastName: "Gold", class: "Documenting with Pretty Colors", grade: "B", num: 3 }
+    ],
+    Else: [
+        { firstName: "Someone", lastName: "Else", class: "Remedial Programming", grade: "B", num: 3 }
+    ]
+}
+```
+
+``` javascript D3's nest and map
+d3.nest().key(function(d) { return d.lastName }).map(gradeBook) // same result as Underscore.  
+```
+
+Because D3 visualizations depend so completely on arrays, D3 provides a way of structuring groups as arrays:
+
+``` javascript D3's nest and entries
+d3.nest().key(function(d) { return d.lastName }).entries(gradeBook)
+=> [
+    { key: "Gold",
+      values: [
+            { firstName: "Sigfried", lastName: "Gold", class: "Remedial Programming", grade: "C", num: 2 },
+            { firstName: "Sigfried", lastName: "Gold", class: "Literary Posturing", grade: "B", num: 3 },
+            { firstName: "Sigfried", lastName: "Gold", class: "Documenting with Pretty Colors", grade: "B", num: 3 }
+        ]
+    },
+    { key: "Else",
+      values: [
+            { firstName: "Someone", lastName: "Else", class: "Remedial Programming", grade: "B", num: 3 }
+        ]
+    }
+]
+
+// making a list with this data in D3 might look like this:
+
+gradeBookEntries = d3.nest()
+                    .key(function(d) { return d.lastName })
+                    .key(function(d) { return d.grade })
+                    .entries(gradeBook)
+
+_.rebind(console, 'log') // so console.log can be used as a callback
+
+d3.select('div#main').append('ul').selectAll('li')
+    .data(gradeBookEntries)
+    .enter()
+    .append('li')
+        .text(function(d) { return d.key })
+        .on('click', console.log)
+    .append('ul').selectAll('li')
+        .data(function(d) { return d.values})
+        .enter()
+        .append('li')
+            .text(function(d) { return d.key + ': ' + d.values.map(function(r) { return r.class }).join(', ') })
+            .on('click', console.log)
+
+gradeBookNames = _.supergroup(gradeBook,['lastName','grade']);
+d3.select('div#main').append('ul').selectAll('li')
+    .data(gradeBookNames)
+    .enter()
+    .append('li')
+        .text(_.identity)
+        .on('click', console.log)
+    .append('ul').selectAll('li')
+        .data(function(d) { return d.children})
+        .enter()
+        .append('li')
+            .text(function(d) { return d + ': ' + d.records.pluck('class').join(', ') })
+            .on('click', console.log)
+```
+
+These produce identical results with fairly similar syntax, but when the visualization
+becomes more complex, the supergroup nodes are much more useful. A common use case
+is providing information about a node on mouseover. 
+
+One drawback of d3.nest above is a difference in datum types between parent and leaf
+nodes: datum.values at a parent node is an array of {key:'...',values:[...]}, but at
+the leaf node it's an array of raw records.
+
+Supergroup does not mix up raw records and hierarchy children in this way. At every
+level 'records' refers to raw records (which you can only access as leaf nodes in
+d3.nest) and 'children' refers to nested children if there are any at that node.
+
+
+
+
+
+gradeBookNames = _.supergroup(gradeBook,['lastName','grade']);
+ d3.select('div#main').append('ul').selectAll('li')
+    .data(gradeBookEntries)
+    .enter()
+    .append('li')
+        .text(_.identity)
+    .append('ul').selectAll('li')
+        .data(function(d) { return d.records})
+        .enter()
+        .append('li')
+            .text(function(d) { return d.namePath() })
+
+
+d3.select('body').append('ul').selectAll('li')
+    .data(gradeBookEntries)
+    .enter()
+    .append('li')
+        .text(function(d) { return d.key })
+    .append('p')
+        .text(function(d) { return d.values.length + ' records in group ' + this.parentNode.__data__.key })
+```
+
+has the exact same result (with less pleasant syn
+
+``` javascript
+var gradeBook = [
+   {firstName: 'Sigfried', lastName: 'Gold', class: 'Remedial Programming', grade: 'C+', num: 2.2},
+   {firstName: 'Sigfried', lastName: 'Gold', class: 'Literary Posturing', grade: 'B', num: 3},
+   {firstName: 'Sigfried', lastName: 'Gold', class: 'Documenting with Pretty Colors', grade: 'B-', num: 2.7},
+   {firstName: 'Someone', lastName: 'Else', class: 'Remedial Programming', grade: 'A'}];
+
+var gradesByLastName = enlightenedData.group(gradeBook, 'lastName')
+```
+
+
+``` javascript
+var gradesByName = enlightenedData.group(gradeBook,  
+        function(d) { return d.lastName + ', ' + d.firstName },  
+        {dimName: 'fullName'})
+
+var sigfried = gradesByName.lookup('Gold, Sigfried');
+sigfried.records.length; // 3
+var sigfriedGPA = sigfried.records.reduce(function(result,rec) { return result+rec.num }, 0) / sigfried.records.length;
+(it does much much more, will explain below)
+```
+File /Users/sigfried/Sites/git_projects/sigfried.github.io/source/downloads/code/supergroup-test.js could not be found
+-->
+
 ]]></content>
   </entry>
   
