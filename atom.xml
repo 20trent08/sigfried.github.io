@@ -4,7 +4,7 @@
   <title><![CDATA[D3 visualizations, Underscore mixins, etc.]]></title>
   <link href="http://Sigfried.github.io/atom.xml" rel="self"/>
   <link href="http://Sigfried.github.io/"/>
-  <updated>2015-03-17T22:45:12-04:00</updated>
+  <updated>2015-03-19T09:53:01-04:00</updated>
   <id>http://Sigfried.github.io/</id>
   <author>
     <name><![CDATA[Sigfried Gold]]></name>
@@ -282,8 +282,8 @@ programming.</p>
 
 
 
-<p>As if in submission to the great programmers commandment&mdash;Don&rsquo;t
-Repeat Yourself&mdash;every time I find myself writing a piece of code
+<p>As if in submission to the great programmers commandment&mdash;<em>Don&rsquo;t
+Repeat Yourself</em>&mdash;every time I find myself writing a piece of code
 that solves basically the same problem I&rsquo;ve solved a dozen times
 before, a little piece of my soul dies.</p>
 
@@ -293,14 +293,19 @@ before, a little piece of my soul dies.</p>
 <p>Utilities for grouping record collections into maps or nests abound:
 <a href="https://github.com/mbostock/d3/wiki/Arrays#-nest">d3.nest</a>,
 <a href="https://github.com/mbostock/d3/wiki/Arrays#associative-arrays">d3.map</a>,
-and <a href="http://underscorejs.org/#groupBy">Underscore.groupBy</a>
-(<a href="https://github.com/iros/underscore.nest">Underscore.Nest</a> to name
+<a href="http://underscorejs.org/#groupBy">Underscore.groupBy</a>,
+<a href="https://github.com/iros/underscore.nest">Underscore.Nest</a>, to name
 a few. But after these tools relieve us of a certain amount of
 repetitive stress, we&rsquo;re often left with a tangle of hairy details
 that fill us with a dreadful sense of deja vu. Supergroup may seem
 like the kind of tacky wonder gadget you&rsquo;d find on a late-night
 Ronco ad, but, for the low, low price of free, it makes data-centric
-Javascript programming fun again.</p>
+Javascript programming fun again. <strong>And</strong>, when you find yourself
+in a D3.js callback routine holding a datum object that might have
+come from anywhere&mdash;for instance, with a tooltip callback used on
+disparate object types&mdash;everything you want to know about your
+object and its associated metadata and records is right there at
+your fingertips.</p>
 
 
 <p>Just to be clear about the problem&mdash;you start with tabular data from a CSV
