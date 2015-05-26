@@ -4,7 +4,7 @@ title: "TreeLike CSV Data Browser"
 date: 2013-12-27 00:06:00 -0500
 comments: true
 categories: [repo]
-demo: ../treelike/treelike.html
+demo: http://sigfried.github.io/treelike/demo.html
 source: https://github.com/Sigfried/treelike
 ---
 TreeLike is an experimental tool allowing rapid exploration
@@ -21,7 +21,7 @@ relationships can be reordered with one or two mouse clicks.
 
 [^1]: Or a spreadsheet or SQL query or SAS data set, or any other data arranged in rows and columns and saved as CSV or JSON. 
 
-[Demo](../treelike/demo.html) (you'll need a data file, how about: [MySQL world data](https://raw.github.com/Sigfried/treelike/master/data/mysql_world_data.csv))
+[Demo](http://sigfried.github.io/treelike/demo.html) (you'll need a data file, how about: [MySQL world data](https://raw.github.com/Sigfried/treelike/master/data/mysql_world_data.csv))
 
 To understand what it does, you need to see it in action. This rough
 demo video will explain:
